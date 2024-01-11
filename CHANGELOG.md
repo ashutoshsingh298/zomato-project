@@ -1,567 +1,551 @@
-# [24.7.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.6.0...v24.7.0) (2021-10-10)
-
-
-### Features
-
-* create `require-hook` rule ([#929](https://github.com/jest-community/eslint-plugin-jest/issues/929)) ([6204b31](https://github.com/jest-community/eslint-plugin-jest/commit/6204b311e849b51a0e4705015575139f590ae7a4))
-* deprecate `prefer-to-be-null` rule ([4db9161](https://github.com/jest-community/eslint-plugin-jest/commit/4db91612e988e84ac2facbfe466331b22eeccec9))
-* deprecate `prefer-to-be-undefined` rule ([fa08f09](https://github.com/jest-community/eslint-plugin-jest/commit/fa08f0944e89915fb215bbeff970f12459121cb8))
-
-# [24.6.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.5.2...v24.6.0) (2021-10-09)
-
-
-### Features
-
-* **valid-expect-in-promise:** re-implement rule ([#916](https://github.com/jest-community/eslint-plugin-jest/issues/916)) ([7a49c58](https://github.com/jest-community/eslint-plugin-jest/commit/7a49c5831e3d85a60c11e385203b8f83d98ad580))
-
-## [24.5.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.5.1...v24.5.2) (2021-10-04)
-
-
-### Bug Fixes
-
-* **lowercase-name:** consider skip and only prefixes for ignores ([#923](https://github.com/jest-community/eslint-plugin-jest/issues/923)) ([8716c24](https://github.com/jest-community/eslint-plugin-jest/commit/8716c24678ea7dc7c9f692b573d1ea19a67efd84))
-
-## [24.5.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.5.0...v24.5.1) (2021-10-04)
-
-
-### Bug Fixes
-
-* **prefer-to-be:** don't consider RegExp literals as `toBe`-able ([#922](https://github.com/jest-community/eslint-plugin-jest/issues/922)) ([99b6d42](https://github.com/jest-community/eslint-plugin-jest/commit/99b6d429e697d60645b4bc64ee4ae34d7016118c))
-
-# [24.5.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.3...v24.5.0) (2021-09-29)
-
-
-### Bug Fixes
-
-* **no-deprecated-functions:** remove `process.cwd` from resolve paths ([#889](https://github.com/jest-community/eslint-plugin-jest/issues/889)) ([6940488](https://github.com/jest-community/eslint-plugin-jest/commit/6940488d7b5a47577e2823e6d4385b511c5becf4))
-* **no-identical-title:** always consider `.each` titles unique ([#910](https://github.com/jest-community/eslint-plugin-jest/issues/910)) ([a41a40e](https://github.com/jest-community/eslint-plugin-jest/commit/a41a40eafaf1db444ba940cccd2014cb0dc41be9))
-
-
-### Features
-
-* create `prefer-expect-resolves` rule ([#822](https://github.com/jest-community/eslint-plugin-jest/issues/822)) ([2556020](https://github.com/jest-community/eslint-plugin-jest/commit/2556020a777f9daaf1d362a04e3f990415e82db8))
-* create `prefer-to-be` rule ([#864](https://github.com/jest-community/eslint-plugin-jest/issues/864)) ([3a64aea](https://github.com/jest-community/eslint-plugin-jest/commit/3a64aea5bdc55465f1ef34f1426ae626d6c8a230))
-* **require-top-level-describe:** support enforcing max num of describes ([#912](https://github.com/jest-community/eslint-plugin-jest/issues/912)) ([14a2d13](https://github.com/jest-community/eslint-plugin-jest/commit/14a2d1391c9f6f52509316542f45df35853c9b79))
-* **valid-title:** allow custom matcher messages ([#913](https://github.com/jest-community/eslint-plugin-jest/issues/913)) ([ffc9392](https://github.com/jest-community/eslint-plugin-jest/commit/ffc93921348b0d4a394125f665d2bb09148ea37e))
-
-## [24.4.3](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.2...v24.4.3) (2021-09-28)
-
-
-### Bug Fixes
-
-* **valid-expect-in-promise:** support `finally` ([#914](https://github.com/jest-community/eslint-plugin-jest/issues/914)) ([9c89855](https://github.com/jest-community/eslint-plugin-jest/commit/9c89855d23534272230afe6d9e665b8e11ef3075))
-* **valid-expect-in-promise:** support additional test functions ([#915](https://github.com/jest-community/eslint-plugin-jest/issues/915)) ([4798005](https://github.com/jest-community/eslint-plugin-jest/commit/47980058d8d1ff86ee69a376c4edd182d462d594))
-
-## [24.4.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.1...v24.4.2) (2021-09-17)
-
-
-### Bug Fixes
-
-* use correct property `hasSuggestions` rather than `hasSuggestion` ([#899](https://github.com/jest-community/eslint-plugin-jest/issues/899)) ([dfd2368](https://github.com/jest-community/eslint-plugin-jest/commit/dfd2368d1cb1789b6a95a11be24c36868bb8a819))
-
-## [24.4.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.0...v24.4.1) (2021-09-17)
-
-
-### Bug Fixes
-
-* mark rules that suggest fixes with `hasSuggestion` for ESLint v8 ([#898](https://github.com/jest-community/eslint-plugin-jest/issues/898)) ([ec0a21b](https://github.com/jest-community/eslint-plugin-jest/commit/ec0a21b0d98d043a9949138e495814e0935d5e31))
-
-# [24.4.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.7...v24.4.0) (2021-07-21)
-
-
-### Features
-
-* create `max-nested-describe` rule ([#845](https://github.com/jest-community/eslint-plugin-jest/issues/845)) ([8067405](https://github.com/jest-community/eslint-plugin-jest/commit/8067405deb609cc1800bce596e929c1840d290ab))
-
-## [24.3.7](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.6...v24.3.7) (2021-07-21)
-
-
-### Bug Fixes
-
-* **valid-describe:** report on concise-body arrow functions ([#863](https://github.com/jest-community/eslint-plugin-jest/issues/863)) ([71c5299](https://github.com/jest-community/eslint-plugin-jest/commit/71c5299b14cac6d85ba8f8bd939461503a60468f))
-
-## [24.3.6](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.5...v24.3.6) (2021-04-26)
-
-
-### Bug Fixes
-
-* **no-conditional-expect:** check for expects in `catch`s on promises ([#819](https://github.com/jest-community/eslint-plugin-jest/issues/819)) ([1fee973](https://github.com/jest-community/eslint-plugin-jest/commit/1fee973429a74c60b14eead6a335623b4349b5f2))
-* **valid-expect:** support async `expect` in ternary statements ([#833](https://github.com/jest-community/eslint-plugin-jest/issues/833)) ([7b7a396](https://github.com/jest-community/eslint-plugin-jest/commit/7b7a396e12c46d3087b467227887ed64854480c0))
-* improve handling of `.each` calls and with tagged literals ([#814](https://github.com/jest-community/eslint-plugin-jest/issues/814)) ([040c605](https://github.com/jest-community/eslint-plugin-jest/commit/040c605cf7929a00980b3fa58331cd78ac6274f6))
-
-## [24.3.5](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.4...v24.3.5) (2021-04-10)
-
-
-### Bug Fixes
-
-* **valid-describe:** support using `each` with modifiers ([#820](https://github.com/jest-community/eslint-plugin-jest/issues/820)) ([cbdbcef](https://github.com/jest-community/eslint-plugin-jest/commit/cbdbcef47984eb01509493bd5b2423f518a2663d))
-
-## [24.3.4](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.3...v24.3.4) (2021-04-05)
-
-
-### Bug Fixes
-
-* support all variations of `describe`, `it`, & `test` ([#792](https://github.com/jest-community/eslint-plugin-jest/issues/792)) ([0968b55](https://github.com/jest-community/eslint-plugin-jest/commit/0968b557dd9cdb5cfcaf8a0d84e8a456825e6b25))
-
-## [24.3.3](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.2...v24.3.3) (2021-04-02)
-
-
-### Bug Fixes
-
-* **no-duplicate-hooks:** support `describe.each` ([#797](https://github.com/jest-community/eslint-plugin-jest/issues/797)) ([243cb4f](https://github.com/jest-community/eslint-plugin-jest/commit/243cb4f970e40aa195a3bffa0528dbdbfef7c4f5)), closes [#642](https://github.com/jest-community/eslint-plugin-jest/issues/642)
-* **prefer-expect-assertions:** support `.each` ([#798](https://github.com/jest-community/eslint-plugin-jest/issues/798)) ([f758243](https://github.com/jest-community/eslint-plugin-jest/commit/f75824359f2242f53997c59c238d83a59badeea3)), closes [#676](https://github.com/jest-community/eslint-plugin-jest/issues/676)
-
-## [24.3.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.1...v24.3.2) (2021-03-16)
-
-
-### Bug Fixes
-
-* **consistent-test-it:** properly handle `describe.each` ([#796](https://github.com/jest-community/eslint-plugin-jest/issues/796)) ([035bd30](https://github.com/jest-community/eslint-plugin-jest/commit/035bd30af43f1215e65bf1b26c2ef2e6d174d3c8)), closes [#795](https://github.com/jest-community/eslint-plugin-jest/issues/795)
-
-## [24.3.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.0...v24.3.1) (2021-03-13)
-
-
-### Bug Fixes
-
-* **no-focused-tests:** report on `skip` instead of `concurrent` ([#791](https://github.com/jest-community/eslint-plugin-jest/issues/791)) ([2b65b49](https://github.com/jest-community/eslint-plugin-jest/commit/2b65b491cea2c956e4ba314a809915b9ec62933b))
-
-# [24.3.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.2.1...v24.3.0) (2021-03-13)
-
-
-### Features
-
-* **unbound-method:** create rule ([#765](https://github.com/jest-community/eslint-plugin-jest/issues/765)) ([b1f4ed3](https://github.com/jest-community/eslint-plugin-jest/commit/b1f4ed3f6bb0264fdefb5138ba913fa2bacc725c))
-
-## [24.2.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.2.0...v24.2.1) (2021-03-10)
-
-
-### Bug Fixes
-
-* **no-identical-titles:** support nested describes ([#790](https://github.com/jest-community/eslint-plugin-jest/issues/790)) ([ce26621](https://github.com/jest-community/eslint-plugin-jest/commit/ce26621a06169fb6728d2d015645d31401de523f))
-
-# [24.2.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.10...v24.2.0) (2021-03-09)
-
-
-### Features
-
-* **no-focused-tests:** make fixable ([#787](https://github.com/jest-community/eslint-plugin-jest/issues/787)) ([040871a](https://github.com/jest-community/eslint-plugin-jest/commit/040871a866b7803e5c48b40715d48437d3906b0f))
-
-## [24.1.10](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.9...v24.1.10) (2021-03-09)
-
-
-### Bug Fixes
-
-* **no-identical-titles:** ignore .each template cases ([#788](https://github.com/jest-community/eslint-plugin-jest/issues/788)) ([d27a6e6](https://github.com/jest-community/eslint-plugin-jest/commit/d27a6e6e013c518a47b9f219edeb5e63d7a974f9))
-
-## [24.1.9](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.8...v24.1.9) (2021-03-08)
-
-
-### Bug Fixes
-
-* **valid-describe:** false positive with template describe.each ([#785](https://github.com/jest-community/eslint-plugin-jest/issues/785)) ([aa946a6](https://github.com/jest-community/eslint-plugin-jest/commit/aa946a6f7ae7106b78996587760d92ace33227ad))
-
-## [24.1.8](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.7...v24.1.8) (2021-03-07)
-
-
-### Bug Fixes
-
-* **consistent-test-it:** support `it.each` in `describe.each` ([#782](https://github.com/jest-community/eslint-plugin-jest/issues/782)) ([0014da0](https://github.com/jest-community/eslint-plugin-jest/commit/0014da0e2aeb13199a9da7f969e9eb376e026c8b))
-
-## [24.1.7](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.6...v24.1.7) (2021-03-06)
-
-
-### Bug Fixes
-
-* **no-disabled-tests:** adjust selector to match only test functions ([#777](https://github.com/jest-community/eslint-plugin-jest/issues/777)) ([c916902](https://github.com/jest-community/eslint-plugin-jest/commit/c9169022c7e4b9c7bd5f09060152f7136ee18521))
-* **no-disabled-tests:** support `describe.skip.each` & `xdescribe.each` ([#778](https://github.com/jest-community/eslint-plugin-jest/issues/778)) ([6a32e87](https://github.com/jest-community/eslint-plugin-jest/commit/6a32e870c016474687e238944933a96bfe1ca01b))
-
-## [24.1.6](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.5...v24.1.6) (2021-03-06)
-
-
-### Bug Fixes
-
-* proper support for it.each  ([#722](https://github.com/jest-community/eslint-plugin-jest/issues/722)) ([e1dc42d](https://github.com/jest-community/eslint-plugin-jest/commit/e1dc42d9f1ca59d59aca9be0a1473a1b1415e528))
-
-## [24.1.5](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.4...v24.1.5) (2021-02-17)
-
-
-### Bug Fixes
-
-* **require-top-level-describe:** import function that actually exists ([#763](https://github.com/jest-community/eslint-plugin-jest/issues/763)) ([d10dc07](https://github.com/jest-community/eslint-plugin-jest/commit/d10dc07d9dc933fe9584b3e13704001527896859))
-
-## [24.1.4](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.3...v24.1.4) (2021-02-16)
-
-
-### Bug Fixes
-
-* **lowercase-name:** support `.each` methods ([#746](https://github.com/jest-community/eslint-plugin-jest/issues/746)) ([3d847b2](https://github.com/jest-community/eslint-plugin-jest/commit/3d847b2164425a2afb754569dbfff52411c95610))
-* **require-top-level-describe:** handle `describe.each` properly ([#745](https://github.com/jest-community/eslint-plugin-jest/issues/745)) ([677be45](https://github.com/jest-community/eslint-plugin-jest/commit/677be4558a3954e364b0c4150678a4d3fd832337))
-
-## [24.1.3](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.2...v24.1.3) (2020-11-12)
-
-
-### Bug Fixes
-
-* revert change causing regressions for test.each ([#713](https://github.com/jest-community/eslint-plugin-jest/issues/713)) ([7c8d75a](https://github.com/jest-community/eslint-plugin-jest/commit/7c8d75a4fcbd2c6ce005cf4f57d676c7c44ce0b2)), closes [#710](https://github.com/jest-community/eslint-plugin-jest/issues/710) [#711](https://github.com/jest-community/eslint-plugin-jest/issues/711)
-
-## [24.1.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.1...v24.1.2) (2020-11-12)
-
-
-### Bug Fixes
-
-* **no-done-callback:** fix regression with it.each ([#708](https://github.com/jest-community/eslint-plugin-jest/issues/708)) ([2f032f8](https://github.com/jest-community/eslint-plugin-jest/commit/2f032f8d890e3717359d099b1e93e0cc6b52996a))
-
-## [24.1.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.0...v24.1.1) (2020-11-12)
-
-
-### Bug Fixes
-
-* improve support for it.each involving tagged template literals ([#701](https://github.com/jest-community/eslint-plugin-jest/issues/701)) ([2341814](https://github.com/jest-community/eslint-plugin-jest/commit/2341814060b38c55728c0b456d7b432f1e0e1a11))
-
-# [24.1.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.0.2...v24.1.0) (2020-10-05)
-
-
-### Features
-
-* **prefer-expect-assertions:** add `onlyFunctionsWithAsyncKeyword` option ([#677](https://github.com/jest-community/eslint-plugin-jest/issues/677)) ([d0cea37](https://github.com/jest-community/eslint-plugin-jest/commit/d0cea37ae0a8ab07b8082cedbaaf161bcc94c405))
-
-## [24.0.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.0.1...v24.0.2) (2020-09-20)
-
-
-### Bug Fixes
-
-* **no-if:** check both types of function expression ([#672](https://github.com/jest-community/eslint-plugin-jest/issues/672)) ([d462d50](https://github.com/jest-community/eslint-plugin-jest/commit/d462d50aed84ad4dc536a1f47bb7af6abd3dbe92)), closes [#670](https://github.com/jest-community/eslint-plugin-jest/issues/670)
-
-## [24.0.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.0.0...v24.0.1) (2020-09-12)
-
-
-### Bug Fixes
-
-* don't include deprecated rules in `all` config ([#664](https://github.com/jest-community/eslint-plugin-jest/issues/664)) ([f636021](https://github.com/jest-community/eslint-plugin-jest/commit/f636021c16215a713845c699858a2978211df49d)), closes [#663](https://github.com/jest-community/eslint-plugin-jest/issues/663)
-
-# [24.0.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.20.0...v24.0.0) (2020-09-04)
-
-
-### Bug Fixes
-
-* **no-large-snapshots:** run on all files regardless of type ([#637](https://github.com/jest-community/eslint-plugin-jest/issues/637)) ([22113db](https://github.com/jest-community/eslint-plugin-jest/commit/22113db4cdc2dab42a8e7fdb236d23e7e089741d)), closes [#370](https://github.com/jest-community/eslint-plugin-jest/issues/370)
-* remove Jasmine globals ([#596](https://github.com/jest-community/eslint-plugin-jest/issues/596)) ([a0e2bc5](https://github.com/jest-community/eslint-plugin-jest/commit/a0e2bc526c5c22bcf4d60160242b55d03edb571d))
-* update to typescript-eslint@4 ([1755965](https://github.com/jest-community/eslint-plugin-jest/commit/175596582b3643f36363ff444f987fac08ee0f61)), closes [#590](https://github.com/jest-community/eslint-plugin-jest/issues/590)
-
-
-### Code Refactoring
-
-* **no-test-callback:** rename rule to `no-done-callback` ([#653](https://github.com/jest-community/eslint-plugin-jest/issues/653)) ([e15a8d1](https://github.com/jest-community/eslint-plugin-jest/commit/e15a8d19234b267784f87fc7acd318dc4cfcdeae))
-
-
-### Features
-
-* **no-done-callback:** support hooks ([#656](https://github.com/jest-community/eslint-plugin-jest/issues/656)) ([3e6cb44](https://github.com/jest-community/eslint-plugin-jest/commit/3e6cb442a20b9aea710d30f81bf2eb192d193823)), closes [#649](https://github.com/jest-community/eslint-plugin-jest/issues/649) [#651](https://github.com/jest-community/eslint-plugin-jest/issues/651)
-* add `no-conditional-expect` to the recommended ruleset ([40cd89d](https://github.com/jest-community/eslint-plugin-jest/commit/40cd89ddf1d6ebbde8ad455f333dda7b61878ffe))
-* add `no-deprecated-functions` to the recommended ruleset ([5b2af00](https://github.com/jest-community/eslint-plugin-jest/commit/5b2af001b50059e4e7b6ababe0355d664e039046))
-* add `no-interpolation-in-snapshots` to the recommended ruleset ([3705dff](https://github.com/jest-community/eslint-plugin-jest/commit/3705dff9d4f77d21013e263478d8a374d9325acb))
-* add `valid-title` to recommended ruleset ([41f7873](https://github.com/jest-community/eslint-plugin-jest/commit/41f7873f734e0122264ace42f6d99733e7e25089))
-* drop support for node 8 ([#570](https://github.com/jest-community/eslint-plugin-jest/issues/570)) ([6788e72](https://github.com/jest-community/eslint-plugin-jest/commit/6788e72d842751400a970e72b115360ad0b12d2e))
-* set `no-jasmine-globals` to `error` in recommended ruleset ([7080952](https://github.com/jest-community/eslint-plugin-jest/commit/7080952a6baaae7a02c78f60016ee21693121416))
-* **no-large-snapshots:** remove `whitelistedSnapshots` option ([8c1c0c9](https://github.com/jest-community/eslint-plugin-jest/commit/8c1c0c9a3e858757b38225ccb4a624e0621b5ca2))
-
-
-### BREAKING CHANGES
-
-* **no-done-callback:** `no-done-callback` will now report hooks using callbacks as well, not just tests
-* **no-test-callback:** rename `no-test-callback` to `no-done-callback`
-* recommend `no-conditional-expect` rule
-* recommend `no-interpolation-in-snapshots` rule
-* recommend `no-deprecated-functions` rule
-* recommend `valid-title` rule
-* recommend erroring for `no-jasmine-globals` rule
-* **no-large-snapshots:** `no-large-snapshots` runs on all files regardless of type 
-* Jasmine globals are no marked as such
-* Node 10+ required
-
-# [23.20.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.19.0...v23.20.0) (2020-07-30)
-
-
-### Features
-
-* **no-large-snapshots:** deprecate `whitelistedSnapshots` for new name ([#632](https://github.com/jest-community/eslint-plugin-jest/issues/632)) ([706f5c2](https://github.com/jest-community/eslint-plugin-jest/commit/706f5c2bc54797f0f32178fab1d194d9a4309f70))
-
-# [23.19.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.18.2...v23.19.0) (2020-07-27)
-
-
-### Features
-
-* create `no-interpolation-in-snapshots` rule ([#553](https://github.com/jest-community/eslint-plugin-jest/issues/553)) ([8d2c17c](https://github.com/jest-community/eslint-plugin-jest/commit/8d2c17c449841465630bea5269de677455ef9a8d))
-
-## [23.18.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.18.1...v23.18.2) (2020-07-26)
-
-
-### Bug Fixes
-
-* **no-if:** report conditionals in call expressions ([4cfcf08](https://github.com/jest-community/eslint-plugin-jest/commit/4cfcf080893fbe89689bd4b283bb2f3ad09b19ff)), closes [#557](https://github.com/jest-community/eslint-plugin-jest/issues/557)
-
-## [23.18.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.18.0...v23.18.1) (2020-07-26)
-
-
-### Bug Fixes
-
-* **no-large-snapshots:** actually compare allowed name strings to name ([#625](https://github.com/jest-community/eslint-plugin-jest/issues/625)) ([622a08c](https://github.com/jest-community/eslint-plugin-jest/commit/622a08c86a37aa9490af20b488bd23246b8be752))
-
-# [23.18.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.17.1...v23.18.0) (2020-07-05)
-
-
-### Features
-
-* **valid-title:** support `mustMatch` & `mustNotMatch` options ([#608](https://github.com/jest-community/eslint-plugin-jest/issues/608)) ([4c7207e](https://github.com/jest-community/eslint-plugin-jest/commit/4c7207ebbb274f7b584225ad65ffb96a4328240e)), closes [#233](https://github.com/jest-community/eslint-plugin-jest/issues/233)
-
-## [23.17.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.17.0...v23.17.1) (2020-06-23)
-
-
-### Bug Fixes
-
-* **lowercase-name:** ignore all top level describes when option is true ([#614](https://github.com/jest-community/eslint-plugin-jest/issues/614)) ([624018a](https://github.com/jest-community/eslint-plugin-jest/commit/624018aa181e7c0ce87457a4f9c212c7891987a8)), closes [#613](https://github.com/jest-community/eslint-plugin-jest/issues/613)
-
-# [23.17.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.16.0...v23.17.0) (2020-06-23)
-
-
-### Features
-
-* **lowercase-name:** support `ignoreTopLevelDescribe` option ([#611](https://github.com/jest-community/eslint-plugin-jest/issues/611)) ([36fdcc5](https://github.com/jest-community/eslint-plugin-jest/commit/36fdcc553ca40bc2ca2e9ca7e04f8e9e4a315274)), closes [#247](https://github.com/jest-community/eslint-plugin-jest/issues/247)
-
-# [23.16.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.15.0...v23.16.0) (2020-06-21)
-
-
-### Features
-
-* create `no-conditional-expect` rule ([aba53e4](https://github.com/jest-community/eslint-plugin-jest/commit/aba53e4061f3b636ab0c0270e183c355c6f301e0))
-* deprecate `no-try-expect` in favor of `no-conditional-expect` ([6d07cad](https://github.com/jest-community/eslint-plugin-jest/commit/6d07cadd5f78ed7a64a86792931d49d3cd943d69))
-
-# [23.15.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.14.0...v23.15.0) (2020-06-21)
-
-
-### Features
-
-* **no-standalone-expect:** support `additionalTestBlockFunctions` ([#585](https://github.com/jest-community/eslint-plugin-jest/issues/585)) ([ed220b2](https://github.com/jest-community/eslint-plugin-jest/commit/ed220b2c515f2e97ce639dd1474c18a7f594c06c))
-
-# [23.14.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.13.2...v23.14.0) (2020-06-20)
-
-
-### Bug Fixes
-
-* **no-test-callback:** check argument is an identifier ([f70612d](https://github.com/jest-community/eslint-plugin-jest/commit/f70612d8b414575725a5831ed9dfad1eaf1e6548))
-* **no-test-callback:** provide suggestion instead of autofix ([782d8fa](https://github.com/jest-community/eslint-plugin-jest/commit/782d8fa00149143f453e7cb066f90c017e2d3f61))
-* **prefer-strict-equal:** provide suggestion instead of autofix ([2eaed2b](https://github.com/jest-community/eslint-plugin-jest/commit/2eaed2bf30c72b03ee205910887f8aab304047a5))
-
-
-### Features
-
-* **prefer-expect-assertions:** provide suggestions ([bad88a0](https://github.com/jest-community/eslint-plugin-jest/commit/bad88a006135258e8da18902a84bdb52a9bb9fa7))
-
-## [23.13.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.13.1...v23.13.2) (2020-05-26)
-
-
-### Bug Fixes
-
-* add `fail` to globals ([#595](https://github.com/jest-community/eslint-plugin-jest/issues/595)) ([aadc5ec](https://github.com/jest-community/eslint-plugin-jest/commit/aadc5ec5610ec024eac4b0aa6077cc012a0ba98e))
-
-## [23.13.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.13.0...v23.13.1) (2020-05-17)
-
-
-### Bug Fixes
-
-* **no-if:** use correct syntax for placeholder substitution in message ([6d1eda8](https://github.com/jest-community/eslint-plugin-jest/commit/6d1eda89ac48c93c2675dcf24a92574a20b2edb9))
-
-# [23.13.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.12.0...v23.13.0) (2020-05-16)
-
-
-### Features
-
-* **valid-expect:** support `minArgs` & `maxArgs` options ([#584](https://github.com/jest-community/eslint-plugin-jest/issues/584)) ([9e0e2fa](https://github.com/jest-community/eslint-plugin-jest/commit/9e0e2fa966b43c1099d11b2424acb1590c241c03))
-
-# [23.12.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.11.0...v23.12.0) (2020-05-16)
-
-
-### Features
-
-* deprecate `no-expect-resolves` rule ([b6a22e5](https://github.com/jest-community/eslint-plugin-jest/commit/b6a22e5aa98abcb57aac217c6d4583d0a3388e7b))
-* deprecate `no-truthy-falsy` rule ([a67d92d](https://github.com/jest-community/eslint-plugin-jest/commit/a67d92d2834568122f24bf3d8455999166da95ea))
-* deprecate `prefer-inline-snapshots` rule ([1360e9b](https://github.com/jest-community/eslint-plugin-jest/commit/1360e9b0e840f4f778a9d251371c943919f84600))
-
-# [23.11.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.10.0...v23.11.0) (2020-05-12)
-
-
-### Features
-
-* create `no-restricted-matchers` rule ([#575](https://github.com/jest-community/eslint-plugin-jest/issues/575)) ([ac926e7](https://github.com/jest-community/eslint-plugin-jest/commit/ac926e779958240506ee506047c9a5364bb70aea))
-
-# [23.10.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.9.0...v23.10.0) (2020-05-09)
-
-
-### Features
-
-* **no-deprecated-functions:** support jest `version` setting ([#564](https://github.com/jest-community/eslint-plugin-jest/issues/564)) ([05f20b8](https://github.com/jest-community/eslint-plugin-jest/commit/05f20b80ecd42b8d1f1f18ca19d4bc9cba45e22e))
-
-# [23.9.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.8.2...v23.9.0) (2020-05-04)
-
-
-### Features
-
-* create `no-deprecated-functions` ([#560](https://github.com/jest-community/eslint-plugin-jest/issues/560)) ([55d0504](https://github.com/jest-community/eslint-plugin-jest/commit/55d0504cadc945b770d7c3b6d3cab425c9b76d0f))
-
-## [23.8.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.8.1...v23.8.2) (2020-03-06)
-
-### Bug Fixes
-
-- **prefer-to-contain:** check that expect argument is defined before use
-  ([#542](https://github.com/jest-community/eslint-plugin-jest/issues/542))
-  ([56f909b](https://github.com/jest-community/eslint-plugin-jest/commit/56f909b326034236953d04b18dab3f64b16a2973))
-
-## [23.8.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.8.0...v23.8.1) (2020-02-29)
-
-### Bug Fixes
-
-- remove tests from published package
-  ([#541](https://github.com/jest-community/eslint-plugin-jest/issues/541))
-  ([099a150](https://github.com/jest-community/eslint-plugin-jest/commit/099a150b87fa693ccf1c512ee501aed1457ba656))
-
-# [23.8.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.7.0...v23.8.0) (2020-02-23)
-
-### Bug Fixes
-
-- **valid-title:** ensure argument node is defined before accessing props
-  ([#538](https://github.com/jest-community/eslint-plugin-jest/issues/538))
-  ([7730f75](https://github.com/jest-community/eslint-plugin-jest/commit/7730f757561100559509b756fd362ca33b9ab1d4))
-
-### Features
-
-- **no-large-snapshots:** add setting to define maxSize by snapshot type
-  ([#524](https://github.com/jest-community/eslint-plugin-jest/issues/524))
-  ([0d77300](https://github.com/jest-community/eslint-plugin-jest/commit/0d77300e61adc7a5aa84f34ff4ccc164075d5f41))
-
-# [23.7.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.6.0...v23.7.0) (2020-02-07)
-
-### Bug Fixes
-
-- **expect-expect:** use `u` flag in regex
-  ([#532](https://github.com/jest-community/eslint-plugin-jest/issues/532))
-  ([c12b725](https://github.com/jest-community/eslint-plugin-jest/commit/c12b7251ef1506073d268973b93c7fc9fbcf50af))
-
-### Features
-
-- **valid-title:** support `disallowedWords` option
-  ([#522](https://github.com/jest-community/eslint-plugin-jest/issues/522))
-  ([38bbe93](https://github.com/jest-community/eslint-plugin-jest/commit/38bbe93794ed456c6e9e5d7be848b2aeb55ce0ba))
-
-# [23.6.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.5.0...v23.6.0) (2020-01-12)
-
-### Features
-
-- **no-if:** support `switch` statements
-  ([#515](https://github.com/jest-community/eslint-plugin-jest/issues/515))
-  ([be4e49d](https://github.com/jest-community/eslint-plugin-jest/commit/be4e49dcecd64711e743f5e09d1ff24e4c6e1648))
-
-# [23.5.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.4.0...v23.5.0) (2020-01-12)
-
-### Features
-
-- **expect-expect:** support glob patterns for assertFunctionNames
-  ([#509](https://github.com/jest-community/eslint-plugin-jest/issues/509))
-  ([295ca9a](https://github.com/jest-community/eslint-plugin-jest/commit/295ca9a6969c77fadaa1a42d76e89cae992520a6))
-- **valid-expect:** refactor `valid-expect` linting messages
-  ([#501](https://github.com/jest-community/eslint-plugin-jest/issues/501))
-  ([7338362](https://github.com/jest-community/eslint-plugin-jest/commit/7338362420eb4970f99be2016bb4ded5732797e3))
-
-# [23.4.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.3.0...v23.4.0) (2020-01-10)
-
-### Features
-
-- **expect-expect:** support chained function names
-  ([#471](https://github.com/jest-community/eslint-plugin-jest/issues/471))
-  ([#508](https://github.com/jest-community/eslint-plugin-jest/issues/508))
-  ([beb1aec](https://github.com/jest-community/eslint-plugin-jest/commit/beb1aececee80589c182e95bc64ef01d97eb5e78))
-- **rules:** add support for function declaration as test case
-  ([#504](https://github.com/jest-community/eslint-plugin-jest/issues/504))
-  ([ac7fa48](https://github.com/jest-community/eslint-plugin-jest/commit/ac7fa487d05705bee1b2d5264d5096f0232ae1e1))
-
-# [23.3.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.2.0...v23.3.0) (2020-01-04)
-
-### Features
-
-- **rules:** add .concurrent support
-  ([#498](https://github.com/jest-community/eslint-plugin-jest/issues/498))
-  ([#502](https://github.com/jest-community/eslint-plugin-jest/issues/502))
-  ([dcba5f1](https://github.com/jest-community/eslint-plugin-jest/commit/dcba5f1f1c6429a8bce2ff9aae71c02a6ffa1c2b))
-
-# [23.2.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.1.1...v23.2.0) (2019-12-28)
-
-### Features
-
-- **valid-expect:** warn on `await expect()` with no assertions
-  ([#496](https://github.com/jest-community/eslint-plugin-jest/issues/496))
-  ([19798dd](https://github.com/jest-community/eslint-plugin-jest/commit/19798dd540c8a0f5ac7883f67a28ee67d9e5fc7a))
-
-## [23.1.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.1.0...v23.1.1) (2019-11-30)
-
-### Bug Fixes
-
-- **no-focused-tests:** detect table format uage of `.only.each`
-  ([#489](https://github.com/jest-community/eslint-plugin-jest/issues/489))
-  ([d03bcf4](https://github.com/jest-community/eslint-plugin-jest/commit/d03bcf49e9e4f068bead25a4bc4c962762d56c02))
-
-# [23.1.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.5...v23.1.0) (2019-11-29)
-
-### Features
-
-- **no-focused-tests:** check each with table format
-  ([#430](https://github.com/jest-community/eslint-plugin-jest/issues/430))
-  ([154c0b8](https://github.com/jest-community/eslint-plugin-jest/commit/154c0b8e5310f0c1bf715a8c60de5d84faa1bc48))
-
-## [23.0.5](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.4...v23.0.5) (2019-11-27)
-
-### Bug Fixes
-
-- typo in the `require-to-throw-message` docs
-  ([#487](https://github.com/jest-community/eslint-plugin-jest/issues/487))
-  ([3526213](https://github.com/jest-community/eslint-plugin-jest/commit/35262135e3bb407b9c40991d2651ca4b201eebff))
-
-## [23.0.4](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.3...v23.0.4) (2019-11-14)
-
-### Bug Fixes
-
-- get correct ruleName without specifying file extension
-  ([#473](https://github.com/jest-community/eslint-plugin-jest/issues/473))
-  ([f09203e](https://github.com/jest-community/eslint-plugin-jest/commit/f09203ed05a69c83baadf6149ae17513c85b170f))
-
-## [23.0.3](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.2...v23.0.3) (2019-11-08)
-
-### Bug Fixes
-
-- **no-test-callback:** don't provide fix for `async` functions
-  ([#469](https://github.com/jest-community/eslint-plugin-jest/issues/469))
-  ([09111e0](https://github.com/jest-community/eslint-plugin-jest/commit/09111e0c951aaa930c9a2c8e0ca84251b3196e94)),
-  closes [#466](https://github.com/jest-community/eslint-plugin-jest/issues/466)
-
-## [23.0.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.1...v23.0.2) (2019-10-28)
-
-### Bug Fixes
-
-- **prefer-todo:** ensure argument exists before trying to access it
-  ([#462](https://github.com/jest-community/eslint-plugin-jest/issues/462))
-  ([a87c8c2](https://github.com/jest-community/eslint-plugin-jest/commit/a87c8c29e1faf9d5364c9074d988aa95ef6cc987))
-
-## [23.0.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.0...v23.0.1) (2019-10-28)
-
-### Bug Fixes
-
-- **valid-title:** ignore string addition
-  ([#461](https://github.com/jest-community/eslint-plugin-jest/issues/461))
-  ([b7c1be2](https://github.com/jest-community/eslint-plugin-jest/commit/b7c1be2f279b87366332fb2d3a3e49a71aa75711))
-
-# [22.2.0](https://github.com/jest-community/eslint-plugin-jest/compare/v22.1.3...v22.2.0) (2019-01-29)
-
-### Features
-
-- **rules:** add prefer-todo rule
-  ([#218](https://github.com/jest-community/eslint-plugin-jest/issues/218))
-  ([0933d82](https://github.com/jest-community/eslint-plugin-jest/commit/0933d82)),
-  closes [#217](https://github.com/jest-community/eslint-plugin-jest/issues/217)
+6.5.1 / 2021-11-10
+==================
+- 8f7d0b0 [Fix] properly build `module.exports` (#824)
+- 2fd2087 [Dev Deps] update `eslint-plugin-import`
+
+6.5.0 / 2021-11-09
+==================
+- 0f5f582 [New] support ESLint 8.x (#810)
+- 1dbc416 [Deps] update `@babel/runtime`, `axe-core`
+- 4043d31 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `eslint-config-airbnb-base`
+- d143cba [Docs] HTTP => HTTPS (#823)
+- 309b040 [Docs] `anchor-has-content`: add missing close / for jsx succeed example (#821)
+- ba1e312 [eslint] simplify eslint command
+- 0269025 [meta] change all `master` references in URLs to `HEAD`
+- f1414cf [Dev Deps] add `eslint-plugin-eslint-plugin` (#818)
+- f44fc05 [meta] update URLs
+- df34872 [Refactor] switch to `export default` syntax for exporting rules (#819)
+- ff26b82 [meta] fix prepublish scripts
+- d4a57d8 [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `jsx-ast-utils`
+- bd1dec6 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `eslint-plugin-import`, `estraverse`, `safe-publish-latest`
+- 434c4cf [Tests] do not test eslint 7 on node 11
+- aed7a20 [Tests] use `@babel/eslint-parser` instead of `babel-eslint` (#811)
+- 0021489 [actions] use codecov action
+- 1251088 [meta] delete FUNDING.yml in favor of `.github` repo
+- ecf7a27 [Docs] `scope`: replace duplicate `scope` word (#799)
+- 952af25 [Fix] `no-access-key`: Fix wording and grammar (#800)
+- 6cf7ac0 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `aud`, `eslint-plugin-flowtype`, `eslint-plugin-import`
+- 79a35d4 [Deps] update `@babel/runtime`, `axe-core`, `damerau-levenshtein`
+- 2a9ab71 [Tests] delete `src/util/getComputedRole-test.js` test in node 6
+- 0c1c587 [Tests] `autocomplete-valid`: move some failed tests to passing
+- 8830902 [Tests] fix eslint < 7 not understanding `import type`
+- d57887c [Tests] ensure all tests run
+- 55e5c11 Support img role for canvas (#796)
+- 36102cd [meta] use `prepublishOnly` script for npm 7+
+- 2501a7f Remove the link-button focus css from the anchor-is-valid doc (#662)
+- d927625 Update recommended config to allow fieldset to have the radiogroup role (#746)
+- 5aa8db9 [Docs] Clarify the title of the strictness table in the main doc (#786)
+- df3c7ad [Docs] Document the similarity between html-has-lang and lang (#778)
+- 426d4c2 Fix Flow warnings (#785)
+- ecec8e4 Fully deprecate accessible-emoji rule (#782)
+- 8a0e43c [Tests] remove .travis.yml
+- f88bf6b [Dev Deps] update `flow-bin` to support aarch64 (#784)
+- 369f9db [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `aud`, `eslint-plugin-flowtype`, `jscodeshift`
+- ce0785f [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `emoji-regex`
+- 2c2a2ad [actions] update to use `node/install` action
+- c275964 [Docs] `anchor-is-valid`: general cleanup (#728)
+- 3df059e [Docs] `no-redundant-roles`: Adds missing closing square bracket (#775)
+- 42ce5b7 [Docs] `anchor-is-valid`: Add Next.js case (#769)
+- 2e5df91 [Tests] fix tests breaking on npm 7
+- 066ccff [Docs] `no-noninteractive-tabindex`: Add example for tabIndex on seemingly non-interactive element (#760)
+- 6b19aa5 [Tests] migrate tests to Github Actions (#764)
+- 7e158e3 [meta] run `aud` in `posttest`
+- 71f390f [Tests] stop using coveralls
+- e54b466 [meta] add Automatic Rebase and Require Allow Edits workflows
+- 7d5511d [New] `label-has-associated-control`: Add glob support (#749)
+- 854da0c Ran npm update; latest packages (#763)
+- 8637aa7 (source/pr/734, fork/pr/26) [patch] `strict` config: Turn off `label-has-for` (#734)
+- d85ce54 [doc] Add link to MDN Aria documentation (#762)
+- 20b48a4 [patch] `no-onchange`: Remove rule from recommended/strict configs, and deprecate (#757)
+
+6.4.1 / 2020-10-26
+==================
+- f8a4496 Upgrade jsx-ast-utils to v3.1.0
+
+6.4.0 / 2020-10-26
+==================
+
+- 83e4ff2 [Deps] update `axe-core`, `jsx-ast-utils`
+- eb92b07 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `eslint-plugin-flowtype`, `eslint-plugin-import`, `estraverse`, `expect`, `object.assign`
+- 3d98d7a [Deps] update `@babel/runtime`, `axe-core`
+- f702f62 [readme] add Spanish translation
+- c2ae092 [Docs] `no-static-element-interactions`: Fixed rule name in comments
+- b90e20d Fix screenreader -> screen reader
+- 645900a Fixed rule name in comments
+- 381b9d6 [fix:634] Ignore control elements that are hidden
+- 2c47f0a [Fix] `autocomplete-valid`: workaround for axe not being able to handle `null`
+- 00bd6d8 Add failing test for autocomplete with dynamic type
+- 3c49c9a Add WCAG guidelines to rule documentation
+- 4ecaf35 Add a testcase for tablist to interactive supports focus
+- dac6864 Deprecate the accessible-emoji rule
+- 5191053 Update to axobject-query@2.2.0
+- b315698 Allow negative tabindex in aria-activedescendant-has-tabindex
+- 8e6fcd0 docs: fix travis badge now points to correct location at travis-ci.com
+- 2234df7 Account for additional control elements in label-has-associated-control
+- 5cbb718 Adding test cases for label tests
+- 66c425c Additional test case for no-redundant-roles
+
+6.3.1 / 2020-06-19
+==================
+
+- 765da0f Update to aria-query 4.2.2
+- d528e8c Fix aria-level allowed on elements wit role heading (#704)
+- 29c6859 [meta] remove yarn registry from npmrc, so publishing works
+- f52c206 chore(package): update estraverse to version 5.0.0
+
+6.3.0 / 2020-06-18
+==================
+
+- cce838a Update aria-query to 4.2.0
+- 121e8a4 Add two test cases found while upgrading to ARIA 1.2
+- 8059f51 Fix test failures raised by the upgrade to ARIA 1.2
+- 0d24e3a Update package.json
+- b1f412a Fix test failures in role-has-required-aria-props due to ARIA 1.2 updates
+- 74cec6e Fix test failures in no-noninteractive-element-interactions due to ARIA 1.2 updates
+- 835b89e Fix test failures in role-supports-aria-props-test due to ARIA 1.2 updates
+- 730319b Account for the null semantic generic role in ARIA 1.2
+- 7dfa7c9 Update aria-query from 4.0.1 to 4.0.2
+- 42098b9 [Refactor] `img-redundant-alt`: removing a use of `some`
+- a910d83 [Tests] `label-has-associated-control`: add test for <div><label /><input /></div>
+- b273fe5 [New] Support ESLint 7.x
+- 1a97632 [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `axobject-query`, `damerau-levenshtein`, `jsx-ast-utils`
+- b36976f [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-types`, `babel-eslint`, `babel-jest`, `coveralls`, `eslint-config-airbnb-base`, `eslint-plugin-flowtype`, `eslint-plugin-import`, `estraverse`, `in-publish`, `jest`, `minimist`, `rimraf`, `safe-publish-latest`
+- 89acdc4 fix: removing the use of the some function
+- 410ae43 chore(package): update eslint-plugin-flowtype to version 5.0.0
+- a87f83d fix(package): update emoji-regex to version 9.0.0
+- 71940e6 chore(package): update babel-preset-airbnb to version 5.0.0
+- d471f54 docs: Fix 404 links to WAI-ARIA spec
+- 42a2016 Fixes #669: use the `language-tags` package to check the `lang` rule
+- 7bcea20 [Tests] update axe-core
+- f13dc38 [Deps] Pin axe-core version
+- 33670bb fix: require missing 'autocomplete-valid' rule
+- aca4c37 chore(mouse-event): revert unrelated formatting changes
+- df1e275 fix(mouse-event): remove check from custom elements
+- 1a16a1c chore(package): update jscodeshift to version 0.7.0
+- 7a55cdd chore(package): update flow-bin to version 0.113.0
+- 8e0d22b Update aria-query and axobject-query to the latest versions
+- dd49060 Added test cases for an empty or undefined value of aria-label and aria-labelledby in alt-text
+- 1a7b94f Updated dependencies including eslint-config-airbnb-base
+- 3aea217 chore: replace ignoreNonDOM with inputComponents
+- 1848d00 feat(autocomplete-valid): add to recommended & strict config
+- 8703840 refactor: use to axe-cre 3.4 SerialVirtualNode format
+- 3519c7b chore: Remove axe VirtualNode abstraction
+- 9ac55c4 autocomplete-valid: Add inline comment
+- 44c6098 Update axe-core to 3.3.0
+- 9916990 new autocomplete-valid rule
+- 82f598e [Docs] examples: add language in code block for syntax highlight
+- 2529ad3 fixing casing issue on aria-props
+- 00926f2 Update README.md
+- ce5d121 Update README.md
+- 031574e chore(package): update flow-bin to version 0.103.0
+- e00e1db [meta] add FUNDING.yml
+- e1e5fae Fix readme file
+
+6.2.3 / 2019-06-30
+=================
+- [617] Add @babel/runtime to the dependencies
+
+6.2.2 / 2019-06-29
+=================
+- Update jsx-ast-utils to v2.2.1
+- Add @babel/cli to the dev dependencies
+- Update ESLint to v6
+- Update jsx-ast-utils to 2.2.0
+- Update flow-bin to version 0.102.0
+- [589] Allow expression statements for attribute values in no-noninteractive-tabindexlow-bin-0.101.0
+- [583] Allow expression values in attributes by configurationrror
+- [596] Adding a test case for no-static-element-interactionseper/flow-bin-0.101.0) Merge branch 'master' into greenkeeper/flow-bin-0.101.0
+- Only run branch test coverage on the master branch
+- chore(package): update flow-bin to version 0.100.0
+- Allow select as a valid child of label.
+- Allow Node 4 / ESLint 3 failure to unblock ESLint upgrade in PR #568
+- chore(package): update flow-bin to version 0.99.0
+- Remove rootDir from Jest path configs
+- (fix) Template literals with undefined evaluate to the string undefined.
+- adds more tests to “anchor-is-valid”
+- Fixes “anchor-is-valid” false positive for hrefs starting with the word “javascript”
+- chore(package): update eslint-plugin-flowtype to version 3.5.0
+- Modified no-static-element-interactions to pass on non-literal roles.
+- Added isNonLiteralProperty util method
+- [#399] Account for spread in parser options
+- [552] control-has-associated-label should allow generic links
+- [issue 392] ul role='list' test case
+- chore(package): update eslint to version 5.15.2
+- chore(package): update flow-bin to version 0.95.0
+- chore(package): update expect to version 24.3.1
+- Fix typo: defintions > definitions
+- docs: add proper title to links to axe website for media-has-caption
+- docs: removes deprecated rule label-has-for
+- docs: fix typo and couple grammatical errors in Readme
+- Ignore null/undefined values in role-supports-aria-props rule
+- Ignore undefined values in aria-proptypes rule
+- Ignore null values in aria-proptypes rule
+- set target for node 4
+
+6.2.1 / 2019-02-03
+=================
+- 9980e45 [fix] Prevent Error when JSXSpreadAttribute is passed to isSemanticRoleElement
+
+6.2.0 / 2019-01-25
+=================
+- 5650674 [new rule] control-has-associated-label checks interactives for a label
+- f234698 [docs] add How to manage IDs
+- 9924d03 [docs] document jsx-a11y/label-has-associated-control assert option
+- 77b9870 [docs] Add newlines below headings
+- 8244e43 [docs] Add syntax highlighting to example
+- 26f41c8 [docs] Change explanation for role="presentation" escape hatch
+- 33a1f94 [fix] - Purely decorative emojis do not need descriptions.
+- 29d20f7 [fix] (package): update emoji-regex to version 7.0.2
+- 0b63f73 [chore] (package): update flow-bin to version 0.88.0
+- baa1344 [fix] Disable jsx-a11y/label-has-for in recommended
+- 2c5fb06 [chore] (package): update jscodeshift to version 0.6.0
+- 87debc0 [fix] corrected no-noninteractive-element-to-interactive-role.md file
+- d56265b [chore] (package): update flow-bin to version 0.87.0
+- 477966f [fix] Update test for implicit role of `img`
+- f484ce3 [fix] No implicit role for `<img>` with `alt=""`
+- 6c33bcb [fix] Add select to the list of default control elements in label-has-associated-control
+- 011f8d9 [fix] Dialog and Alert roles can host keyboard listeners
+- 0f6a8af [fix] More easier `plugin:jsx-a11y/{recommended,strict}` configs
+- 3844248 [fix] Mark the replacement for label-has-for
+- 93265cb [fix] normalizedValues to values
+- 651366c [fix] Make aria-role case sensitive
+- 56d3b9a [fix] [484] Fix role-has-required-aria-props for semantic elements like input[checkbox]
+- 46e9abd [fix] Handle the type={truthy} case in jsx
+
+6.1.2 / 2018-10-05
+=================
+- [fix] Add link-type styling recommendation to anchor-is-valid #486
+- [fix] `label-has-for`: `textarea`s are inputs too #470
+
+6.1.1 / 2018-07-03
+==================
+- [fix] aria-proptypes support for idlist, #454
+- [fix] Image with expanded props throws 'The prop must be a JSXAttribute collected by the AST parser.', #459
+- [fix] label-has-for: broken in v6.1.0, #455
+
+6.1.0 / 2018-06-26
+==================
+- [new] Support for eslint v5, #451
+- [new] aria-query updated to latest version
+- [new] eslint-config-airbnb-base updated to the latest version
+- [deprecate] The rule label-has-for is deprecated and replaced with label-has-associated-control
+- [fix] heading-has-content updated to work with custom components, #431
+- [fix] aria-errormessage prop is now a valid ARIA property, #424
+
+6.0.2 / 2017-06-28
+==================
+- [fix] Prefix directories in `.npmignore` with `/` so it only matches the top-level directory
+
+
+6.0.1 / 2017-06-28
+==================
+- [temporary] Remove `src` and `flow` from package to resolve flow issues for consuming packages.
+
+
+6.0.0 / 2017-06-05
+=================
+- [new] Add rule `anchor-is-valid`. See documentation for configuration options. Thanks @AlmeroSteyn.
+- [breaking] `href-no-hash` replaced with `anchor-is-valid` in the recommended and strict configs. Use the `invalidHref` aspect (active by default) in `anchor-is-valid` to continue to apply the behavior provided by `href-no-hash`.
+- [breaking] Removed support for ESLint peer dependency at version ^2.10.2.
+- [update] The rule `label-has-for` now allows inputs nested in label tags. Previously it was strict about requiring a `for` attribute. Thanks @ignatiusreza and @mjaltamirano.
+- [update] New configuration for `interactive-supports-focus`. Recommended and strict configs for now contain a trimmed-down whitelist of roles that will be checked.
+- [fix] Incompatibility between node version 4 and 5. Thanks @evilebottnawi.
+- [fix] Missing README entry for `media-has-caption`. Thanks @ismail-syed.
+- [fix] README updates explaining recommended and strict configs. Thanks @Donaldini.
+- [fix] Updated to aria-query@0.7.0, which includes new ARIA 1.1 properties. Previously, the `aria-props` rule incorrectly threw errors for these new properties.
+
+5.1.1 / 2017-07-03
+==================
+ - [fix] revert v6 breaking changes unintentionally added in v5.1 (#283)
+
+5.1.0 / 2017-06-26
+==================
+ - [new] Support eslint v4. (#267)
+ - [new] `label-has-for`: add "required" option to allow customization (#240)
+ - [new] add `anchor-is-valid` (#224)
+ - [new] `interactive-supports-focus`: Split interactive supports focus into tabbable and focusable cases (#236)
+ - [new] `anchor-is-valid`: add `aspects` option (#251)
+ - [Deps] Bump aria-query to 0.7.0
+
+5.0.3 / 2017-05-16
+==================
+- [fix] Remove `flow` directory from `.npmignore` to accommodate explicit imports from `v5.0.2`.
+
+
+5.0.2 / 2017-05-16
+==================
+- [fix] Explicitly import flow types to resolve flow failures in consuming projects.
+
+
+5.0.1 / 2017-05-07
+==================
+- [fix] Polyfill Array.includes for node < 6 support.
+
+
+5.0.0 / 2017-05-05
+==================
+- [breaking] Refactor `img-has-alt` rule into `alt-text` rule
+- [breaking] Rule `onclick-has-role` is removed. Replaced with `no-static-element-interactions` and `no-noninteractive-element-interactions`.
+- [breaking] Rule `onclick-has-focus` is removed. Replaced with `interactive-supports-focus`.
+- [new] - Add rule `media-has-caption` rule
+- [new] - Add `ignoreNonDOM` option to `no-autofocus`.
+- [new] - Add rule `no-interactive-element-to-noninteractive-role`
+- [new] - Add rule `no-noninteractive-element-to-interactive-role`
+- [new] - Add rule `no-noninteractive-tabindex`
+- [new] - Configs split into "recommended" and "strict".
+- [enhanced] - Configuration options added to `no-static-element-interactions` and `no-noninteractive-element-interactions`. Options allow for fine-tuning of elements and event handlers to check.
+
+
+4.0.0 / 2017-02-04
+==================
+Add new rules:
+- `jsx-a11y/accessible-emoji`
+- `jsx-a11y/aria-activedescendant-has-tabindex`
+- `jsx-a11y/iframe-has-title`
+- `jsx-a11y/no-autofocus`
+- `jsx-a11y/no-distracting-elements` *(breaking: consolidated no-marquee and no-blink into this rule.)*
+- `jsx-a11y/no-redundant-roles`
+- [fix] - redundant-alt to only check full words
+- [docs] - Documentation upgrades across the board.
+- [new] - Add `ignoreNonDom`
+- [dev] - Add script to scaffold new rule creation.
+
+
+3.0.2 / 2016-12-14
+==================
+- [fix] - make `aria-invalid` values true and false pass for rule `aria-proptypes`
+
+3.0.1 / 2016-10-11
+==================
+- [breaking] - Update all rule schemas to accept objects. This allows a future schema expansion to not be a breaking change.
+- [breaking] - All rules with schemas that accepted a string OR array, now only allows an array.
+- [new] - `href-no-hash` accepts new schema property `specialLink` to check for custom `href` properties on elements. (fixes [#76](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/76))
+- [breaking][fix] - `img-has-alt` now prefers `alt=""` over `role="presentation"`. You can set both, but not just `role="presentation"` by itself to ensure a11y across all devices.
+
+Note - see [rule documentation](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules) for updated schemas.
+
+2.2.3 / 2016-10-08
+==================
+- [fix] - Add `switch` aria role.
+- [devDependencies] - Updgrade dev dependencies and fix linting issues.
+
+
+2.2.2 / 2016-09-12
+==================
+- [fix] `x-has-content` rules now pass with children prop set.
+
+
+2.2.1 / 2016-08-31
+==================
+- [fix] Update `tablist` role to include missing property `aria-multiselectable`.
+
+
+2.2.0 / 2016-08-26
+==================
+- [new] Add `click-events-have-key-events` rule.
+- [new] Add `no-static-element-interactions` rule.
+- [devDependencies] Upgrade `eslint`, `eslint-config-airbnb`, `mocha` to latest.
+- [lint] Fix all new linting errors with upgrade
+- [nit] Use `error` syntax over `2` syntax in recommended config.
+
+
+2.1.0 / 2016-08-10
+==================
+- [fix] Require `aria-checked` for roles that are subclasses of `checkbox`
+- [new] Add `anchor-has-content` rule.
+- [refactor] Use new eslint rule syntax
+- [new] Add support for custom words in `img-redundant-alt` (mainly for i18n).
+
+
+2.0.1 / 2016-07-13
+==================
+- [fix] JSXElement support in expression handlers for prop types.
+- [fix] `heading-has-content`: dangerouslySetInnerHTML will pass.
+
+
+2.0.0 / 2016-07-12
+==================
+- [breaking] Scope `no-onchange` rule to select menu elements only.
+
+
+1.5.5 / 2016-07-05
+==================
+- [fix] Add `eslint` v3 as a `peerDependency`.
+
+
+1.5.4 / 2016-07-05
+==================
+- [fix] Add `eslint` as a `peerDependency`.
+
+
+1.5.3 / 2016-06-16
+==================
+- [fix] Fix crash when ``<ELEMENT role />`` for `role-supports-aria-props`.
+
+
+1.5.2 / 2016-06-16
+==================
+- [fix] Fix `img-redundant-alt` rule to use `getLiteralPropValue` from `jsx-ast-utils`.
+
+
+1.5.1 / 2016-06-16
+==================
+- [fix] Fix checking for undefined in `heading-has-content` for children content.
+
+
+1.5.0 / 2016-06-16
+==================
+- [new] Add [heading-has-content](docs/rules/heading-has-content.md) rule.
+- [new] Add [html-has-lang](docs/rules/html-has-lang.md) rule.
+- [new] Add [lang](docs/rules/lang.md) rule.
+- [new] Add [no-marquee](docs/rules/no-marquee.md) rule.
+- [new] Add [scope](docs/rules/scope.md) rule.
+
+
+1.4.2 / 2016-06-10
+==================
+- [new] Integrate with latest `jsx-ast-utils` to use `propName` function. More support for namespaced names on attributes and elements.
+
+
+1.4.1 / 2016-06-10
+==================
+- [fix] Handle spread props in `aria-unsupported-elements` and `role-supports-aria-props` when reporting.
+
+
+1.4.0 / 2016-06-10
+==================
+- [dependency] Integrate [jsx-ast-utils](https://github.com/jsx-eslint/jsx-ast-utils)
+- [fix] Better error reporting for aria-unsupported-elements indicating which prop to remove.
+
+
+1.3.0 / 2016-06-05
+==================
+- [new] Spelling suggestions for incorrect `aria-*` props
+- [fix] Ensure `role` value is a string before converting to lowercase in `img-has-alt` rule.
+
+
+1.2.3 / 2016-06-02
+==================
+- [fix] Handle dynamic `tabIndex` expression values, but still retain validation logic for literal `tabIndex` values.
+
+
+1.2.2 / 2016-05-20
+==================
+- [fix] Fix checks involving the tabIndex attribute that do not account for integer literals
+
+
+1.2.1 / 2016-05-19
+==================
+- [fix] Avoid testing interactivity of wrapper components with same name but different casing
+as DOM elements (such as `Button` vs `button`).
+
+
+1.2.0 / 2016-05-06
+==================
+- [new] Import all roles from DPUB-ARIA.
+
+
+1.1.0 / 2016-05-06
+==================
+- [new] Add expression value handler for `BinaryExpression` type.
+- [new] Add expression value handler for `NewExpression` type.
+- [new] Add expression value handler for `ObjectExpression` type.
+- [fix] Throws error when getting an expression of type without a handler function.
+	- This is for more graceful error handling and better issue reporting.
+
+
+1.0.4 / 2016-04-28
+==================
+- [fix] Add expression value handler for `ConditionalExpression` type.
+
+
+1.0.3 / 2016-04-25
+==================
+- [fix] Fix typo in recommended rules for `onclick-has-focus`.
+
+
+1.0.2 / 2016-04-20
+==================
+- [fix] Add expression value handler for `ThisExpression` type.
+
+
+1.0.1 / 2016-04-19
+==================
+- [fix] Fix build to copy source JSON files to build output.
+
+
+1.0.0 / 2016-04-19
+==================
+- [breaking] Rename `img-uses-alt` to `img-has-alt`
+- [breaking] Rename `onlick-uses-role` to `onclick-has-role`
+- [breaking] Rename `mouse-events-map-to-key-events` to `mouse-events-have-key-events`
+- [breaking] Rename `use-onblur-not-onchange` to `no-onchange`
+- [breaking] Rename `label-uses-for` to `label-has-for`
+- [breaking] Rename `redundant-alt` to `img-redundant-alt`
+- [breaking] Rename `no-hash-href` to `href-no-hash`
+- [breaking] Rename `valid-aria-role` to `aria-role`
+
+- [new] Implement `aria-props` rule
+- [new] Implement `aria-proptypes` rule
+- [new] Implement `aria-unsupported-elements` rule
+- [new] Implement `onclick-has-focus` rule
+- [new] Implement `role-has-required-aria-props` rule
+- [new] Implement `role-supports-aria-props` rule
+- [new] Implement `tabindex-no-positive` rule
+
+
+0.6.2 / 2016-04-08
+==================
+- [fix] Fix rule details for img-uses-alt: allow alt="" or role="presentation".
+
+
+0.6.1 / 2016-04-07
+==================
+- [fix] Do not infer interactivity of components that are not low-level DOM elements.
+
+
+0.6.0 / 2016-04-06
+==================
+- [breaking] Allow alt="" when role="presentation" on img-uses-alt rule.
+- [new] More descriptive error messaging for img-uses-alt rule.
+
+
+0.5.2 / 2016-04-05
+==================
+- [fix] Handle token lists for valid-aria-role.
+
+
+0.5.1 / 2016-04-05
+==================
+- [fix] Handle null valued props for valid-aria-role.
+
+
+0.5.0 / 2016-04-02
+==================
+- [new] Implement valid-aria-role rule. Based on [AX_ARIA_01](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01)
+
+
+0.4.3 / 2016-03-29
+==================
+- [fix] Handle LogicalExpression attribute types when extracting values. LogicalExpressions are of form `<Component prop={foo || "foobar"} />`
+
+
+0.4.2 / 2016-03-24
+==================
+- [fix] Allow component names of form `Object.Property` i.e. `UX.Layout`
+
+
+0.3.0 / 2016-03-02
+==================
+- [new] Implement [no-hash-href](docs/rules/no-hash-href.md) rule.
+- [fix] Fixed TemplateLiteral AST value building to get more exact values from template strings.
+
+
+0.2.0 / 2016-03-01
+==================
+- [new] Implement [redunant-alt](docs/rules/redundant-alt.md) rule.
+
+
+0.1.2 / 2016-03-01
+==================
+- Initial pre-release.
