@@ -1,11 +1,3 @@
-# Security Policy
+# Security
 
-## Supported Versions
-
-Latest major/minor version is supported only for security updates.
-
-## Reporting a Vulnerability
-
-To report a security vulnerability, please use the
-[Tidelift security contact](https://tidelift.com/security).
-Tidelift will coordinate the fix and disclosure.
+Please email [@ljharb](https://github.com/ljharb) or see https://tidelift.com/security if you have a potential security vulnerability to report.
