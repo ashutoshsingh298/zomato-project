@@ -1,162 +1,71 @@
-/*!
- * range-parser
- * Copyright(c) 2012-2014 TJ Holowaychuk
- * Copyright(c) 2015-2016 Douglas Christopher Wilson
- * MIT Licensed
- */
+"use strict";
 
-'use strict'
+var _fs = require("fs");
 
-/**
- * Module exports.
- * @public
- */
+var _path = require("path");
 
-module.exports = rangeParser
+var _globals = _interopRequireDefault(require("./globals.json"));
 
-/**
- * Parse "Range" header `str` relative to the given file `size`.
- *
- * @param {Number} size
- * @param {String} str
- * @param {Object} [options]
- * @return {Array}
- * @public
- */
+var snapshotProcessor = _interopRequireWildcard(require("./processors/snapshot-processor"));
 
-function rangeParser (size, str, options) {
-  if (typeof str !== 'string') {
-    throw new TypeError('argument str must be a string')
-  }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-  var index = str.indexOf('=')
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-  if (index === -1) {
-    return -2
-  }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  // split the range string
-  var arr = str.slice(index + 1).split(',')
-  var ranges = []
+// copied from https://github.com/babel/babel/blob/d8da63c929f2d28c401571e2a43166678c555bc4/packages/babel-helpers/src/helpers.js#L602-L606
 
-  // add ranges type
-  ranges.type = str.slice(0, index)
+/* istanbul ignore next */
+const interopRequireDefault = obj => obj && obj.__esModule ? obj : {
+  default: obj
+};
 
-  // parse all ranges
-  for (var i = 0; i < arr.length; i++) {
-    var range = arr[i].split('-')
-    var start = parseInt(range[0], 10)
-    var end = parseInt(range[1], 10)
+const importDefault = moduleName => // eslint-disable-next-line @typescript-eslint/no-require-imports
+interopRequireDefault(require(moduleName)).default;
 
-    // -nnn
-    if (isNaN(start)) {
-      start = size - end
-      end = size - 1
-    // nnn-
-    } else if (isNaN(end)) {
-      end = size - 1
+const rulesDir = (0, _path.join)(__dirname, 'rules');
+const excludedFiles = ['__tests__', 'detectJestVersion', 'utils'];
+const rules = (0, _fs.readdirSync)(rulesDir).map(rule => (0, _path.parse)(rule).name).filter(rule => !excludedFiles.includes(rule)).reduce((acc, curr) => ({ ...acc,
+  [curr]: importDefault((0, _path.join)(rulesDir, curr))
+}), {});
+const recommendedRules = Object.entries(rules).filter(([, rule]) => rule.meta.docs.recommended).reduce((acc, [name, rule]) => ({ ...acc,
+  [`jest/${name}`]: rule.meta.docs.recommended
+}), {});
+const allRules = Object.entries(rules).filter(([, rule]) => !rule.meta.deprecated).reduce((acc, [name]) => ({ ...acc,
+  [`jest/${name}`]: 'error'
+}), {});
+
+const createConfig = rules => ({
+  plugins: ['jest'],
+  env: {
+    'jest/globals': true
+  },
+  rules
+});
+
+module.exports = {
+  configs: {
+    all: createConfig(allRules),
+    recommended: createConfig(recommendedRules),
+    style: {
+      plugins: ['jest'],
+      rules: {
+        'jest/no-alias-methods': 'warn',
+        'jest/prefer-to-be-null': 'error',
+        'jest/prefer-to-be-undefined': 'error',
+        'jest/prefer-to-contain': 'error',
+        'jest/prefer-to-have-length': 'error'
+      }
     }
-
-    // limit last-byte-pos to current length
-    if (end > size - 1) {
-      end = size - 1
+  },
+  environments: {
+    globals: {
+      globals: _globals.default
     }
-
-    // invalid or unsatisifiable
-    if (isNaN(start) || isNaN(end) || start > end || start < 0) {
-      continue
-    }
-
-    // add range
-    ranges.push({
-      start: start,
-      end: end
-    })
-  }
-
-  if (ranges.length < 1) {
-    // unsatisifiable
-    return -1
-  }
-
-  return options && options.combine
-    ? combineRanges(ranges)
-    : ranges
-}
-
-/**
- * Combine overlapping & adjacent ranges.
- * @private
- */
-
-function combineRanges (ranges) {
-  var ordered = ranges.map(mapWithIndex).sort(sortByRangeStart)
-
-  for (var j = 0, i = 1; i < ordered.length; i++) {
-    var range = ordered[i]
-    var current = ordered[j]
-
-    if (range.start > current.end + 1) {
-      // next range
-      ordered[++j] = range
-    } else if (range.end > current.end) {
-      // extend range
-      current.end = range.end
-      current.index = Math.min(current.index, range.index)
-    }
-  }
-
-  // trim ordered array
-  ordered.length = j + 1
-
-  // generate combined range
-  var combined = ordered.sort(sortByRangeIndex).map(mapWithoutIndex)
-
-  // copy ranges type
-  combined.type = ranges.type
-
-  return combined
-}
-
-/**
- * Map function to add index value to ranges.
- * @private
- */
-
-function mapWithIndex (range, index) {
-  return {
-    start: range.start,
-    end: range.end,
-    index: index
-  }
-}
-
-/**
- * Map function to remove index value from ranges.
- * @private
- */
-
-function mapWithoutIndex (range) {
-  return {
-    start: range.start,
-    end: range.end
-  }
-}
-
-/**
- * Sort function to sort ranges by index.
- * @private
- */
-
-function sortByRangeIndex (a, b) {
-  return a.index - b.index
-}
-
-/**
- * Sort function to sort ranges by start position.
- * @private
- */
-
-function sortByRangeStart (a, b) {
-  return a.start - b.start
-}
+  },
+  processors: {
+    '.snap': snapshotProcessor
+  },
+  rules
+};
