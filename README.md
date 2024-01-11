@@ -1,305 +1,287 @@
-<p align="center">
-  <a href="https://travis-ci.com/github/jsx-eslint/eslint-plugin-jsx-a11y">
-    <img src="https://travis-ci.com/jsx-eslint/eslint-plugin-jsx-a11y.svg?branch=master"
-         alt="build status">
-  </a>
-  <a href="https://npmjs.org/package/eslint-plugin-jsx-a11y">
-    <img src="https://img.shields.io/npm/v/eslint-plugin-jsx-a11y.svg"
-         alt="npm version">
-  </a>
-  <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/LICENSE.md">
-    <img src="https://img.shields.io/npm/l/eslint-plugin-jsx-a11y.svg"
-         alt="license">
-  </a>
-  <a href='https://coveralls.io/github/jsx-eslint/eslint-plugin-jsx-a11y?branch=master'>
-    <img src='https://coveralls.io/repos/github/jsx-eslint/eslint-plugin-jsx-a11y/badge.svg?branch=master' alt='Coverage Status' />
-  </a>
-  <a href='https://npmjs.org/package/eslint-plugin-jsx-a11y'>
-    <img src='https://img.shields.io/npm/dt/eslint-plugin-jsx-a11y.svg'
-    alt='Total npm downloads' />
-  </a>
-</p>
+`eslint-plugin-react`
+===================
 
-<a href='https://tidelift.com/subscription/pkg/npm-eslint-plugin-jsx-a11y?utm_source=npm-eslint-plugin-jsx-a11y&utm_medium=referral&utm_campaign=readme'>Get professional support for eslint-plugin-jsx-a11y on Tidelift</a>
+[![Maintenance Status][status-image]][status-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][deps-image]][deps-url] [![Code Climate][climate-image]][climate-url] [![Tidelift][tidelift-image]][tidelift-url]
 
-# eslint-plugin-jsx-a11y
+React specific linting rules for `eslint`
 
-Static AST checker for accessibility rules on JSX elements.
+# Installation
 
-
-
-#### *Read this in [other languages](https://github.com/ari-os310/eslint-plugin-jsx-a11y/blob/HEAD/translations/Translations.md).*
-
-[Mexican Spanish🇲🇽](https://github.com/ari-os310/eslint-plugin-jsx-a11y/blob/HEAD/translations/README.mx.md)
-
-## Why?
-Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](https://github.com/reactjs/react-a11y). It is super useful. However, since you're probably already using linting in your project, this plugin comes for free and closer to the actual development process. Pairing this plugin with an editor lint plugin, you can bake accessibility standards into your application in real-time.
-
-**Note**: This project does not *replace* react-a11y, but can and should be used in conjunction with it. Static analysis tools cannot determine values of variables that are being placed in props before runtime, so linting will not fail if that value is undefined and/or does not pass the lint rule.
-
-## Installation
-
-**If you are installing this plugin via `eslint-config-airbnb`, please follow [these instructions](https://github.com/airbnb/javascript/tree/HEAD/packages/eslint-config-airbnb#eslint-config-airbnb-1).**
-
-You'll first need to install [ESLint](https://eslint.org):
+Install [`eslint`](https://www.github.com/eslint/eslint) either locally or globally. (Note that locally, per project, is strongly preferred)
 
 ```sh
-# npm
-npm install eslint --save-dev
-
-# yarn
-yarn add eslint --dev
+$ npm install eslint@7 --save-dev
 ```
 
-Next, install `eslint-plugin-jsx-a11y`:
+If you installed `eslint` globally, you have to install the React plugin globally too. Otherwise, install it locally (strongly preferred)
 
 ```sh
-# npm
-npm install eslint-plugin-jsx-a11y --save-dev
-
-# yarn
-yarn add eslint-plugin-jsx-a11y --dev
+$ npm install eslint-plugin-react --save-dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag in npm, or the `global` prefix in yarn) then you must also install `eslint-plugin-jsx-a11y` globally.
+# Configuration
 
-## Usage
 
-Add `jsx-a11y` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Use [our preset](#recommended) to get reasonable defaults:
 
 ```json
-{
-  "plugins": [
-    "jsx-a11y"
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
   ]
-}
 ```
 
+If you are using the [new JSX transform from React 17](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#removing-unused-react-imports), extend [`react/jsx-runtime`](https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/index.js#L163-L176) in your eslint config (add `"plugin:react/jsx-runtime"` to `"extends"`) to disable the relevant rules.
 
-Then configure the rules you want to use under the rules section.
+You should also specify settings that will be shared across all the plugin rules. ([More about eslint shared settings](https://eslint.org/docs/user-guide/configuring/configuration-files#adding-shared-settings))
 
-```json
+```json5
 {
-  "rules": {
-    "jsx-a11y/rule-name": 2
+  "settings": {
+    "react": {
+      "createClass": "createReactClass", // Regex for Component Factory to use,
+                                         // default to "createReactClass"
+      "pragma": "React",  // Pragma to use, default to "React"
+      "fragment": "Fragment",  // Fragment to use (may be a property of <pragma>), default to "Fragment"
+      "version": "detect", // React version. "detect" automatically picks the version you have installed.
+                           // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+                           // default to latest and warns if missing
+                           // It will default to "detect" in the future
+      "flowVersion": "0.53" // Flow version
+    },
+    "propWrapperFunctions": [
+        // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
+        "forbidExtraProps",
+        {"property": "freeze", "object": "Object"},
+        {"property": "myFavoriteWrapper"},
+        // for rules that check exact prop wrappers
+        {"property": "forbidExtraProps", "exact": true}
+    ],
+    "componentWrapperFunctions": [
+        // The name of any function used to wrap components, e.g. Mobx `observer` function. If this isn't set, components wrapped by these functions will be skipped.
+        "observer", // `property`
+        {"property": "styled"}, // `object` is optional
+        {"property": "observer", "object": "Mobx"},
+        {"property": "observer", "object": "<pragma>"} // sets `object` to whatever value `settings.react.pragma` is set to
+    ],
+    "formComponents": [
+      // Components used as alternatives to <form> for forms, eg. <Form endpoint={ url } />
+      "CustomForm",
+      {"name": "Form", "formAttribute": "endpoint"}
+    ]
+    "linkComponents": [
+      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+      "Hyperlink",
+      {"name": "Link", "linkAttribute": "to"}
+    ]
   }
 }
 ```
 
-You can also enable all the recommended or strict rules at once.
-Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
+If you do not use a preset you will need to specify individual rules and add extra configuration.
+
+Add "react" to the plugins section.
 
 ```json
 {
-  "extends": [
-    "plugin:jsx-a11y/recommended"
+  "plugins": [
+    "react"
   ]
 }
 ```
 
-## Supported Rules
+Enable JSX support.
 
-- [alt-text](docs/rules/alt-text.md): Enforce all elements that require alternative text have meaningful information to relay back to end user.
-- [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
-- [anchor-is-valid](docs/rules/anchor-is-valid.md): Enforce all anchors are valid, navigable elements.
-- [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
-- [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
-- [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
-- [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
-- [aria-unsupported-elements](docs/rules/aria-unsupported-elements.md): Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.
-- [autocomplete-valid](docs/rules/autocomplete-valid.md): Enforce that autocomplete attributes are used correctly.
-- [click-events-have-key-events](docs/rules/click-events-have-key-events.md): Enforce a clickable non-interactive element has at least one keyboard event listener.
-- [heading-has-content](docs/rules/heading-has-content.md): Enforce heading (`h1`, `h2`, etc) elements contain accessible content.
-- [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
-- [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
-- [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
-- [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
-- [label-has-associated-control](docs/rules/label-has-associated-control.md): Enforce that a `label` tag has a text label and an associated control.
-- [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
-- [media-has-caption](docs/rules/media-has-caption.md): Enforces that `<audio>` and `<video>` elements must have a `<track>` for captions.
-- [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
-- [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
-- [no-autofocus](docs/rules/no-autofocus.md): Enforce autoFocus prop is not used.
-- [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
-- [no-interactive-element-to-noninteractive-role](docs/rules/no-interactive-element-to-noninteractive-role.md): Interactive elements should not be assigned non-interactive roles.
-- [no-noninteractive-element-interactions](docs/rules/no-noninteractive-element-interactions.md): Non-interactive elements should not be assigned mouse or keyboard event listeners.
-- [no-noninteractive-element-to-interactive-role](docs/rules/no-noninteractive-element-to-interactive-role.md): Non-interactive elements should not be assigned interactive roles.
-- [no-noninteractive-tabindex](docs/rules/no-noninteractive-tabindex.md): `tabIndex` should only be declared on interactive elements.
-- [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
-- [no-redundant-roles](docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
-- [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
-- [role-has-required-aria-props](docs/rules/role-has-required-aria-props.md): Enforce that elements with ARIA roles must have all required attributes for that role.
-- [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
-- [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
-- [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
+With `eslint` 2+
 
-### Rule strictness in different modes
-
-Rule | Recommended | Strict
------------- | ------------- | -------------
-[alt-text](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/alt-text.md) | error | error
-[anchor-has-content](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-has-content.md) | error | error
-[anchor-is-valid](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md) | error | error
-[aria-activedescendant-has-tabindex](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/aria-activedescendant-has-tabindex.md) | error | error
-[aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/aria-props.md) | error | error
-[aria-proptypes](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/aria-proptypes.md) | error | error
-[aria-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/aria-role.md) | error | error
-[aria-unsupported-elements](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/aria-unsupported-elements.md) | error | error
-[autocomplete-valid](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/autocomplete-valid.md) | error | error
-[click-events-have-key-events](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/click-events-have-key-events.md) | error | error
-[heading-has-content](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/heading-has-content.md) | error | error
-[html-has-lang](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/html-has-lang.md) | error | error
-[iframe-has-title](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/iframe-has-title.md) | error | error
-[img-redundant-alt](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/img-redundant-alt.md) | error | error
-[interactive-supports-focus](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/interactive-supports-focus.md) | error | error
-[label-has-associated-control](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/label-has-associated-control.md) | error | error
-[media-has-caption](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/media-has-caption.md) | error | error
-[mouse-events-have-key-events](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/mouse-events-have-key-events.md) | error | error
-[no-access-key](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-access-key.md) | error | error
-[no-autofocus](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-autofocus.md) | error | error
-[no-distracting-elements](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-distracting-elements.md) | error | error
-[no-interactive-element-to-noninteractive-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-interactive-element-to-noninteractive-role.md) | error, with options | error
-[no-noninteractive-element-interactions](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-noninteractive-element-interactions.md) | error, with options | error
-[no-noninteractive-element-to-interactive-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-noninteractive-element-to-interactive-role.md) | error, with options | error
-[no-noninteractive-tabindex](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-noninteractive-tabindex.md) | error, with options | error
-[no-onchange](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-onchange.md) | error | error
-[no-redundant-roles](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-redundant-roles.md) | error | error
-[no-static-element-interactions](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-static-element-interactions.md) | error, with options | error
-[role-has-required-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/role-has-required-aria-props.md) | error | error
-[role-supports-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/role-supports-aria-props.md) | error | error
-[scope](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/scope.md) | error, with options | error
-[tabindex-no-positive](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/tabindex-no-positive.md) | error | error
-
-
-The following rules have extra options when in *recommended* mode:
-
-#### no-interactive-element-to-noninteractive-role
-```js
-'jsx-a11y/no-interactive-element-to-noninteractive-role': [
-  'error',
-  {
-    tr: ['none', 'presentation'],
-  },
-]
+```json
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}
 ```
 
-#### no-noninteractive-element-interactions
-```js
-'jsx-a11y/no-noninteractive-element-interactions': [
-  'error',
-  {
-    handlers: [
-      'onClick',
-      'onMouseDown',
-      'onMouseUp',
-      'onKeyPress',
-      'onKeyDown',
-      'onKeyUp',
-    ],
-  },
-]
+Enable the rules that you would like to use.
+
+```json
+  "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+  }
 ```
 
-#### no-noninteractive-element-to-interactive-role
-```js
-'jsx-a11y/no-noninteractive-element-to-interactive-role': [
-  'error',
-  {
-    ul: [
-      'listbox',
-      'menu',
-      'menubar',
-      'radiogroup',
-      'tablist',
-      'tree',
-      'treegrid',
-    ],
-    ol: [
-      'listbox',
-      'menu',
-      'menubar',
-      'radiogroup',
-      'tablist',
-      'tree',
-      'treegrid',
-    ],
-    li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
-    table: ['grid'],
-    td: ['gridcell'],
-  },
-]
+# List of supported rules
+
+✔: Enabled in the [`recommended`](#recommended) configuration.\
+🔧: Fixable with [`eslint --fix`](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems).
+
+<!-- AUTO-GENERATED-CONTENT:START (BASIC_RULES) -->
+| ✔ | 🔧 | Rule | Description |
+| :---: | :---: | :--- | :--- |
+|  |  | [react/boolean-prop-naming](docs/rules/boolean-prop-naming.md) | Enforces consistent naming for boolean props |
+|  |  | [react/button-has-type](docs/rules/button-has-type.md) | Forbid "button" element without an explicit "type" attribute |
+|  |  | [react/default-props-match-prop-types](docs/rules/default-props-match-prop-types.md) | Enforce all defaultProps are defined and not "required" in propTypes. |
+|  |  | [react/destructuring-assignment](docs/rules/destructuring-assignment.md) | Enforce consistent usage of destructuring assignment of props, state, and context |
+| ✔ |  | [react/display-name](docs/rules/display-name.md) | Prevent missing displayName in a React component definition |
+|  |  | [react/forbid-component-props](docs/rules/forbid-component-props.md) | Forbid certain props on components |
+|  |  | [react/forbid-dom-props](docs/rules/forbid-dom-props.md) | Forbid certain props on DOM Nodes |
+|  |  | [react/forbid-elements](docs/rules/forbid-elements.md) | Forbid certain elements |
+|  |  | [react/forbid-foreign-prop-types](docs/rules/forbid-foreign-prop-types.md) | Forbid using another component's propTypes |
+|  |  | [react/forbid-prop-types](docs/rules/forbid-prop-types.md) | Forbid certain propTypes |
+|  | 🔧 | [react/function-component-definition](docs/rules/function-component-definition.md) | Standardize the way function component get defined |
+|  |  | [react/no-access-state-in-setstate](docs/rules/no-access-state-in-setstate.md) | Reports when this.state is accessed within setState |
+|  |  | [react/no-adjacent-inline-elements](docs/rules/no-adjacent-inline-elements.md) | Prevent adjacent inline elements not separated by whitespace. |
+|  |  | [react/no-array-index-key](docs/rules/no-array-index-key.md) | Prevent usage of Array index in keys |
+|  | 🔧 | [react/no-arrow-function-lifecycle](docs/rules/no-arrow-function-lifecycle.md) | Lifecycle methods should be methods on the prototype, not class fields |
+| ✔ |  | [react/no-children-prop](docs/rules/no-children-prop.md) | Prevent passing of children as props. |
+|  |  | [react/no-danger](docs/rules/no-danger.md) | Prevent usage of dangerous JSX props |
+| ✔ |  | [react/no-danger-with-children](docs/rules/no-danger-with-children.md) | Report when a DOM element is using both children and dangerouslySetInnerHTML |
+| ✔ |  | [react/no-deprecated](docs/rules/no-deprecated.md) | Prevent usage of deprecated methods |
+|  |  | [react/no-did-mount-set-state](docs/rules/no-did-mount-set-state.md) | Prevent usage of setState in componentDidMount |
+|  |  | [react/no-did-update-set-state](docs/rules/no-did-update-set-state.md) | Prevent usage of setState in componentDidUpdate |
+| ✔ |  | [react/no-direct-mutation-state](docs/rules/no-direct-mutation-state.md) | Prevent direct mutation of this.state |
+| ✔ |  | [react/no-find-dom-node](docs/rules/no-find-dom-node.md) | Prevent usage of findDOMNode |
+|  | 🔧 | [react/no-invalid-html-attribute](docs/rules/no-invalid-html-attribute.md) | Forbid attribute with an invalid values` |
+| ✔ |  | [react/no-is-mounted](docs/rules/no-is-mounted.md) | Prevent usage of isMounted |
+|  |  | [react/no-multi-comp](docs/rules/no-multi-comp.md) | Prevent multiple component definition per file |
+|  |  | [react/no-namespace](docs/rules/no-namespace.md) | Enforce that namespaces are not used in React elements |
+|  |  | [react/no-redundant-should-component-update](docs/rules/no-redundant-should-component-update.md) | Flag shouldComponentUpdate when extending PureComponent |
+| ✔ |  | [react/no-render-return-value](docs/rules/no-render-return-value.md) | Prevent usage of the return value of React.render |
+|  |  | [react/no-set-state](docs/rules/no-set-state.md) | Prevent usage of setState |
+| ✔ |  | [react/no-string-refs](docs/rules/no-string-refs.md) | Prevent string definitions for references and prevent referencing this.refs |
+|  |  | [react/no-this-in-sfc](docs/rules/no-this-in-sfc.md) | Report "this" being used in stateless components |
+|  |  | [react/no-typos](docs/rules/no-typos.md) | Prevent common typos |
+| ✔ |  | [react/no-unescaped-entities](docs/rules/no-unescaped-entities.md) | Detect unescaped HTML entities, which might represent malformed tags |
+| ✔ | 🔧 | [react/no-unknown-property](docs/rules/no-unknown-property.md) | Prevent usage of unknown DOM property |
+|  |  | [react/no-unsafe](docs/rules/no-unsafe.md) | Prevent usage of unsafe lifecycle methods |
+|  |  | [react/no-unstable-nested-components](docs/rules/no-unstable-nested-components.md) | Prevent creating unstable components inside components |
+|  |  | [react/no-unused-class-component-methods](docs/rules/no-unused-class-component-methods.md) | Prevent declaring unused methods of component class |
+|  |  | [react/no-unused-prop-types](docs/rules/no-unused-prop-types.md) | Prevent definitions of unused prop types |
+|  |  | [react/no-unused-state](docs/rules/no-unused-state.md) | Prevent definition of unused state fields |
+|  |  | [react/no-will-update-set-state](docs/rules/no-will-update-set-state.md) | Prevent usage of setState in componentWillUpdate |
+|  |  | [react/prefer-es6-class](docs/rules/prefer-es6-class.md) | Enforce ES5 or ES6 class for React Components |
+|  |  | [react/prefer-exact-props](docs/rules/prefer-exact-props.md) | Prefer exact proptype definitions |
+|  | 🔧 | [react/prefer-read-only-props](docs/rules/prefer-read-only-props.md) | Require read-only props. |
+|  |  | [react/prefer-stateless-function](docs/rules/prefer-stateless-function.md) | Enforce stateless components to be written as a pure function |
+| ✔ |  | [react/prop-types](docs/rules/prop-types.md) | Prevent missing props validation in a React component definition |
+| ✔ |  | [react/react-in-jsx-scope](docs/rules/react-in-jsx-scope.md) | Prevent missing React when using JSX |
+|  |  | [react/require-default-props](docs/rules/require-default-props.md) | Enforce a defaultProps definition for every prop that is not a required prop. |
+|  |  | [react/require-optimization](docs/rules/require-optimization.md) | Enforce React components to have a shouldComponentUpdate method |
+| ✔ |  | [react/require-render-return](docs/rules/require-render-return.md) | Enforce ES5 or ES6 class for returning value in render function |
+|  | 🔧 | [react/self-closing-comp](docs/rules/self-closing-comp.md) | Prevent extra closing tags for components without children |
+|  |  | [react/sort-comp](docs/rules/sort-comp.md) | Enforce component methods order |
+|  |  | [react/sort-prop-types](docs/rules/sort-prop-types.md) | Enforce propTypes declarations alphabetical sorting |
+|  |  | [react/state-in-constructor](docs/rules/state-in-constructor.md) | State initialization in an ES6 class component should be in a constructor |
+|  |  | [react/static-property-placement](docs/rules/static-property-placement.md) | Defines where React component static properties should be positioned. |
+|  |  | [react/style-prop-object](docs/rules/style-prop-object.md) | Enforce style prop value is an object |
+|  |  | [react/void-dom-elements-no-children](docs/rules/void-dom-elements-no-children.md) | Prevent passing of children to void DOM elements (e.g. `<br />`). |
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+## JSX-specific rules
+
+<!-- AUTO-GENERATED-CONTENT:START (JSX_RULES) -->
+| ✔ | 🔧 | Rule | Description |
+| :---: | :---: | :--- | :--- |
+|  | 🔧 | [react/jsx-boolean-value](docs/rules/jsx-boolean-value.md) | Enforce boolean attributes notation in JSX |
+|  |  | [react/jsx-child-element-spacing](docs/rules/jsx-child-element-spacing.md) | Ensures inline tags are not rendered without spaces between them |
+|  | 🔧 | [react/jsx-closing-bracket-location](docs/rules/jsx-closing-bracket-location.md) | Validate closing bracket location in JSX |
+|  | 🔧 | [react/jsx-closing-tag-location](docs/rules/jsx-closing-tag-location.md) | Validate closing tag location for multiline JSX |
+|  | 🔧 | [react/jsx-curly-brace-presence](docs/rules/jsx-curly-brace-presence.md) | Disallow unnecessary JSX expressions when literals alone are sufficient or enfore JSX expressions on literals in JSX children or attributes |
+|  | 🔧 | [react/jsx-curly-newline](docs/rules/jsx-curly-newline.md) | Enforce consistent line breaks inside jsx curly |
+|  | 🔧 | [react/jsx-curly-spacing](docs/rules/jsx-curly-spacing.md) | Enforce or disallow spaces inside of curly braces in JSX attributes |
+|  | 🔧 | [react/jsx-equals-spacing](docs/rules/jsx-equals-spacing.md) | Disallow or enforce spaces around equal signs in JSX attributes |
+|  |  | [react/jsx-filename-extension](docs/rules/jsx-filename-extension.md) | Restrict file extensions that may contain JSX |
+|  | 🔧 | [react/jsx-first-prop-new-line](docs/rules/jsx-first-prop-new-line.md) | Ensure proper position of the first property in JSX |
+|  | 🔧 | [react/jsx-fragments](docs/rules/jsx-fragments.md) | Enforce shorthand or standard form for React fragments |
+|  |  | [react/jsx-handler-names](docs/rules/jsx-handler-names.md) | Enforce event handler naming conventions in JSX |
+|  | 🔧 | [react/jsx-indent](docs/rules/jsx-indent.md) | Validate JSX indentation |
+|  | 🔧 | [react/jsx-indent-props](docs/rules/jsx-indent-props.md) | Validate props indentation in JSX |
+| ✔ |  | [react/jsx-key](docs/rules/jsx-key.md) | Report missing `key` props in iterators/collection literals |
+|  |  | [react/jsx-max-depth](docs/rules/jsx-max-depth.md) | Validate JSX maximum depth |
+|  | 🔧 | [react/jsx-max-props-per-line](docs/rules/jsx-max-props-per-line.md) | Limit maximum of props on a single line in JSX |
+|  | 🔧 | [react/jsx-newline](docs/rules/jsx-newline.md) | Require or prevent a new line after jsx elements and expressions. |
+|  |  | [react/jsx-no-bind](docs/rules/jsx-no-bind.md) | Prevents usage of Function.prototype.bind and arrow functions in React component props |
+| ✔ |  | [react/jsx-no-comment-textnodes](docs/rules/jsx-no-comment-textnodes.md) | Comments inside children section of tag should be placed inside braces |
+|  |  | [react/jsx-no-constructed-context-values](docs/rules/jsx-no-constructed-context-values.md) | Prevents JSX context provider values from taking values that will cause needless rerenders. |
+| ✔ |  | [react/jsx-no-duplicate-props](docs/rules/jsx-no-duplicate-props.md) | Enforce no duplicate props |
+|  |  | [react/jsx-no-literals](docs/rules/jsx-no-literals.md) | Prevent using string literals in React component definition |
+|  |  | [react/jsx-no-script-url](docs/rules/jsx-no-script-url.md) | Forbid `javascript:` URLs |
+| ✔ | 🔧 | [react/jsx-no-target-blank](docs/rules/jsx-no-target-blank.md) | Forbid `target="_blank"` attribute without `rel="noreferrer"` |
+| ✔ |  | [react/jsx-no-undef](docs/rules/jsx-no-undef.md) | Disallow undeclared variables in JSX |
+|  | 🔧 | [react/jsx-no-useless-fragment](docs/rules/jsx-no-useless-fragment.md) | Disallow unnecessary fragments |
+|  | 🔧 | [react/jsx-one-expression-per-line](docs/rules/jsx-one-expression-per-line.md) | Limit to one expression per line in JSX |
+|  |  | [react/jsx-pascal-case](docs/rules/jsx-pascal-case.md) | Enforce PascalCase for user-defined JSX components |
+|  | 🔧 | [react/jsx-props-no-multi-spaces](docs/rules/jsx-props-no-multi-spaces.md) | Disallow multiple spaces between inline JSX props |
+|  |  | [react/jsx-props-no-spreading](docs/rules/jsx-props-no-spreading.md) | Prevent JSX prop spreading |
+|  |  | [react/jsx-sort-default-props](docs/rules/jsx-sort-default-props.md) | Enforce default props alphabetical sorting |
+|  | 🔧 | [react/jsx-sort-props](docs/rules/jsx-sort-props.md) | Enforce props alphabetical sorting |
+|  | 🔧 | [react/jsx-space-before-closing](docs/rules/jsx-space-before-closing.md) | Validate spacing before closing bracket in JSX |
+|  | 🔧 | [react/jsx-tag-spacing](docs/rules/jsx-tag-spacing.md) | Validate whitespace in and around the JSX opening and closing brackets |
+| ✔ |  | [react/jsx-uses-react](docs/rules/jsx-uses-react.md) | Prevent React to be marked as unused |
+| ✔ |  | [react/jsx-uses-vars](docs/rules/jsx-uses-vars.md) | Prevent variables used in JSX to be marked as unused |
+|  | 🔧 | [react/jsx-wrap-multilines](docs/rules/jsx-wrap-multilines.md) | Prevent missing parentheses around multilines JSX |
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+## Other useful plugins
+
+- Rules of Hooks: [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks)
+- JSX accessibility: [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y)
+- React Native: [eslint-plugin-react-native](https://github.com/Intellicode/eslint-plugin-react-native)
+
+# Shareable configurations
+
+## Recommended
+
+This plugin exports a `recommended` configuration that enforces React good practices.
+
+To enable this configuration use the `extends` property in your `.eslintrc` config file:
+
+```json
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended"]
+}
 ```
 
-#### no-noninteractive-tabindex
-```js
-'jsx-a11y/no-noninteractive-tabindex': [
-  'error',
-  {
-    tags: [],
-    roles: ['tabpanel'],
-  },
-]
+See [`eslint` documentation](https://eslint.org/docs/user-guide/configuring/configuration-files#extending-configuration-files) for more information about extending configuration files.
+
+## All
+
+This plugin also exports an `all` configuration that includes every available rule.
+This pairs well with the `eslint:all` rule.
+
+```json
+{
+  "plugins": [
+    "react"
+  ],
+  "extends": ["eslint:all", "plugin:react/all"]
+}
 ```
 
-#### no-static-element-interactions
-```js
-'jsx-a11y/no-noninteractive-element-interactions': [
-  'error',
-  {
-    handlers: [
-      'onClick',
-      'onMouseDown',
-      'onMouseUp',
-      'onKeyPress',
-      'onKeyDown',
-      'onKeyUp',
-    ],
-  },
-]
-```
+**Note**: These configurations will import `eslint-plugin-react` and enable JSX in [parser options](http://eslint.org/docs/user-guide/configuring#specifying-parser-options).
 
-## Creating a new rule
+# License
 
-If you are developing new rules for this project, you can use the `create-rule`
-script to scaffold the new files.
+`eslint-plugin-react` is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
-```
-$ ./scripts/create-rule.js my-new-rule
-```
 
-## Some background on WAI-ARIA, the AX Tree and Browsers
+[npm-url]: https://npmjs.org/package/eslint-plugin-react
+[npm-image]: https://img.shields.io/npm/v/eslint-plugin-react.svg
 
-### Accessibility API
-An operating system will provide an accessibility API that maps application state and content onto input/output controllers such as a screen reader, braille device, keyboard, etc.
+[travis-url]: https://travis-ci.org/yannickcr/eslint-plugin-react
+[travis-image]: https://img.shields.io/travis/yannickcr/eslint-plugin-react/master.svg
 
-These APIs were developed as computer interfaces shifted from buffers (which are text-based and inherently quite accessible) to graphical user interfaces (GUIs). The first attempts to make GUIs accessible involved raster image parsing to recognize characters, words, etc. This information was stored in a parallel buffer and made accessible to assistive technology (AT) devices.
+[deps-url]: https://david-dm.org/yannickcr/eslint-plugin-react
+[deps-image]: https://img.shields.io/david/dev/yannickcr/eslint-plugin-react.svg
 
-As GUIs became more complex, the raster parsing approach became untenable. Accessibility APIs were developed to replace them. Check out [NSAccessibility (AXAPI)](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Protocols/NSAccessibility_Protocol/index.html) for an example. See [Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/) for more details.
+[climate-url]: https://codeclimate.com/github/yannickcr/eslint-plugin-react
+[climate-image]: https://img.shields.io/codeclimate/maintainability/yannickcr/eslint-plugin-react.svg
 
-### Browsers
-Browsers support an Accessibility API on a per operating system basis. For instance, Firefox implements the MSAA accessibility API on Windows, but does not implement the AXAPI on OSX.
+[status-url]: https://github.com/yannickcr/eslint-plugin-react/pulse
+[status-image]: https://img.shields.io/github/last-commit/yannickcr/eslint-plugin-react.svg
 
-### The Accessibility (AX) Tree & DOM
-From the [W3 Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/#intro_treetypes)
-
-> The accessibility tree and the DOM tree are parallel structures. Roughly speaking the accessibility tree is a subset of the DOM tree. It includes the user interface objects of the user agent and the objects of the document. Accessible objects are created in the accessibility tree for every DOM element that should be exposed to assistive technology, either because it may fire an accessibility event or because it has a property, relationship or feature which needs to be exposed. Generally, if something can be trimmed out it will be, for reasons of performance and simplicity. For example, a `<span>` with just a style change and no semantics may not get its own accessible object, but the style change will be exposed by other means.
-
-Browser vendors are beginning to expose the AX Tree through inspection tools. Chrome has an experiment available to enable their inspection tool.
-
-You can also see a text-based version of the AX Tree in Chrome in the stable release version.
-
-#### Viewing the AX Tree in Chrome
-  1. Navigate to `chrome://accessibility/` in Chrome.
-  1. Toggle the `accessibility off` link for any tab that you want to inspect.
-  1. A link labeled `show accessibility tree` will appear; click this link.
-  1. Balk at the wall of text that gets displayed, but then regain your conviction.
-  1. Use the browser's find command to locate strings and values in the wall of text.
-
-### Pulling it all together
-A browser constructs an AX Tree as a subset of the DOM. ARIA heavily informs the properties of this AX Tree. This AX Tree is exposed to the system level Accessibility API which mediates assistive technology agents.
-
-We model ARIA in the [aria-query](https://github.com/a11yance/aria-query) project. We model AXObjects (that comprise the AX Tree) in the [axobject-query](https://github.com/A11yance/axobject-query) project. The goal of the WAI-ARIA specification is to be a complete declarative interface to the AXObject model. The [in-draft 1.2 version](https://github.com/w3c/aria/issues?q=is%3Aissue+is%3Aopen+label%3A%22ARIA+1.2%22) is moving towards this goal. But until then, we must consider the semantics constructs afforded by ARIA as well as those afforded by the AXObject model (AXAPI) in order to determine how HTML can be used to express user interface affordances to assistive technology users.
-
-## License
-
-eslint-plugin-jsx-a11y is licensed under the [MIT License](LICENSE.md).
+[tidelift-url]: https://tidelift.com/subscription/pkg/npm-eslint-plugin-react?utm_source=npm-eslint-plugin-react&utm_medium=referral&utm_campaign=readme
+[tidelift-image]: https://tidelift.com/badges/github/yannickcr/eslint-plugin-react?style=flat
