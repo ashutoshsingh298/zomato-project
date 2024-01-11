@@ -1,1627 +1,567 @@
-# Change Log
+# [24.7.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.6.0...v24.7.0) (2021-10-10)
 
-All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](https://semver.org/).
-This change log adheres to standards from [Keep a CHANGELOG](https://keepachangelog.com).
 
-## [Unreleased]
+### Features
 
-## [2.25.3] - 2021-11-09
+* create `require-hook` rule ([#929](https://github.com/jest-community/eslint-plugin-jest/issues/929)) ([6204b31](https://github.com/jest-community/eslint-plugin-jest/commit/6204b311e849b51a0e4705015575139f590ae7a4))
+* deprecate `prefer-to-be-null` rule ([4db9161](https://github.com/jest-community/eslint-plugin-jest/commit/4db91612e988e84ac2facbfe466331b22eeccec9))
+* deprecate `prefer-to-be-undefined` rule ([fa08f09](https://github.com/jest-community/eslint-plugin-jest/commit/fa08f0944e89915fb215bbeff970f12459121cb8))
 
-### Fixed
-- [`extensions`]: ignore unresolveable type-only imports ([#2270], [#2271], [@jablko])
-- `importType`: fix `isExternalModule` calculation ([#2282], [@mx-bernhard])
-- [`no-import-module-exports`]: avoid false positives with a shadowed `module` or `exports` ([#2297], [@ljharb])
+# [24.6.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.5.2...v24.6.0) (2021-10-09)
 
-### Changed
-- [Docs] [`order`]: add type to the default groups ([#2272], [@charpeni])
-- [readme] Add note to TypeScript docs to install appropriate resolver ([#2279], [@johnthagen])
-- [Refactor] `importType`: combine redundant `isScoped` and `isScopedModule` ([@ljharb])
-- [Docs] HTTP => HTTPS ([#2287], [@Schweinepriester])
 
-## [2.25.2] - 2021-10-12
+### Features
 
-### Fixed
-- [Deps] update `eslint-module-utils` for real this time ([#2255])
+* **valid-expect-in-promise:** re-implement rule ([#916](https://github.com/jest-community/eslint-plugin-jest/issues/916)) ([7a49c58](https://github.com/jest-community/eslint-plugin-jest/commit/7a49c5831e3d85a60c11e385203b8f83d98ad580))
 
-## [2.25.1] - 2021-10-11
+## [24.5.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.5.1...v24.5.2) (2021-10-04)
 
-### Fixed
-- [Deps] update `eslint-module-utils`
 
-## [2.25.0] - 2021-10-11
+### Bug Fixes
 
-### Added
-- Support `eslint` v8 ([#2191], thanks [@ota-meshi])
-- [`no-unresolved`]: add `caseSensitiveStrict` option ([#1262], thanks [@sergei-startsev])
-- [`no-unused-modules`]: add eslint v8 support ([#2194], thanks [@coderaiser])
-- [`no-restricted-paths`]: add/restore glob pattern support ([#2219], thanks [@stropho])
-- [`no-unused-modules`]: support dynamic imports ([#1660], [#2212], thanks [@maxkomarychev], [@aladdin-add], [@Hypnosphi])
-
-### Fixed
-- [`no-unresolved`]: ignore type-only imports ([#2220], thanks [@jablko])
-- [`order`]: fix sorting imports inside TypeScript module declarations ([#2226], thanks [@remcohaszing])
-- [`default`], `ExportMap`: Resolve extended TypeScript configuration files ([#2240], thanks [@mrmckeb])
-
-### Changed
-- [Refactor] switch to an internal replacement for `pkg-up` and `read-pkg-up` ([#2047], thanks [@mgwalker])
-- [patch] TypeScript config: remove `.d.ts` from [`import/parsers` setting] and [`import/extensions` setting] ([#2220], thanks [@jablko])
-- [Refactor] [`no-unresolved`], [`no-extraneous-dependencies`]: moduleVisitor usage ([#2233], thanks [@jablko])
-
-## [2.24.2] - 2021-08-24
-
-### Fixed
-- [`named`], [`namespace`]: properly handle ExportAllDeclarations ([#2199], thanks [@ljharb])
-
-## [2.24.1] - 2021-08-19
-
-### Fixed
-- `ExportMap`: Add default export when esModuleInterop is true and anything is exported ([#2184], thanks [@Maxim-Mazurok])
-- [`named`], [`namespace`]: properly set reexports on `export * as … from` ([#1998], [#2161], thanks [@ljharb])
-- [`no-duplicates`]: correctly handle case of mixed default/named type imports ([#2149], thanks [@GoodForOneFare], [@nwalters512])
-- [`no-duplicates`]: avoid crash with empty `import type {}` ([#2201], thanks [@ljharb])
-
-### Changed
-- [Docs] `max-dependencies`: 📖 Document `ignoreTypeImports` option ([#2196], thanks [@himynameisdave])
-
-## [2.24.0] - 2021-08-08
-
-### Added
-- [`no-dynamic-require`]: add option `esmodule` ([#1223], thanks [@vikr01])
-- [`named`]: add `commonjs` option ([#1222], thanks [@vikr01])
-- [`no-namespace`]: Add `ignore` option ([#2112], thanks [@aberezkin])
-- [`max-dependencies`]: add option `ignoreTypeImports` ([#1847], thanks [@rfermann])
-
-### Fixed
-- [`no-duplicates`]: ensure autofix avoids excessive newlines ([#2028], thanks [@ertrzyiks])
-- [`extensions`]: avoid crashing on partially typed import/export statements ([#2118], thanks [@ljharb])
-- [`no-extraneous-dependencies`]: add ESM intermediate package.json support ([#2121], thanks [@paztis])
-- Use `context.getPhysicalFilename()` when available (ESLint 7.28+) ([#2160], thanks [@pmcelhaney])
-- [`extensions`]/`importType`: fix isScoped treating @/abc as scoped module ([#2146], thanks [@rperello])
-
-### Changed
-- [Docs] [`extensions`]: improved cases for using `@/...` ([#2140], thanks [@wenfangdu])
-- [Docs] [`extensions`]: removed incorrect cases ([#2138], thanks [@wenfangdu])
-- [Tests] [`order`]: add tests for `pathGroupsExcludedImportTypes: ['type']` ([#2158], thanks [@atav32])
-- [Docs] [`order`]:  improve the documentation for the `pathGroupsExcludedImportTypes` option ([#2156], thanks [@liby])
-- [Tests] [`no-cycle`]: Restructure test files ([#1517], thanks [@soryy708])
-- [Docs] add description how to use plugin with yarn berry ([#2179], thanks [@KostyaZgara])
-
-## [2.23.4] - 2021-05-29
-
-### Fixed
-- [`no-import-module-exports`]: Don't crash if packages have no entrypoint ([#2099], thanks [@eps1lon])
-- [`no-extraneous-dependencies`]: fix package name algorithm ([#2097], thanks [@paztis])
-
-## [2.23.3] - 2021-05-21
-
-### Fixed
-- [`no-restricted-paths`]: fix false positive matches ([#2090], thanks [@malykhinvi])
-- [`no-cycle`]: ignore imports where imported file only imports types of importing file ([#2083], thanks [@cherryblossom000])
-- [`no-cycle`]: fix false negative when file imports a type after importing a value in Flow ([#2083], thanks [@cherryblossom000])
-- [`order`]: restore default behavior unless `type` is in groups ([#2087], thanks [@grit96])
-
-### Changed
-- [Docs] Add `no-relative-packages` to list of to the list of rules ([#2075], thanks [@arvigeus])
-
-## [2.23.2] - 2021-05-15
-
-### Changed
-- [meta] add `safe-publish-latest`; use `prepublishOnly` script for npm 7+
-
-## [2.23.1] - 2021-05-14
-
-### Fixed
-- [`newline-after-import`]: fix crash with `export {}` syntax ([#2063], [#2056], thanks [@ljharb])
-- `ExportMap`: do not crash when tsconfig lacks `.compilerOptions` ([#2067], thanks [@ljharb])
-- [`order`]: fix alphabetical sorting ([#2071], thanks [@grit96])
-
-## [2.23.0] - 2021-05-13
-
-### Added
-- [`no-commonjs`]: Also detect require calls with expressionless template literals: ``` require(`x`) ``` ([#1958], thanks [@FloEdelmann])
-- [`no-internal-modules`]: Add `forbid` option ([#1846], thanks [@guillaumewuip])
-- add [`no-relative-packages`] ([#1860], [#966], thanks [@tapayne88] [@panrafal])
-- add [`no-import-module-exports`] rule: report import declarations with CommonJS exports ([#804], thanks [@kentcdodds] and [@ttmarek])
-- [`no-unused-modules`]: Support destructuring assignment for `export`. ([#1997], thanks [@s-h-a-d-o-w])
-- [`order`]: support type imports ([#2021], thanks [@grit96])
-- [`order`]: Add `warnOnUnassignedImports` option to enable warnings for out of order unassigned imports ([#1990], thanks [@hayes])
-
-### Fixed
-- [`export`]/TypeScript: properly detect export specifiers as children of a TS module block ([#1889], thanks [@andreubotella])
-- [`order`]: ignore non-module-level requires ([#1940], thanks [@golopot])
-- [`no-webpack-loader-syntax`]/TypeScript: avoid crash on missing name ([#1947], thanks [@leonardodino])
-- [`no-extraneous-dependencies`]: Add package.json cache ([#1948], thanks [@fa93hws])
-- [`prefer-default-export`]: handle empty array destructuring ([#1965], thanks [@ljharb])
-- [`no-unused-modules`]: make type imports mark a module as used (fixes #1924) ([#1974], thanks [@cherryblossom000])
-- [`no-cycle`]: fix perf regression ([#1944], thanks [@Blasz])
-- [`first`]: fix handling of `import = require` ([#1963], thanks [@MatthiasKunnen])
-- [`no-cycle`]/[`extensions`]: fix isExternalModule usage ([#1696], thanks [@paztis])
-- [`extensions`]/[`no-cycle`]/[`no-extraneous-dependencies`]: Correct module real path resolution ([#1696], thanks [@paztis])
-- [`no-named-default`]: ignore Flow import type and typeof ([#1983], thanks [@christianvuerings])
-- [`no-extraneous-dependencies`]: Exclude flow `typeof` imports ([#1534], thanks [@devongovett])
-- [`newline-after-import`]: respect decorator annotations ([#1985], thanks [@lilling])
-- [`no-restricted-paths`]: enhance performance for zones with `except` paths ([#2022], thanks [@malykhinvi])
-- [`no-unresolved`]: check import() ([#2026], thanks [@aladdin-add])
-
-### Changed
-- [Generic Import Callback] Make callback for all imports once in rules ([#1237], thanks [@ljqx])
-- [Docs] [`no-named-as-default`]: add semicolon ([#1897], thanks [@bicstone])
-- [Docs] `no-extraneous-dependencies`: correct peerDependencies option default to `true` ([#1993], thanks [@dwardu])
-- [Docs] `order`: Document options required to match ordering example ([#1992], thanks [@silviogutierrez])
-- [Tests] `no-unresolved`: add tests for `import()` ([#2012], thanks [@davidbonnet])
-- [Docs] Add import/recommended ruleset to README ([#2034], thanks [@edemaine])
-
-## [2.22.1] - 2020-09-27
-
-### Fixed
-- [`default`]/TypeScript: avoid crash on `export =` with a MemberExpression ([#1841], thanks [@ljharb])
-- [`extensions`]/importType: Fix @/abc being treated as scoped module ([#1854], thanks [@3nuc])
-- allow using rest operator in named export ([#1878], thanks [@foray1010])
-- [`dynamic-import-chunkname`]: allow single quotes to match Webpack support ([#1848], thanks [@straub])
-
-### Changed
-- [`export`]: add tests for a name collision with `export * from` ([#1704], thanks @tomprats)
-
-## [2.22.0] - 2020-06-26
-
-### Added
-- [`no-unused-modules`]: consider exported TypeScript interfaces, types and enums ([#1819], thanks [@nicolashenry])
-- [`no-cycle`]: allow `maxDepth` option to be `"∞"` (thanks [@ljharb])
-
-### Fixed
-- [`order`]/TypeScript: properly support `import = object` expressions ([#1823], thanks [@manuth])
-- [`no-extraneous-dependencies`]/TypeScript: do not error when importing type from dev dependencies ([#1820], thanks [@fernandopasik])
-- [`default`]: avoid crash with `export =` ([#1822], thanks [@AndrewLeedham])
-- [`order`]/[`newline-after-import`]: ignore TypeScript's "export import object" ([#1830], thanks [@be5invis])
-- [`dynamic-import-chunkname`]/TypeScript: supports `@typescript-eslint/parser` ([#1833], thanks [@noelebrun])
-- [`order`]/TypeScript: ignore ordering of object imports ([#1831], thanks [@manuth])
-- [`namespace`]: do not report on shadowed import names ([#518], thanks [@ljharb])
-- [`export`]: avoid warning on `export * as` non-conflicts ([#1834], thanks [@ljharb])
-
-### Changed
-- [`no-extraneous-dependencies`]: add tests for importing types ([#1824], thanks [@taye])
-- [docs] [`no-default-export`]: Fix docs url ([#1836], thanks [@beatrizrezener])
-- [docs] [`imports-first`]: deprecation info and link to `first` docs ([#1835], thanks [@beatrizrezener])
-
-## [2.21.2] - 2020-06-09
-
-### Fixed
-- [`order`]: avoid a crash on TypeScript’s `export import` syntax ([#1808], thanks [@ljharb])
-- [`newline-after-import`]: consider TypeScript `import =` syntax' ([#1811], thanks [@ljharb])
-- [`no-internal-modules`]: avoid a crash on a named export declaration ([#1814], thanks [@ljharb])
-
-## [2.21.1] - 2020-06-07
-
-### Fixed
-- TypeScript: [`import/named`]: avoid requiring `typescript` when not using TS ([#1805], thanks [@ljharb])
-
-## [2.21.0] - 2020-06-07
-
-### Added
-- [`import/default`]: support default export in TSExportAssignment ([#1528], thanks [@joaovieira])
-- [`no-cycle`]: add `ignoreExternal` option ([#1681], thanks [@sveyret])
-- [`order`]: Add support for TypeScript's "import equals"-expressions ([#1785], thanks [@manuth])
-- [`import/default`]: support default export in TSExportAssignment ([#1689], thanks [@Maxim-Mazurok])
-- [`no-restricted-paths`]: add custom message support ([#1802], thanks [@malykhinvi])
-
-### Fixed
-- [`group-exports`]: Flow type export awareness ([#1702], thanks [@ernestostifano])
-- [`order`]: Recognize pathGroup config for first group ([#1719], [#1724], thanks [@forivall], [@xpl])
-- [`no-unused-modules`]: Fix re-export not counting as usage when used in combination with import ([#1722], thanks [@Ephem])
-- [`no-duplicates`]: Handle TS import type ([#1676], thanks [@kmui2])
-- [`newline-after-import`]: recognize decorators ([#1139], thanks [@atos1990])
-- [`no-unused-modules`]: Revert "[flow] [`no-unused-modules`]: add flow type support" ([#1770], thanks [@Hypnosphi])
-- TypeScript: Add nested namespace handling ([#1763], thanks [@julien1619])
-- [`namespace`]/`ExportMap`: Fix interface declarations for TypeScript ([#1764], thanks [@julien1619])
-- [`no-unused-modules`]: avoid order-dependence ([#1744], thanks [@darkartur])
-- [`no-internal-modules`]: also check `export from` syntax ([#1691], thanks [@adjerbetian])
-- TypeScript: [`export`]: avoid a crash with `export =` ([#1801], thanks [@ljharb])
-
-### Changed
-- [Refactor] `no-extraneous-dependencies`: use moduleVisitor ([#1735], thanks [@adamborowski])
-- TypeScript config: Disable [`named`][] ([#1726], thanks [@astorije])
-- [readme] Remove duplicate [`no-unused-modules`] from docs ([#1690], thanks [@arvigeus])
-- [Docs] `order`: fix bad inline config ([#1788], thanks [@nickofthyme])
-- [Tests] Add fix for Windows Subsystem for Linux ([#1786], thanks [@manuth])
-- [Docs] `no-unused-rules`: Fix docs for unused exports ([#1776], thanks [@barbogast])
-- [eslint] bump minimum v7 version to v7.2.0
-
-## [2.20.2] - 2020-03-28
-
-### Fixed
-- [`order`]: fix `isExternalModule` detect on windows ([#1651], thanks [@fisker])
-- [`order`]: recognize ".." as a "parent" path ([#1658], thanks [@golopot])
-- [`no-duplicates`]: fix fixer on cases with default import ([#1666], thanks [@golopot])
-- [`no-unused-modules`]: Handle `export { default } from` syntax ([#1631], thanks [@richardxia])
-- [`first`]: Add a way to disable `absolute-first` explicitly ([#1664], thanks [@TheCrueltySage])
-- [Docs] `no-webpack-loader-syntax`: Updates webpack URLs ([#1751], thanks [@MikeyBeLike])
-
-## [2.20.1] - 2020-02-01
-
-### Fixed
-- [`export`]: Handle function overloading in `*.d.ts` ([#1619], thanks [@IvanGoncharov])
-- [`no-absolute-path`]: fix a crash with invalid import syntax ([#1616], thanks [@ljharb])
-- [`import/external-module-folders` setting] now correctly works with directories containing modules symlinked from `node_modules` ([#1605], thanks [@skozin])
-- [`extensions`]: for invalid code where `name` does not exist, do not crash ([#1613], thanks [@ljharb])
-- [`extensions`]: Fix scope regex ([#1611], thanks [@yordis])
-- [`no-duplicates`]: allow duplicate imports if one is a namespace and the other not ([#1612], thanks [@sveyret])
-- Add some missing rule meta schemas and types ([#1620], thanks [@bmish])
-- [`named`]: for importing from a module which re-exports named exports from a `node_modules` module ([#1569], [#1447], thanks [@redbugz], [@kentcdodds])
-- [`order`]: Fix alphabetize for mixed requires and imports ([#1626], thanks [@wschurman])
-
-### Changed
-- [`import/external-module-folders` setting] behavior is more strict now: it will only match complete path segments ([#1605], thanks [@skozin])
-- [meta] fix "files" field to include/exclude the proper files ([#1635], thanks [@ljharb])
-- [Tests] `order`: Add TS import type tests ([#1736], thanks [@kmui2])
-
-## [2.20.0] - 2020-01-10
-
-### Added
-- [`order`]: added `caseInsensitive` as an additional option to `alphabetize` ([#1586], thanks [@dbrewer5])
-- [`no-restricted-paths`]: New `except` option per `zone`, allowing exceptions to be defined for a restricted zone ([#1238], thanks [@rsolomon])
-- [`order`]: add option pathGroupsExcludedImportTypes to allow ordering of external import types ([#1565], thanks [@Mairu])
-
-### Fixed
-- [`no-unused-modules`]: fix usage of [`import/extensions` setting] ([#1560], thanks [@stekycz])
-- [`extensions`]: ignore non-main modules ([#1563], thanks [@saschanaz])
-- TypeScript config: lookup for external modules in @types folder ([#1526], thanks [@joaovieira])
-- [`no-extraneous-dependencies`]: ensure `node.source` is truthy ([#1589], thanks [@ljharb])
-- [`extensions`]: Ignore query strings when checking for extensions ([#1572], thanks [@pcorpet])
-
-### Docs
-- [`extensions`]: improve `ignorePackages` docs ([#1248], thanks [@ivo-stefchev])
-
-## [2.19.1] - 2019-12-08
-
-### Fixed
-- [`no-extraneous-dependencies`]: ensure `node.source` exists
-
-## [2.19.0] - 2019-12-08
-
-### Added
-- [`internal-regex` setting]: regex pattern for marking packages "internal"  ([#1491], thanks [@Librazy])
-- [`group-exports`]: make aggregate module exports valid ([#1472], thanks [@atikenny])
-- [`no-namespace`]: Make rule fixable ([#1401], thanks [@TrevorBurnham])
-- support `parseForESLint` from custom parser ([#1435], thanks [@JounQin])
-- [`no-extraneous-dependencies`]: Implement support for [bundledDependencies](https://npm.github.io/using-pkgs-docs/package-json/types/bundleddependencies.html) ([#1436], thanks [@schmidsi]))
-- [`no-unused-modules`]: add flow type support ([#1542], thanks [@rfermann])
-- [`order`]: Adds support for pathGroups to allow ordering by defined patterns ([#795], [#1386], thanks [@Mairu])
-- [`no-duplicates`]: Add `considerQueryString` option : allow duplicate imports with different query strings ([#1107], thanks [@pcorpet]).
-- [`order`]: Add support for alphabetical sorting of import paths within import groups ([#1360], [#1105], [#629], thanks [@duncanbeevers], [@stropho], [@luczsoma], [@randallreedjr])
-- [`no-commonjs`]: add `allowConditionalRequire` option ([#1439], thanks [@Pessimistress])
-
-### Fixed
-- [`default`]: make error message less confusing ([#1470], thanks [@golopot])
-- Improve performance of `ExportMap.for` by only loading paths when necessary. ([#1519], thanks [@brendo])
-- Support export of a merged TypeScript namespace declaration ([#1495], thanks [@benmunro])
-- [`order`]: fix autofix to not move imports across fn calls ([#1253], thanks [@tihonove])
-- [`prefer-default-export`]: fix false positive with type export ([#1506], thanks [@golopot])
-- [`extensions`]: Fix `ignorePackages` to produce errors ([#1521], thanks [@saschanaz])
-- [`no-unused-modules`]: fix crash due to `export *` ([#1496], thanks [@Taranys])
-- [`no-cycle`]: should not warn for Flow imports ([#1494], thanks [@maxmalov])
-- [`order`]: fix `@someModule` considered as `unknown` instead of `internal` ([#1493], thanks [@aamulumi])
-- [`no-extraneous-dependencies`]: Check `export from` ([#1049], thanks [@marcusdarmstrong])
-
-### Docs
-- [`no-useless-path-segments`]: add docs for option `commonjs` ([#1507], thanks [@golopot])
-
-### Changed
-- [`no-unused-modules`]/`eslint-module-utils`: Avoid superfluous calls and code ([#1551], thanks [@brettz9])
-
-## [2.18.2] - 2019-07-19
-
-### Fixed
-- Skip warning on type interfaces ([#1425], thanks [@lencioni])
-
-## [2.18.1] - 2019-07-18
-
-### Fixed
-- Improve parse perf when using `@typescript-eslint/parser` ([#1409], thanks [@bradzacher])
-- [`prefer-default-export`]: don't warn on TypeAlias & TSTypeAliasDeclaration ([#1377], thanks [@sharmilajesupaul])
-- [`no-unused-modules`]: Exclude package "main"/"bin"/"browser" entry points ([#1404], thanks [@rfermann])
-- [`export`]: false positive for TypeScript overloads ([#1412], thanks [@golopot])
-
-### Refactors
-- [`no-extraneous-dependencies`], `importType`: remove lodash ([#1419], thanks [@ljharb])
-
-## [2.18.0] - 2019-06-24
-
-### Added
-- Support eslint v6 ([#1393], thanks [@sheepsteak])
-- [`order`]: Adds support for correctly sorting unknown types into a single group ([#1375], thanks [@swernerx])
-- [`order`]: add fixer for destructuring commonjs import ([#1372], thanks [@golopot])
-- TypeScript config: add TS def extensions + defer to TS over JS ([#1366], thanks [@benmosher])
-
-### Fixed
-- [`no-unused-modules`]: handle ClassDeclaration ([#1371], thanks [@golopot])
-
-### Docs
-- [`no-cycle`]: split code examples so file separation is obvious ([#1370], thanks [@alex-page])
-- [`no-named-as-default-member`]: update broken link ([#1389], thanks [@fooloomanzoo])
-
-## [2.17.3] - 2019-05-23
-
-### Fixed
-- [`no-common-js`]: Also throw an error when assigning ([#1354], thanks [@charlessuh])
-- [`no-unused-modules`]: don't crash when lint file outside src-folder ([#1347], thanks [@rfermann])
-- [`no-unused-modules`]: make `import { name as otherName }` work ([#1340], [#1342], thanks [@rfermann])
-- [`no-unused-modules`]: make appveyor tests passing ([#1333], thanks [@rfermann])
-- [`named`]: ignore Flow `typeof` imports and `type` exports ([#1345], thanks [@loganfsmyth])
-- [refactor] fix eslint 6 compat by fixing imports (thank [@ljharb])
-- Improve support for TypeScript declare structures ([#1356], thanks [@christophercurrie])
-
-### Docs
-- add missing `no-unused-modules` in README ([#1358], thanks [@golopot])
-- [`no-unused-modules`]: Indicates usage, plugin defaults to no-op, and add description to main README.md ([#1352], thanks [@johndevedu])
-- Document `env` option for `eslint-import-resolver-webpack` ([#1363], thanks [@kgregory])
-
-## [2.17.2] - 2019-04-16
-
-### Fixed
-- [`no-unused-modules`]: avoid crash when using `ignoreExports`-option ([#1331], [#1323], thanks [@rfermann])
-- [`no-unused-modules`]: make sure that rule with no options will not fail ([#1330], [#1334], thanks [@kiwka])
-
-## [2.17.1] - 2019-04-13
-
-### Fixed
-- require v2.4 of `eslint-module-utils` ([#1322])
-
-## [2.17.0] - 2019-04-13
-
-### Added
-- [`no-useless-path-segments`]: Add `noUselessIndex` option ([#1290], thanks [@timkraut])
-- [`no-duplicates`]: Add autofix ([#1312], thanks [@lydell])
-- Add [`no-unused-modules`] rule ([#1142], thanks [@rfermann])
-- support export type named exports from TypeScript ([#1304], thanks [@bradennapier] and [@schmod])
-
-### Fixed
-- [`order`]: Fix interpreting some external modules being interpreted as internal modules ([#793], [#794] thanks [@ephys])
-- allow aliases that start with @ to be "internal" ([#1293], [#1294], thanks [@jeffshaver])
-- aliased internal modules that look like core modules ([#1297], thanks [@echenley])
-- [`namespace`]: add check for null ExportMap ([#1235], [#1144], thanks [@ljqx])
-- [ExportMap] fix condition for checking if block comment ([#1234], [#1233], thanks [@ljqx])
-- Fix overwriting of dynamic import() CallExpression ([`no-cycle`], [`no-relative-parent-imports`], [`no-unresolved`], [`no-useless-path-segments`]) ([#1218], [#1166], [#1035], thanks [@vikr01])
-- [`export`]: false positives for TypeScript type + value export ([#1319], thanks [@bradzacher])
-- [`export`]: Support TypeScript namespaces ([#1320], [#1300], thanks [@bradzacher])
-
-### Docs
-- Update readme for TypeScript ([#1256], [#1277], thanks [@kirill-konshin])
-- make rule names consistent ([#1112], thanks [@feychenie])
-
-### Tests
-- fix broken tests on master ([#1295], thanks [@jeffshaver] and [@ljharb])
-- [`no-commonjs`]: add tests that show corner cases ([#1308], thanks [@TakeScoop])
-
-## [2.16.0] - 2019-01-29
-
-### Added
-- `typescript` config ([#1257], thanks [@kirill-konshin])
-
-### Fixed
-- Memory leak of `SourceCode` objects for all parsed dependencies, resolved. (issue [#1266], thanks [@asapach] and [@sergei-startsev] for digging in)
-
-## [2.15.0] - 2019-01-22
-
-### Added
-- new rule: [`no-named-export`] ([#1157], thanks [@fsmaia])
-
-### Fixed
-- [`no-extraneous-dependencies`]: `packageDir` option with array value was clobbering package deps instead of merging them ([#1175]/[#1176], thanks [@aravindet] & [@pzhine])
-- [`dynamic-import-chunkname`]: Add proper webpack comment parsing ([#1163], thanks [@st-sloth])
-- [`named`]: fix destructuring assignment ([#1232], thanks [@ljqx])
-
-## [2.14.0] - 2018-08-13
-
-### Added
-- [`no-useless-path-segments`]: add commonJS (CJS) support ([#1128], thanks [@1pete])
-- [`namespace`]: add JSX check ([#1151], thanks [@jf248])
-
-### Fixed
-- [`no-cycle`]: ignore Flow imports ([#1126], thanks [@gajus])
-- fix Flow type imports ([#1106], thanks [@syymza])
-- [`no-relative-parent-imports`]: resolve paths ([#1135], thanks [@chrislloyd])
-- [`order`]: fix autofixer when using typescript-eslint-parser ([#1137], thanks [@justinanastos])
-- repeat fix from [#797] for [#717], in another place (thanks [@ljharb])
-
-### Refactors
-- add explicit support for RestElement alongside ExperimentalRestProperty (thanks [@ljharb])
-
-## [2.13.0] - 2018-06-24
-
-### Added
-- Add ESLint 5 support ([#1122], thanks [@ai] and [@ljharb])
-- Add [`no-relative-parent-imports`] rule: disallow relative imports from parent directories ([#1093], thanks [@chrislloyd])
-
-### Fixed
-- `namespace` rule: ensure it works in eslint 5/ecmaVersion 2018 (thanks [@ljharb])
-
-## [2.12.0] - 2018-05-17
-
-### Added
-- Ignore type imports for [`named`] rule ([#931], thanks [@mattijsbliek])
-- Add documentation for [`no-useless-path-segments`] rule ([#1068], thanks [@manovotny])
-- `packageDir` option for [`no-extraneous-dependencies`] can be array-valued ([#1085], thanks [@hulkish])
-
-## [2.11.0] - 2018-04-09
-
-### Added
-- Fixer for [`first`] ([#1046], thanks [@fengkfengk])
-- `allow-require` option for [`no-commonjs`] rule ([#880], thanks [@futpib])
-
-### Fixed
-- memory/CPU regression where ASTs were held in memory ([#1058], thanks [@klimashkin]/[@lukeapage])
-
-## [2.10.0] - 2018-03-29
-
-### Added
-- Autofixer for [`order`] rule ([#908], thanks [@tihonove])
-- Add [`no-cycle`] rule: reports import cycles.
-
-## [2.9.0] - 2018-02-21
-
-### Added
-- Add [`group-exports`] rule: style-guide rule to report use of multiple named exports ([#721], thanks [@robertrossmann])
-- Add [`no-self-import`] rule: forbids a module from importing itself. ([#727], [#449], [#447], thanks [@giodamelio]).
-- Add [`no-default-export`] rule ([#889], thanks [@isiahmeadows])
-- Add [`no-useless-path-segments`] rule ([#912], thanks [@graingert] and [@danny-andrews])
-- ... and more! check the commits for v[2.9.0]
-
-## [2.8.0] - 2017-10-18
-### Added
-- [`exports-last`] rule ([#620] + [#632], thanks [@k15a])
-
-### Changed
-- Case-sensitivity checking ignores working directory and ancestors. ([#720] + [#858], thanks [@laysent])
-
-### Fixed
-- support scoped modules containing hyphens ([#744], thanks [@rosswarren])
-- core-modules now resolves files inside declared modules ([#886] / [#891], thanks [@mplewis])
-- TypeError for missing AST fields from TypeScript ([#842] / [#944], thanks [@alexgorbatchev])
-
-## [2.7.0] - 2017-07-06
-
-### Changed
-- [`no-absolute-path`] picks up speed boost, optional AMD support ([#843], thanks [@jseminck])
-
-## [2.6.1] - 2017-06-29
-
-### Fixed
-- update bundled node resolver dependency to latest version
-
-## [2.6.0] - 2017-06-23
-
-### Changed
-- update tests / peerDeps for ESLint 4.0 compatibility ([#871], thanks [@mastilver])
-- [`memo-parser`] updated to require `filePath` on parser options as it melts
-  down if it's not there, now that this plugin always provides it. (see [#863])
-
-## [2.5.0] - 2017-06-22
-
-Re-releasing v[2.4.0] after discovering that the memory leak is isolated to the [`memo-parser`],
-which is more or less experimental anyway.
-
-### Added
-- Autofixer for newline-after-import. ([#686] + [#696], thanks [@eelyafi])
-
-## [2.4.0] - 2017-06-02 [YANKED]
-
-Yanked due to critical issue in eslint-module-utils with cache key resulting from [#839].
-
-### Added
-- Add `filePath` into `parserOptions` passed to `parser` ([#839], thanks [@sompylasar])
-- Add `allow` option to [`no-unassigned-import`] to allow for files that match the globs ([#671], [#737], thanks [@kevin940726]).
-
-## [2.3.0] - 2017-05-18
-
-### Added
-- [`no-anonymous-default-export`] rule: report anonymous default exports ([#712], thanks [@duncanbeevers]).
-- Add new value to [`order`]'s `newlines-between` option to allow newlines inside import groups ([#627], [#628], thanks [@giodamelio])
-- Add `count` option to the [`newline-after-import`] rule to allow configuration of number of newlines expected ([#742], thanks [@ntdb])
-
-### Changed
-- [`no-extraneous-dependencies`]: use `read-pkg-up` to simplify finding + loading `package.json` ([#680], thanks [@wtgtybhertgeghgtwtg])
-- Add support to specify the package.json [`no-extraneous-dependencies`] ([#685], thanks [@ramasilveyra])
-
-### Fixed
-- attempt to fix crash in [`no-mutable-exports`]. ([#660])
-- "default is a reserved keyword" in no-maned-default tests by locking down babylon to 6.15.0 (#756, thanks @gmathieu)
-- support scoped modules containing non word characters
-
-## [2.2.0] - 2016-11-07
-
-### Fixed
-- Corrected a few gaffs in the auto-ignore logic to fix major performance issues
-  with projects that did not explicitly ignore `node_modules`. ([#654])
-- [`import/ignore` setting] was only being respected if the ignored module didn't start with
-  an `import` or `export` JS statement
-- [`prefer-default-export`]: fixed crash on export extensions ([#653])
-
-## [2.1.0] - 2016-11-02
-
-### Added
-- Add [`no-named-default`] rule: style-guide rule to report use of unnecessarily named default imports ([#596], thanks [@ntdb])
-- [`no-extraneous-dependencies`]: check globs against CWD + absolute path ([#602] + [#630], thanks [@ljharb])
-
-### Fixed
-- [`prefer-default-export`] handles flow `export type` ([#484] + [#639], thanks [@jakubsta])
-- [`prefer-default-export`] handles re-exported default exports ([#609])
-- Fix crash when using [`newline-after-import`] with decorators ([#592])
-- Properly report [`newline-after-import`] when next line is a decorator
-- Fixed documentation for the default values for the [`order`] rule ([#601])
-
-## [2.0.1] - 2016-10-06
-
-### Fixed
-- Fixed code that relied on removed dependencies. ([#604])
-
-## [2.0.0]! - 2016-09-30
-
-### Added
-- [`unambiguous`] rule: report modules that are not unambiguously ES modules.
-- `recommended` shared config. Roughly `errors` and `warnings` mixed together,
-  with some `parserOptions` in the mix. ([#402])
-- `react` shared config: added `jsx: true` to `parserOptions.ecmaFeatures`.
-- Added [`no-webpack-loader-syntax`] rule: forbid custom Webpack loader syntax in imports. ([#586], thanks [@fson]!)
-- Add option `newlines-between: "ignore"` to [`order`] ([#519])
-- Added [`no-unassigned-import`] rule ([#529])
+* **lowercase-name:** consider skip and only prefixes for ignores ([#923](https://github.com/jest-community/eslint-plugin-jest/issues/923)) ([8716c24](https://github.com/jest-community/eslint-plugin-jest/commit/8716c24678ea7dc7c9f692b573d1ea19a67efd84))
 
-### Breaking
-- [`import/extensions` setting] defaults to `['.js']`. ([#306])
-- [`import/ignore` setting] defaults to nothing, and ambiguous modules are ignored natively. This means importing from CommonJS modules will no longer be reported by [`default`], [`named`], or [`namespace`], regardless of `import/ignore`. ([#270])
-- [`newline-after-import`]: Removed need for an empty line after an inline `require` call ([#570])
-- [`order`]: Default value for `newlines-between` option is now `ignore` ([#519])
-
-### Changed
-- `imports-first` is renamed to [`first`]. `imports-first` alias will continue to
-  exist, but may be removed in a future major release.
-- Case-sensitivity: now specifically (and optionally) reported by [`no-unresolved`].
-  Other rules will ignore case-mismatches on paths on case-insensitive filesystems. ([#311])
+## [24.5.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.5.0...v24.5.1) (2021-10-04)
 
-### Fixed
-- [`no-internal-modules`]: support `@`-scoped packages ([#577]+[#578], thanks [@spalger])
 
-## [1.16.0] - 2016-09-22
+### Bug Fixes
 
-### Added
-- Added [`no-dynamic-require`] rule: forbid `require()` calls with expressions. ([#567], [#568])
-- Added [`no-internal-modules`] rule: restrict deep package imports to specific folders. ([#485], thanks [@spalger]!)
-- [`extensions`]: allow override of a chosen default with options object ([#555], thanks [@ljharb]!)
+* **prefer-to-be:** don't consider RegExp literals as `toBe`-able ([#922](https://github.com/jest-community/eslint-plugin-jest/issues/922)) ([99b6d42](https://github.com/jest-community/eslint-plugin-jest/commit/99b6d429e697d60645b4bc64ee4ae34d7016118c))
 
-### Fixed
-- [`no-named-as-default`] no longer false-positives on `export default from '...'` ([#566], thanks [@preco21])
-- [`default`]: allow re-export of values from ignored files as default ([#545], thanks [@skyrpex])
+# [24.5.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.3...v24.5.0) (2021-09-29)
 
-## [1.15.0] - 2016-09-12
 
-### Added
-- Added an `allow` option to [`no-nodejs-modules`] to allow exceptions ([#452], [#509]).
-- Added [`no-absolute-path`] rule ([#530], [#538])
-- [`max-dependencies`] for specifying the maximum number of dependencies (both `import` and `require`) a module can have. (see [#489], thanks [@tizmagik])
-- Added glob option to config for [`no-extraneous-dependencies`], after much bikeshedding. Thanks, [@knpwrs]! ([#527])
+### Bug Fixes
 
-### Fixed
-- [`no-named-as-default-member`] Allow default import to have a property named "default" ([#507], [#508], thanks [@jquense] for both!)
+* **no-deprecated-functions:** remove `process.cwd` from resolve paths ([#889](https://github.com/jest-community/eslint-plugin-jest/issues/889)) ([6940488](https://github.com/jest-community/eslint-plugin-jest/commit/6940488d7b5a47577e2823e6d4385b511c5becf4))
+* **no-identical-title:** always consider `.each` titles unique ([#910](https://github.com/jest-community/eslint-plugin-jest/issues/910)) ([a41a40e](https://github.com/jest-community/eslint-plugin-jest/commit/a41a40eafaf1db444ba940cccd2014cb0dc41be9))
 
-## [1.14.0] - 2016-08-22
 
-### Added
-- [`import/parsers` setting]: parse some dependencies (i.e. TypeScript!) with a different parser than the ESLint-configured parser. ([#503])
+### Features
 
-### Fixed
-- [`namespace`] exception for get property from `namespace` import, which are re-export from commonjs module ([#499] fixes [#416], thanks [@wKich])
+* create `prefer-expect-resolves` rule ([#822](https://github.com/jest-community/eslint-plugin-jest/issues/822)) ([2556020](https://github.com/jest-community/eslint-plugin-jest/commit/2556020a777f9daaf1d362a04e3f990415e82db8))
+* create `prefer-to-be` rule ([#864](https://github.com/jest-community/eslint-plugin-jest/issues/864)) ([3a64aea](https://github.com/jest-community/eslint-plugin-jest/commit/3a64aea5bdc55465f1ef34f1426ae626d6c8a230))
+* **require-top-level-describe:** support enforcing max num of describes ([#912](https://github.com/jest-community/eslint-plugin-jest/issues/912)) ([14a2d13](https://github.com/jest-community/eslint-plugin-jest/commit/14a2d1391c9f6f52509316542f45df35853c9b79))
+* **valid-title:** allow custom matcher messages ([#913](https://github.com/jest-community/eslint-plugin-jest/issues/913)) ([ffc9392](https://github.com/jest-community/eslint-plugin-jest/commit/ffc93921348b0d4a394125f665d2bb09148ea37e))
 
-## [1.13.0] - 2016-08-11
+## [24.4.3](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.2...v24.4.3) (2021-09-28)
 
-### Added
-- `allowComputed` option for [`namespace`] rule. If set to `true`, won't report
-  computed member references to namespaces. (see [#456])
 
-### Changed
-- Modified [`no-nodejs-modules`] error message to include the module's name ([#453], [#461])
+### Bug Fixes
 
-### Fixed
-- [`import/extensions` setting] is respected in spite of the appearance of imports
-  in an imported file. (fixes [#478], thanks [@rhys-vdw])
+* **valid-expect-in-promise:** support `finally` ([#914](https://github.com/jest-community/eslint-plugin-jest/issues/914)) ([9c89855](https://github.com/jest-community/eslint-plugin-jest/commit/9c89855d23534272230afe6d9e665b8e11ef3075))
+* **valid-expect-in-promise:** support additional test functions ([#915](https://github.com/jest-community/eslint-plugin-jest/issues/915)) ([4798005](https://github.com/jest-community/eslint-plugin-jest/commit/47980058d8d1ff86ee69a376c4edd182d462d594))
 
-## [1.12.0] - 2016-07-26
+## [24.4.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.1...v24.4.2) (2021-09-17)
 
-### Added
-- [`import/external-module-folders` setting]: a possibility to configure folders for "external" modules ([#444], thanks [@zloirock])
 
-## [1.11.1] - 2016-07-20
+### Bug Fixes
 
-### Fixed
-- [`newline-after-import`] exception for `switch` branches with `require`s iff parsed as `sourceType:'module'`.
-  (still [#441], thanks again [@ljharb])
+* use correct property `hasSuggestions` rather than `hasSuggestion` ([#899](https://github.com/jest-community/eslint-plugin-jest/issues/899)) ([dfd2368](https://github.com/jest-community/eslint-plugin-jest/commit/dfd2368d1cb1789b6a95a11be24c36868bb8a819))
 
-## [1.11.0] - 2016-07-17
+## [24.4.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.4.0...v24.4.1) (2021-09-17)
 
-### Added
-- Added an `peerDependencies` option to [`no-extraneous-dependencies`] to allow/forbid peer dependencies ([#423], [#428], thanks [@jfmengels]!).
 
-### Fixed
-- [`newline-after-import`] exception for multiple `require`s in an arrow
-  function expression (e.g. `() => require('a') || require('b')`). ([#441], thanks [@ljharb])
+### Bug Fixes
 
-## [1.10.3] - 2016-07-08
+* mark rules that suggest fixes with `hasSuggestion` for ESLint v8 ([#898](https://github.com/jest-community/eslint-plugin-jest/issues/898)) ([ec0a21b](https://github.com/jest-community/eslint-plugin-jest/commit/ec0a21b0d98d043a9949138e495814e0935d5e31))
 
-### Fixed
-- removing `Symbol` dependencies (i.e. `for-of` loops) due to Node 0.10 polyfill
-  issue (see [#415]). Should not make any discernible semantic difference.
+# [24.4.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.7...v24.4.0) (2021-07-21)
 
-## [1.10.2] - 2016-07-04
 
-### Fixed
-- Something horrible happened during `npm prepublish` of 1.10.1.
-  Several `rm -rf node_modules && npm i` and `gulp clean && npm prepublish`s later, it is rebuilt and republished as 1.10.2. Thanks [@rhettlivingston] for noticing and reporting!
+### Features
 
-## [1.10.1] - 2016-07-02 [YANKED]
+* create `max-nested-describe` rule ([#845](https://github.com/jest-community/eslint-plugin-jest/issues/845)) ([8067405](https://github.com/jest-community/eslint-plugin-jest/commit/8067405deb609cc1800bce596e929c1840d290ab))
 
-### Added
-- Officially support ESLint 3.x. (peerDependencies updated to `2.x - 3.x`)
+## [24.3.7](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.6...v24.3.7) (2021-07-21)
 
-## [1.10.0] - 2016-06-30
 
-### Added
-- Added new rule [`no-restricted-paths`]. ([#155]/[#371], thanks [@lo1tuma])
-- [`import/core-modules` setting]: allow configuration of additional module names,
-  to be treated as builtin modules (a la `path`, etc. in Node). ([#275] + [#365], thanks [@sindresorhus] for driving)
-- React Native shared config (based on comment from [#283])
+### Bug Fixes
 
-### Fixed
-- Fixed crash with `newline-after-import` related to the use of switch cases. (fixes [#386], thanks [@ljharb] for reporting) ([#395])
+* **valid-describe:** report on concise-body arrow functions ([#863](https://github.com/jest-community/eslint-plugin-jest/issues/863)) ([71c5299](https://github.com/jest-community/eslint-plugin-jest/commit/71c5299b14cac6d85ba8f8bd939461503a60468f))
 
-## [1.9.2] - 2016-06-21
+## [24.3.6](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.5...v24.3.6) (2021-04-26)
 
-### Fixed
-- Issues with ignored/CJS files in [`export`] and [`no-deprecated`] rules. ([#348], [#370])
 
-## [1.9.1] - 2016-06-16
+### Bug Fixes
 
-### Fixed
-- Reordered precedence for loading resolvers. ([#373])
+* **no-conditional-expect:** check for expects in `catch`s on promises ([#819](https://github.com/jest-community/eslint-plugin-jest/issues/819)) ([1fee973](https://github.com/jest-community/eslint-plugin-jest/commit/1fee973429a74c60b14eead6a335623b4349b5f2))
+* **valid-expect:** support async `expect` in ternary statements ([#833](https://github.com/jest-community/eslint-plugin-jest/issues/833)) ([7b7a396](https://github.com/jest-community/eslint-plugin-jest/commit/7b7a396e12c46d3087b467227887ed64854480c0))
+* improve handling of `.each` calls and with tagged literals ([#814](https://github.com/jest-community/eslint-plugin-jest/issues/814)) ([040c605](https://github.com/jest-community/eslint-plugin-jest/commit/040c605cf7929a00980b3fa58331cd78ac6274f6))
 
-## [1.9.0] - 2016-06-10
+## [24.3.5](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.4...v24.3.5) (2021-04-10)
 
-### Added
-- Added support TomDoc comments to [`no-deprecated`]. ([#321], thanks [@josh])
-- Added support for loading custom resolvers ([#314], thanks [@le0nik])
 
-### Fixed
-- [`prefer-default-export`] handles `export function` and `export const` in same file ([#359], thanks [@scottnonnenberg])
+### Bug Fixes
 
-## [1.8.1] - 2016-05-23
+* **valid-describe:** support using `each` with modifiers ([#820](https://github.com/jest-community/eslint-plugin-jest/issues/820)) ([cbdbcef](https://github.com/jest-community/eslint-plugin-jest/commit/cbdbcef47984eb01509493bd5b2423f518a2663d))
 
-### Fixed
-- `export * from 'foo'` now properly ignores a `default` export from `foo`, if any. ([#328]/[#332], thanks [@jkimbo])
-  This impacts all static analysis of imported names. ([`default`], [`named`], [`namespace`], [`export`])
-- Make [`order`]'s `newline-between` option handle multiline import statements ([#313], thanks [@singles])
-- Make [`order`]'s `newline-between` option handle not assigned import statements ([#313], thanks [@singles])
-- Make [`order`]'s `newline-between` option ignore `require` statements inside object literals ([#313], thanks [@singles])
-- [`prefer-default-export`] properly handles deep destructuring, `export * from ...`, and files with no exports. ([#342]+[#343], thanks [@scottnonnenberg])
+## [24.3.4](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.3...v24.3.4) (2021-04-05)
 
-## [1.8.0] - 2016-05-11
 
-### Added
-- [`prefer-default-export`], new rule. ([#308], thanks [@gavriguy])
+### Bug Fixes
 
-### Fixed
-- Ignore namespace / ES7 re-exports in [`no-mutable-exports`]. ([#317], fixed by [#322]. thanks [@borisyankov] + [@jfmengels])
-- Make [`no-extraneous-dependencies`] handle scoped packages ([#316], thanks [@jfmengels])
+* support all variations of `describe`, `it`, & `test` ([#792](https://github.com/jest-community/eslint-plugin-jest/issues/792)) ([0968b55](https://github.com/jest-community/eslint-plugin-jest/commit/0968b557dd9cdb5cfcaf8a0d84e8a456825e6b25))
 
-## [1.7.0] - 2016-05-06
+## [24.3.3](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.2...v24.3.3) (2021-04-02)
 
-### Added
-- [`newline-after-import`], new rule. ([#245], thanks [@singles])
-- Added an `optionalDependencies` option to [`no-extraneous-dependencies`] to allow/forbid optional dependencies ([#266], thanks [@jfmengels]).
-- Added `newlines-between` option to [`order`] rule ([#298], thanks [@singles])
-- add [`no-mutable-exports`] rule ([#290], thanks [@josh])
-- [`import/extensions` setting]: a list of file extensions to parse as modules
-  and search for `export`s. If unspecified, all extensions are considered valid (for now).
-  In v2, this will likely default to `['.js', MODULE_EXT]`. ([#297], to fix [#267])
 
-### Fixed
-- [`extensions`]: fallback to source path for extension enforcement if imported
-  module is not resolved. Also, never report for builtins (i.e. `path`). ([#296])
+### Bug Fixes
 
-## [1.6.1] - 2016-04-28
+* **no-duplicate-hooks:** support `describe.each` ([#797](https://github.com/jest-community/eslint-plugin-jest/issues/797)) ([243cb4f](https://github.com/jest-community/eslint-plugin-jest/commit/243cb4f970e40aa195a3bffa0528dbdbfef7c4f5)), closes [#642](https://github.com/jest-community/eslint-plugin-jest/issues/642)
+* **prefer-expect-assertions:** support `.each` ([#798](https://github.com/jest-community/eslint-plugin-jest/issues/798)) ([f758243](https://github.com/jest-community/eslint-plugin-jest/commit/f75824359f2242f53997c59c238d83a59badeea3)), closes [#676](https://github.com/jest-community/eslint-plugin-jest/issues/676)
 
-### Fixed
-- [`no-named-as-default-member`]: don't crash on rest props. ([#281], thanks [@SimenB])
-- support for Node 6: don't pass `null` to `path` functions.
-  Thanks to [@strawbrary] for bringing this up ([#272]) and adding OSX support to the Travis
-  config ([#288]).
+## [24.3.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.1...v24.3.2) (2021-03-16)
 
-## [1.6.0] - 2016-04-25
 
-### Added
-- add [`no-named-as-default-member`] to `warnings` canned config
-- add [`no-extraneous-dependencies`] rule ([#241], thanks [@jfmengels])
-- add [`extensions`] rule ([#250], thanks [@lo1tuma])
-- add [`no-nodejs-modules`] rule ([#261], thanks [@jfmengels])
-- add [`order`] rule ([#247], thanks [@jfmengels])
-- consider `resolve.fallback` config option in the webpack resolver ([#254])
+### Bug Fixes
 
-### Changed
-- [`imports-first`] now allows directives (i.e. `'use strict'`) strictly before
-  any imports ([#256], thanks [@lemonmade])
+* **consistent-test-it:** properly handle `describe.each` ([#796](https://github.com/jest-community/eslint-plugin-jest/issues/796)) ([035bd30](https://github.com/jest-community/eslint-plugin-jest/commit/035bd30af43f1215e65bf1b26c2ef2e6d174d3c8)), closes [#795](https://github.com/jest-community/eslint-plugin-jest/issues/795)
 
-### Fixed
-- [`named`] now properly ignores the source module if a name is re-exported from
-  an ignored file (i.e. `node_modules`). Also improved the reported error. (thanks to [@jimbolla] for reporting)
-- [`no-named-as-default-member`] had a crash on destructuring in loops (thanks for heads up from [@lemonmade])
+## [24.3.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.3.0...v24.3.1) (2021-03-13)
 
-## [1.5.0] - 2016-04-18
 
-### Added
-- report resolver errors at the top of the linted file
-- add [`no-namespace`] rule ([#239], thanks [@singles])
-- add [`no-named-as-default-member`] rule ([#243], thanks [@dmnd])
+### Bug Fixes
 
-### Changed
-- Rearranged rule groups in README in preparation for more style guide rules
+* **no-focused-tests:** report on `skip` instead of `concurrent` ([#791](https://github.com/jest-community/eslint-plugin-jest/issues/791)) ([2b65b49](https://github.com/jest-community/eslint-plugin-jest/commit/2b65b491cea2c956e4ba314a809915b9ec62933b))
 
-### Removed
-- support for Node 0.10, via `es6-*` ponyfills. Using native Map/Set/Symbol.
+# [24.3.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.2.1...v24.3.0) (2021-03-13)
 
-## [1.4.0] - 2016-03-25
 
-### Added
-- Resolver plugin interface v2: more explicit response format that more clearly covers the found-but-core-module case, where there is no path.
-  Still backwards-compatible with the original version of the resolver spec.
-- [Resolver documentation](./resolvers/README.md)
+### Features
 
-### Changed
-- using `package.json/files` instead of `.npmignore` for package file inclusion ([#228], thanks [@mathieudutour])
-- using `es6-*` ponyfills instead of `babel-runtime`
+* **unbound-method:** create rule ([#765](https://github.com/jest-community/eslint-plugin-jest/issues/765)) ([b1f4ed3](https://github.com/jest-community/eslint-plugin-jest/commit/b1f4ed3f6bb0264fdefb5138ba913fa2bacc725c))
 
-## [1.3.0] - 2016-03-20
+## [24.2.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.2.0...v24.2.1) (2021-03-10)
 
-Major perf improvements. Between parsing only once and ignoring gigantic, non-module `node_modules`,
-there is very little added time.
 
-My test project takes 17s to lint completely, down from 55s, when using the
-memoizing parser, and takes only 27s with naked `babel-eslint` (thus, reparsing local modules).
+### Bug Fixes
 
-### Added
-- This change log ([#216])
-- Experimental memoizing [parser](./memo-parser/README.md)
+* **no-identical-titles:** support nested describes ([#790](https://github.com/jest-community/eslint-plugin-jest/issues/790)) ([ce26621](https://github.com/jest-community/eslint-plugin-jest/commit/ce26621a06169fb6728d2d015645d31401de523f))
 
-### Fixed
-- Huge reduction in execution time by _only_ ignoring [`import/ignore` setting] if
-  something that looks like an `export` is detected in the module content.
+# [24.2.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.10...v24.2.0) (2021-03-09)
 
-## [1.2.0] - 2016-03-19
 
-Thanks [@lencioni] for identifying a huge amount of rework in resolve and kicking
-off a bunch of memoization.
+### Features
 
-I'm seeing 62% improvement over my normal test codebase when executing only
-[`no-unresolved`] in isolation, and ~35% total reduction in lint time.
+* **no-focused-tests:** make fixable ([#787](https://github.com/jest-community/eslint-plugin-jest/issues/787)) ([040871a](https://github.com/jest-community/eslint-plugin-jest/commit/040871a866b7803e5c48b40715d48437d3906b0f))
 
-### Changed
-- added caching to core/resolve via [#214], configured via [`import/cache` setting]
+## [24.1.10](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.9...v24.1.10) (2021-03-09)
 
-## [1.1.0] - 2016-03-15
 
-### Added
-- Added an [`ignore`](./docs/rules/no-unresolved.md#ignore) option to [`no-unresolved`] for those pesky files that no resolver can find. (still prefer enhancing the Webpack and Node resolvers to using it, though). See [#89] for details.
+### Bug Fixes
 
-## [1.0.4] - 2016-03-11
+* **no-identical-titles:** ignore .each template cases ([#788](https://github.com/jest-community/eslint-plugin-jest/issues/788)) ([d27a6e6](https://github.com/jest-community/eslint-plugin-jest/commit/d27a6e6e013c518a47b9f219edeb5e63d7a974f9))
 
-### Changed
-- respect hoisting for deep namespaces ([`namespace`]/[`no-deprecated`]) ([#211])
+## [24.1.9](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.8...v24.1.9) (2021-03-08)
 
-### Fixed
-- don't crash on self references ([#210])
-- correct cache behavior in `eslint_d` for deep namespaces ([#200])
 
-## [1.0.3] - 2016-02-26
+### Bug Fixes
 
-### Changed
-- no-deprecated follows deep namespaces ([#191])
+* **valid-describe:** false positive with template describe.each ([#785](https://github.com/jest-community/eslint-plugin-jest/issues/785)) ([aa946a6](https://github.com/jest-community/eslint-plugin-jest/commit/aa946a6f7ae7106b78996587760d92ace33227ad))
 
-### Fixed
-- [`namespace`] no longer flags modules with only a default export as having no names. (ns.default is valid ES6)
+## [24.1.8](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.7...v24.1.8) (2021-03-07)
 
-## [1.0.2] - 2016-02-26
 
-### Fixed
-- don't parse imports with no specifiers ([#192])
+### Bug Fixes
 
-## [1.0.1] - 2016-02-25
+* **consistent-test-it:** support `it.each` in `describe.each` ([#782](https://github.com/jest-community/eslint-plugin-jest/issues/782)) ([0014da0](https://github.com/jest-community/eslint-plugin-jest/commit/0014da0e2aeb13199a9da7f969e9eb376e026c8b))
 
-### Fixed
-- export `stage-0` shared config
-- documented [`no-deprecated`]
-- deep namespaces are traversed regardless of how they get imported ([#189])
+## [24.1.7](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.6...v24.1.7) (2021-03-06)
 
-## [1.0.0] - 2016-02-24
 
-### Added
-- [`no-deprecated`]: WIP rule to let you know at lint time if you're using deprecated functions, constants, classes, or modules.
+### Bug Fixes
 
-### Changed
-- [`namespace`]: support deep namespaces ([#119] via [#157])
+* **no-disabled-tests:** adjust selector to match only test functions ([#777](https://github.com/jest-community/eslint-plugin-jest/issues/777)) ([c916902](https://github.com/jest-community/eslint-plugin-jest/commit/c9169022c7e4b9c7bd5f09060152f7136ee18521))
+* **no-disabled-tests:** support `describe.skip.each` & `xdescribe.each` ([#778](https://github.com/jest-community/eslint-plugin-jest/issues/778)) ([6a32e87](https://github.com/jest-community/eslint-plugin-jest/commit/6a32e870c016474687e238944933a96bfe1ca01b))
 
-## [1.0.0-beta.0] - 2016-02-13
+## [24.1.6](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.5...v24.1.6) (2021-03-06)
 
-### Changed
-- support for (only) ESLint 2.x
-- no longer needs/refers to `import/parser` or `import/parse-options`. Instead, ESLint provides the configured parser + options to the rules, and they use that to parse dependencies.
 
-### Removed
+### Bug Fixes
 
-- `babylon` as default import parser (see Breaking)
+* proper support for it.each  ([#722](https://github.com/jest-community/eslint-plugin-jest/issues/722)) ([e1dc42d](https://github.com/jest-community/eslint-plugin-jest/commit/e1dc42d9f1ca59d59aca9be0a1473a1b1415e528))
 
-## [0.13.0] - 2016-02-08
+## [24.1.5](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.4...v24.1.5) (2021-02-17)
 
-### Added
-- [`no-commonjs`] rule
-- [`no-amd`] rule
 
-### Removed
-- Removed vestigial `no-require` rule. [`no-commonjs`] is more complete.
-
-## [0.12.2] - 2016-02-06 [YANKED]
-
-Unpublished from npm and re-released as 0.13.0. See [#170].
-
-## [0.12.1] - 2015-12-17
-
-### Changed
-- Broke docs for rules out into individual files.
-
-## [0.12.0] - 2015-12-14
-
-### Changed
-- Ignore [`import/ignore` setting] if exports are actually found in the parsed module. Does this to support use of `jsnext:main` in `node_modules` without the pain of managing an allow list or a nuanced deny list.
-
-## [0.11.0] - 2015-11-27
-
-### Added
-- Resolver plugins. Now the linter can read Webpack config, properly follow aliases and ignore externals, dismisses inline loaders, etc. etc.!
-
-## Earlier releases (0.10.1 and younger)
-See [GitHub release notes](https://github.com/import-js/eslint-plugin-import/releases?after=v0.11.0)
-for info on changes for earlier releases.
-
-
-[`import/cache` setting]: ./README.md#importcache
-[`import/ignore` setting]: ./README.md#importignore
-[`import/extensions` setting]: ./README.md#importextensions
-[`import/parsers` setting]: ./README.md#importparsers
-[`import/core-modules` setting]: ./README.md#importcore-modules
-[`import/external-module-folders` setting]: ./README.md#importexternal-module-folders
-[`internal-regex` setting]: ./README.md#importinternal-regex
-
-[`default`]: ./docs/rules/default.md
-[`dynamic-import-chunkname`]: ./docs/rules/dynamic-import-chunkname.md
-[`export`]: ./docs/rules/export.md
-[`exports-last`]: ./docs/rules/exports-last.md
-[`extensions`]: ./docs/rules/extensions.md
-[`first`]: ./docs/rules/first.md
-[`group-exports`]: ./docs/rules/group-exports.md
-[`imports-first`]: ./docs/rules/first.md
-[`max-dependencies`]: ./docs/rules/max-dependencies.md
-[`named`]: ./docs/rules/named.md
-[`namespace`]: ./docs/rules/namespace.md
-[`newline-after-import`]: ./docs/rules/newline-after-import.md
-[`no-absolute-path`]: ./docs/rules/no-absolute-path.md
-[`no-amd`]: ./docs/rules/no-amd.md
-[`no-anonymous-default-export`]: ./docs/rules/no-anonymous-default-export.md
-[`no-commonjs`]: ./docs/rules/no-commonjs.md
-[`no-cycle`]: ./docs/rules/no-cycle.md
-[`no-default-export`]: ./docs/rules/no-default-export.md
-[`no-deprecated`]: ./docs/rules/no-deprecated.md
-[`no-duplicates`]: ./docs/rules/no-duplicates.md
-[`no-dynamic-require`]: ./docs/rules/no-dynamic-require.md
-[`no-extraneous-dependencies`]: ./docs/rules/no-extraneous-dependencies.md
-[`no-import-module-exports`]: ./docs/rules/no-import-module-exports.md
-[`no-internal-modules`]: ./docs/rules/no-internal-modules.md
-[`no-mutable-exports`]: ./docs/rules/no-mutable-exports.md
-[`no-named-as-default-member`]: ./docs/rules/no-named-as-default-member.md
-[`no-named-as-default`]: ./docs/rules/no-named-as-default.md
-[`no-named-default`]: ./docs/rules/no-named-default.md
-[`no-named-export`]: ./docs/rules/no-named-export.md
-[`no-namespace`]: ./docs/rules/no-namespace.md
-[`no-nodejs-modules`]: ./docs/rules/no-nodejs-modules.md
-[`no-relative-packages`]: ./docs/rules/no-relative-packages.md
-[`no-relative-parent-imports`]: ./docs/rules/no-relative-parent-imports.md
-[`no-restricted-paths`]: ./docs/rules/no-restricted-paths.md
-[`no-self-import`]: ./docs/rules/no-self-import.md
-[`no-unassigned-import`]: ./docs/rules/no-unassigned-import.md
-[`no-unresolved`]: ./docs/rules/no-unresolved.md
-[`no-unused-modules`]: ./docs/rules/no-unused-modules.md
-[`no-useless-path-segments`]: ./docs/rules/no-useless-path-segments.md
-[`no-webpack-loader-syntax`]: ./docs/rules/no-webpack-loader-syntax.md
-[`order`]: ./docs/rules/order.md
-[`prefer-default-export`]: ./docs/rules/prefer-default-export.md
-[`unambiguous`]: ./docs/rules/unambiguous.md
-
-[`memo-parser`]: ./memo-parser/README.md
-
-[#2297]: https://github.com/import-js/eslint-plugin-import/pull/2297
-[#2287]: https://github.com/import-js/eslint-plugin-import/pull/2287
-[#2282]: https://github.com/import-js/eslint-plugin-import/pull/2282
-[#2279]: https://github.com/import-js/eslint-plugin-import/pull/2279
-[#2272]: https://github.com/import-js/eslint-plugin-import/pull/2272
-[#2271]: https://github.com/import-js/eslint-plugin-import/pull/2271
-[#2270]: https://github.com/import-js/eslint-plugin-import/pull/2270
-[#2240]: https://github.com/import-js/eslint-plugin-import/pull/2240
-[#2233]: https://github.com/import-js/eslint-plugin-import/pull/2233
-[#2226]: https://github.com/import-js/eslint-plugin-import/pull/2226
-[#2220]: https://github.com/import-js/eslint-plugin-import/pull/2220
-[#2219]: https://github.com/import-js/eslint-plugin-import/pull/2219
-[#2212]: https://github.com/import-js/eslint-plugin-import/pull/2212
-[#2196]: https://github.com/import-js/eslint-plugin-import/pull/2196
-[#2194]: https://github.com/import-js/eslint-plugin-import/pull/2194
-[#2191]: https://github.com/import-js/eslint-plugin-import/pull/2191
-[#2184]: https://github.com/import-js/eslint-plugin-import/pull/2184
-[#2179]: https://github.com/import-js/eslint-plugin-import/pull/2179
-[#2160]: https://github.com/import-js/eslint-plugin-import/pull/2160
-[#2158]: https://github.com/import-js/eslint-plugin-import/pull/2158
-[#2156]: https://github.com/import-js/eslint-plugin-import/pull/2156
-[#2149]: https://github.com/import-js/eslint-plugin-import/pull/2149
-[#2146]: https://github.com/import-js/eslint-plugin-import/pull/2146
-[#2140]: https://github.com/import-js/eslint-plugin-import/pull/2140
-[#2138]: https://github.com/import-js/eslint-plugin-import/pull/2138
-[#2121]: https://github.com/import-js/eslint-plugin-import/pull/2121
-[#2112]: https://github.com/import-js/eslint-plugin-import/pull/2112
-[#2099]: https://github.com/import-js/eslint-plugin-import/pull/2099
-[#2097]: https://github.com/import-js/eslint-plugin-import/pull/2097
-[#2090]: https://github.com/import-js/eslint-plugin-import/pull/2090
-[#2087]: https://github.com/import-js/eslint-plugin-import/pull/2087
-[#2083]: https://github.com/import-js/eslint-plugin-import/pull/2083
-[#2075]: https://github.com/import-js/eslint-plugin-import/pull/2075
-[#2071]: https://github.com/import-js/eslint-plugin-import/pull/2071
-[#2047]: https://github.com/import-js/eslint-plugin-import/pull/2047
-[#2034]: https://github.com/import-js/eslint-plugin-import/pull/2034
-[#2028]: https://github.com/import-js/eslint-plugin-import/pull/2028
-[#2026]: https://github.com/import-js/eslint-plugin-import/pull/2026
-[#2022]: https://github.com/import-js/eslint-plugin-import/pull/2022
-[#2021]: https://github.com/import-js/eslint-plugin-import/pull/2021
-[#2012]: https://github.com/import-js/eslint-plugin-import/pull/2012
-[#1997]: https://github.com/import-js/eslint-plugin-import/pull/1997
-[#1993]: https://github.com/import-js/eslint-plugin-import/pull/1993
-[#1990]: https://github.com/import-js/eslint-plugin-import/pull/1990
-[#1985]: https://github.com/import-js/eslint-plugin-import/pull/1985
-[#1983]: https://github.com/import-js/eslint-plugin-import/pull/1983
-[#1974]: https://github.com/import-js/eslint-plugin-import/pull/1974
-[#1958]: https://github.com/import-js/eslint-plugin-import/pull/1958
-[#1948]: https://github.com/import-js/eslint-plugin-import/pull/1948
-[#1947]: https://github.com/import-js/eslint-plugin-import/pull/1947
-[#1944]: https://github.com/import-js/eslint-plugin-import/pull/1944
-[#1940]: https://github.com/import-js/eslint-plugin-import/pull/1940
-[#1897]: https://github.com/import-js/eslint-plugin-import/pull/1897
-[#1889]: https://github.com/import-js/eslint-plugin-import/pull/1889
-[#1878]: https://github.com/import-js/eslint-plugin-import/pull/1878
-[#1860]: https://github.com/import-js/eslint-plugin-import/pull/1860
-[#1848]: https://github.com/import-js/eslint-plugin-import/pull/1848
-[#1847]: https://github.com/import-js/eslint-plugin-import/pull/1847
-[#1846]: https://github.com/import-js/eslint-plugin-import/pull/1846
-[#1836]: https://github.com/import-js/eslint-plugin-import/pull/1836
-[#1835]: https://github.com/import-js/eslint-plugin-import/pull/1835
-[#1833]: https://github.com/import-js/eslint-plugin-import/pull/1833
-[#1831]: https://github.com/import-js/eslint-plugin-import/pull/1831
-[#1830]: https://github.com/import-js/eslint-plugin-import/pull/1830
-[#1824]: https://github.com/import-js/eslint-plugin-import/pull/1824
-[#1823]: https://github.com/import-js/eslint-plugin-import/pull/1823
-[#1822]: https://github.com/import-js/eslint-plugin-import/pull/1822
-[#1820]: https://github.com/import-js/eslint-plugin-import/pull/1820
-[#1819]: https://github.com/import-js/eslint-plugin-import/pull/1819
-[#1802]: https://github.com/import-js/eslint-plugin-import/pull/1802
-[#1788]: https://github.com/import-js/eslint-plugin-import/pull/1788
-[#1786]: https://github.com/import-js/eslint-plugin-import/pull/1786
-[#1785]: https://github.com/import-js/eslint-plugin-import/pull/1785
-[#1776]: https://github.com/import-js/eslint-plugin-import/pull/1776
-[#1770]: https://github.com/import-js/eslint-plugin-import/pull/1770
-[#1764]: https://github.com/import-js/eslint-plugin-import/pull/1764
-[#1763]: https://github.com/import-js/eslint-plugin-import/pull/1763
-[#1751]: https://github.com/import-js/eslint-plugin-import/pull/1751
-[#1744]: https://github.com/import-js/eslint-plugin-import/pull/1744
-[#1736]: https://github.com/import-js/eslint-plugin-import/pull/1736
-[#1735]: https://github.com/import-js/eslint-plugin-import/pull/1735
-[#1726]: https://github.com/import-js/eslint-plugin-import/pull/1726
-[#1724]: https://github.com/import-js/eslint-plugin-import/pull/1724
-[#1719]: https://github.com/import-js/eslint-plugin-import/pull/1719
-[#1696]: https://github.com/import-js/eslint-plugin-import/pull/1696
-[#1691]: https://github.com/import-js/eslint-plugin-import/pull/1691
-[#1690]: https://github.com/import-js/eslint-plugin-import/pull/1690
-[#1689]: https://github.com/import-js/eslint-plugin-import/pull/1689
-[#1681]: https://github.com/import-js/eslint-plugin-import/pull/1681
-[#1676]: https://github.com/import-js/eslint-plugin-import/pull/1676
-[#1666]: https://github.com/import-js/eslint-plugin-import/pull/1666
-[#1664]: https://github.com/import-js/eslint-plugin-import/pull/1664
-[#1660]: https://github.com/import-js/eslint-plugin-import/pull/1660
-[#1658]: https://github.com/import-js/eslint-plugin-import/pull/1658
-[#1651]: https://github.com/import-js/eslint-plugin-import/pull/1651
-[#1626]: https://github.com/import-js/eslint-plugin-import/pull/1626
-[#1620]: https://github.com/import-js/eslint-plugin-import/pull/1620
-[#1619]: https://github.com/import-js/eslint-plugin-import/pull/1619
-[#1612]: https://github.com/import-js/eslint-plugin-import/pull/1612
-[#1611]: https://github.com/import-js/eslint-plugin-import/pull/1611
-[#1605]: https://github.com/import-js/eslint-plugin-import/pull/1605
-[#1586]: https://github.com/import-js/eslint-plugin-import/pull/1586
-[#1572]: https://github.com/import-js/eslint-plugin-import/pull/1572
-[#1569]: https://github.com/import-js/eslint-plugin-import/pull/1569
-[#1563]: https://github.com/import-js/eslint-plugin-import/pull/1563
-[#1560]: https://github.com/import-js/eslint-plugin-import/pull/1560
-[#1551]: https://github.com/import-js/eslint-plugin-import/pull/1551
-[#1542]: https://github.com/import-js/eslint-plugin-import/pull/1542
-[#1534]: https://github.com/import-js/eslint-plugin-import/pull/1534
-[#1528]: https://github.com/import-js/eslint-plugin-import/pull/1528
-[#1526]: https://github.com/import-js/eslint-plugin-import/pull/1526
-[#1521]: https://github.com/import-js/eslint-plugin-import/pull/1521
-[#1519]: https://github.com/import-js/eslint-plugin-import/pull/1519
-[#1517]: https://github.com/import-js/eslint-plugin-import/pull/1517
-[#1507]: https://github.com/import-js/eslint-plugin-import/pull/1507
-[#1506]: https://github.com/import-js/eslint-plugin-import/pull/1506
-[#1496]: https://github.com/import-js/eslint-plugin-import/pull/1496
-[#1495]: https://github.com/import-js/eslint-plugin-import/pull/1495
-[#1494]: https://github.com/import-js/eslint-plugin-import/pull/1494
-[#1493]: https://github.com/import-js/eslint-plugin-import/pull/1493
-[#1491]: https://github.com/import-js/eslint-plugin-import/pull/1491
-[#1472]: https://github.com/import-js/eslint-plugin-import/pull/1472
-[#1470]: https://github.com/import-js/eslint-plugin-import/pull/1470
-[#1447]: https://github.com/import-js/eslint-plugin-import/pull/1447
-[#1439]: https://github.com/import-js/eslint-plugin-import/pull/1439
-[#1436]: https://github.com/import-js/eslint-plugin-import/pull/1436
-[#1435]: https://github.com/import-js/eslint-plugin-import/pull/1435
-[#1425]: https://github.com/import-js/eslint-plugin-import/pull/1425
-[#1419]: https://github.com/import-js/eslint-plugin-import/pull/1419
-[#1412]: https://github.com/import-js/eslint-plugin-import/pull/1412
-[#1409]: https://github.com/import-js/eslint-plugin-import/pull/1409
-[#1404]: https://github.com/import-js/eslint-plugin-import/pull/1404
-[#1401]: https://github.com/import-js/eslint-plugin-import/pull/1401
-[#1393]: https://github.com/import-js/eslint-plugin-import/pull/1393
-[#1389]: https://github.com/import-js/eslint-plugin-import/pull/1389
-[#1386]: https://github.com/import-js/eslint-plugin-import/pull/1386
-[#1377]: https://github.com/import-js/eslint-plugin-import/pull/1377
-[#1375]: https://github.com/import-js/eslint-plugin-import/pull/1375
-[#1372]: https://github.com/import-js/eslint-plugin-import/pull/1372
-[#1371]: https://github.com/import-js/eslint-plugin-import/pull/1371
-[#1370]: https://github.com/import-js/eslint-plugin-import/pull/1370
-[#1363]: https://github.com/import-js/eslint-plugin-import/pull/1363
-[#1360]: https://github.com/import-js/eslint-plugin-import/pull/1360
-[#1358]: https://github.com/import-js/eslint-plugin-import/pull/1358
-[#1356]: https://github.com/import-js/eslint-plugin-import/pull/1356
-[#1354]: https://github.com/import-js/eslint-plugin-import/pull/1354
-[#1352]: https://github.com/import-js/eslint-plugin-import/pull/1352
-[#1347]: https://github.com/import-js/eslint-plugin-import/pull/1347
-[#1345]: https://github.com/import-js/eslint-plugin-import/pull/1345
-[#1342]: https://github.com/import-js/eslint-plugin-import/pull/1342
-[#1340]: https://github.com/import-js/eslint-plugin-import/pull/1340
-[#1333]: https://github.com/import-js/eslint-plugin-import/pull/1333
-[#1331]: https://github.com/import-js/eslint-plugin-import/pull/1331
-[#1330]: https://github.com/import-js/eslint-plugin-import/pull/1330
-[#1320]: https://github.com/import-js/eslint-plugin-import/pull/1320
-[#1319]: https://github.com/import-js/eslint-plugin-import/pull/1319
-[#1312]: https://github.com/import-js/eslint-plugin-import/pull/1312
-[#1308]: https://github.com/import-js/eslint-plugin-import/pull/1308
-[#1304]: https://github.com/import-js/eslint-plugin-import/pull/1304
-[#1297]: https://github.com/import-js/eslint-plugin-import/pull/1297
-[#1295]: https://github.com/import-js/eslint-plugin-import/pull/1295
-[#1294]: https://github.com/import-js/eslint-plugin-import/pull/1294
-[#1290]: https://github.com/import-js/eslint-plugin-import/pull/1290
-[#1277]: https://github.com/import-js/eslint-plugin-import/pull/1277
-[#1262]: https://github.com/import-js/eslint-plugin-import/pull/1262
-[#1257]: https://github.com/import-js/eslint-plugin-import/pull/1257
-[#1253]: https://github.com/import-js/eslint-plugin-import/pull/1253
-[#1248]: https://github.com/import-js/eslint-plugin-import/pull/1248
-[#1238]: https://github.com/import-js/eslint-plugin-import/pull/1238
-[#1237]: https://github.com/import-js/eslint-plugin-import/pull/1237
-[#1235]: https://github.com/import-js/eslint-plugin-import/pull/1235
-[#1234]: https://github.com/import-js/eslint-plugin-import/pull/1234
-[#1232]: https://github.com/import-js/eslint-plugin-import/pull/1232
-[#1223]: https://github.com/import-js/eslint-plugin-import/pull/1223
-[#1222]: https://github.com/import-js/eslint-plugin-import/pull/1222
-[#1218]: https://github.com/import-js/eslint-plugin-import/pull/1218
-[#1176]: https://github.com/import-js/eslint-plugin-import/pull/1176
-[#1163]: https://github.com/import-js/eslint-plugin-import/pull/1163
-[#1157]: https://github.com/import-js/eslint-plugin-import/pull/1157
-[#1151]: https://github.com/import-js/eslint-plugin-import/pull/1151
-[#1142]: https://github.com/import-js/eslint-plugin-import/pull/1142
-[#1139]: https://github.com/import-js/eslint-plugin-import/pull/1139
-[#1137]: https://github.com/import-js/eslint-plugin-import/pull/1137
-[#1135]: https://github.com/import-js/eslint-plugin-import/pull/1135
-[#1128]: https://github.com/import-js/eslint-plugin-import/pull/1128
-[#1126]: https://github.com/import-js/eslint-plugin-import/pull/1126
-[#1122]: https://github.com/import-js/eslint-plugin-import/pull/1122
-[#1112]: https://github.com/import-js/eslint-plugin-import/pull/1112
-[#1107]: https://github.com/import-js/eslint-plugin-import/pull/1107
-[#1106]: https://github.com/import-js/eslint-plugin-import/pull/1106
-[#1105]: https://github.com/import-js/eslint-plugin-import/pull/1105
-[#1093]: https://github.com/import-js/eslint-plugin-import/pull/1093
-[#1085]: https://github.com/import-js/eslint-plugin-import/pull/1085
-[#1068]: https://github.com/import-js/eslint-plugin-import/pull/1068
-[#1049]: https://github.com/import-js/eslint-plugin-import/pull/1049
-[#1046]: https://github.com/import-js/eslint-plugin-import/pull/1046
-[#966]: https://github.com/import-js/eslint-plugin-import/pull/966
-[#944]: https://github.com/import-js/eslint-plugin-import/pull/944
-[#912]: https://github.com/import-js/eslint-plugin-import/pull/912
-[#908]: https://github.com/import-js/eslint-plugin-import/pull/908
-[#891]: https://github.com/import-js/eslint-plugin-import/pull/891
-[#889]: https://github.com/import-js/eslint-plugin-import/pull/889
-[#880]: https://github.com/import-js/eslint-plugin-import/pull/880
-[#871]: https://github.com/import-js/eslint-plugin-import/pull/871
-[#858]: https://github.com/import-js/eslint-plugin-import/pull/858
-[#843]: https://github.com/import-js/eslint-plugin-import/pull/843
-[#804]: https://github.com/import-js/eslint-plugin-import/pull/804
-[#797]: https://github.com/import-js/eslint-plugin-import/pull/797
-[#794]: https://github.com/import-js/eslint-plugin-import/pull/794
-[#744]: https://github.com/import-js/eslint-plugin-import/pull/744
-[#742]: https://github.com/import-js/eslint-plugin-import/pull/742
-[#737]: https://github.com/import-js/eslint-plugin-import/pull/737
-[#727]: https://github.com/import-js/eslint-plugin-import/pull/727
-[#721]: https://github.com/import-js/eslint-plugin-import/pull/721
-[#712]: https://github.com/import-js/eslint-plugin-import/pull/712
-[#696]: https://github.com/import-js/eslint-plugin-import/pull/696
-[#685]: https://github.com/import-js/eslint-plugin-import/pull/685
-[#680]: https://github.com/import-js/eslint-plugin-import/pull/680
-[#654]: https://github.com/import-js/eslint-plugin-import/pull/654
-[#639]: https://github.com/import-js/eslint-plugin-import/pull/639
-[#632]: https://github.com/import-js/eslint-plugin-import/pull/632
-[#630]: https://github.com/import-js/eslint-plugin-import/pull/630
-[#629]: https://github.com/import-js/eslint-plugin-import/pull/629
-[#628]: https://github.com/import-js/eslint-plugin-import/pull/628
-[#596]: https://github.com/import-js/eslint-plugin-import/pull/596
-[#586]: https://github.com/import-js/eslint-plugin-import/pull/586
-[#578]: https://github.com/import-js/eslint-plugin-import/pull/578
-[#568]: https://github.com/import-js/eslint-plugin-import/pull/568
-[#555]: https://github.com/import-js/eslint-plugin-import/pull/555
-[#538]: https://github.com/import-js/eslint-plugin-import/pull/538
-[#527]: https://github.com/import-js/eslint-plugin-import/pull/527
-[#518]: https://github.com/import-js/eslint-plugin-import/pull/518
-[#509]: https://github.com/import-js/eslint-plugin-import/pull/509
-[#508]: https://github.com/import-js/eslint-plugin-import/pull/508
-[#503]: https://github.com/import-js/eslint-plugin-import/pull/503
-[#499]: https://github.com/import-js/eslint-plugin-import/pull/499
-[#489]: https://github.com/import-js/eslint-plugin-import/pull/489
-[#485]: https://github.com/import-js/eslint-plugin-import/pull/485
-[#461]: https://github.com/import-js/eslint-plugin-import/pull/461
-[#449]: https://github.com/import-js/eslint-plugin-import/pull/449
-[#444]: https://github.com/import-js/eslint-plugin-import/pull/444
-[#428]: https://github.com/import-js/eslint-plugin-import/pull/428
-[#395]: https://github.com/import-js/eslint-plugin-import/pull/395
-[#371]: https://github.com/import-js/eslint-plugin-import/pull/371
-[#365]: https://github.com/import-js/eslint-plugin-import/pull/365
-[#359]: https://github.com/import-js/eslint-plugin-import/pull/359
-[#343]: https://github.com/import-js/eslint-plugin-import/pull/343
-[#332]: https://github.com/import-js/eslint-plugin-import/pull/332
-[#322]: https://github.com/import-js/eslint-plugin-import/pull/322
-[#321]: https://github.com/import-js/eslint-plugin-import/pull/321
-[#316]: https://github.com/import-js/eslint-plugin-import/pull/316
-[#314]: https://github.com/import-js/eslint-plugin-import/pull/314
-[#308]: https://github.com/import-js/eslint-plugin-import/pull/308
-[#298]: https://github.com/import-js/eslint-plugin-import/pull/298
-[#297]: https://github.com/import-js/eslint-plugin-import/pull/297
-[#296]: https://github.com/import-js/eslint-plugin-import/pull/296
-[#290]: https://github.com/import-js/eslint-plugin-import/pull/290
-[#289]: https://github.com/import-js/eslint-plugin-import/pull/289
-[#288]: https://github.com/import-js/eslint-plugin-import/pull/288
-[#287]: https://github.com/import-js/eslint-plugin-import/pull/287
-[#278]: https://github.com/import-js/eslint-plugin-import/pull/278
-[#261]: https://github.com/import-js/eslint-plugin-import/pull/261
-[#256]: https://github.com/import-js/eslint-plugin-import/pull/256
-[#254]: https://github.com/import-js/eslint-plugin-import/pull/254
-[#250]: https://github.com/import-js/eslint-plugin-import/pull/250
-[#247]: https://github.com/import-js/eslint-plugin-import/pull/247
-[#245]: https://github.com/import-js/eslint-plugin-import/pull/245
-[#243]: https://github.com/import-js/eslint-plugin-import/pull/243
-[#241]: https://github.com/import-js/eslint-plugin-import/pull/241
-[#239]: https://github.com/import-js/eslint-plugin-import/pull/239
-[#228]: https://github.com/import-js/eslint-plugin-import/pull/228
-[#211]: https://github.com/import-js/eslint-plugin-import/pull/211
-[#164]: https://github.com/import-js/eslint-plugin-import/pull/164
-[#157]: https://github.com/import-js/eslint-plugin-import/pull/157
-[#2255]: https://github.com/import-js/eslint-plugin-import/issues/2255
-[#2201]: https://github.com/import-js/eslint-plugin-import/issues/2201
-[#2199]: https://github.com/import-js/eslint-plugin-import/issues/2199
-[#2161]: https://github.com/import-js/eslint-plugin-import/issues/2161
-[#2118]: https://github.com/import-js/eslint-plugin-import/issues/2118
-[#2067]: https://github.com/import-js/eslint-plugin-import/issues/2067
-[#2063]: https://github.com/import-js/eslint-plugin-import/issues/2063
-[#2056]: https://github.com/import-js/eslint-plugin-import/issues/2056
-[#1998]: https://github.com/import-js/eslint-plugin-import/issues/1998
-[#1965]: https://github.com/import-js/eslint-plugin-import/issues/1965
-[#1924]: https://github.com/import-js/eslint-plugin-import/issues/1924
-[#1854]: https://github.com/import-js/eslint-plugin-import/issues/1854
-[#1841]: https://github.com/import-js/eslint-plugin-import/issues/1841
-[#1834]: https://github.com/import-js/eslint-plugin-import/issues/1834
-[#1814]: https://github.com/import-js/eslint-plugin-import/issues/1814
-[#1811]: https://github.com/import-js/eslint-plugin-import/issues/1811
-[#1808]: https://github.com/import-js/eslint-plugin-import/issues/1808
-[#1805]: https://github.com/import-js/eslint-plugin-import/issues/1805
-[#1801]: https://github.com/import-js/eslint-plugin-import/issues/1801
-[#1722]: https://github.com/import-js/eslint-plugin-import/issues/1722
-[#1704]: https://github.com/import-js/eslint-plugin-import/issues/1704
-[#1702]: https://github.com/import-js/eslint-plugin-import/issues/1702
-[#1635]: https://github.com/import-js/eslint-plugin-import/issues/1635
-[#1631]: https://github.com/import-js/eslint-plugin-import/issues/1631
-[#1616]: https://github.com/import-js/eslint-plugin-import/issues/1616
-[#1613]: https://github.com/import-js/eslint-plugin-import/issues/1613
-[#1589]: https://github.com/import-js/eslint-plugin-import/issues/1589
-[#1565]: https://github.com/import-js/eslint-plugin-import/issues/1565
-[#1366]: https://github.com/import-js/eslint-plugin-import/issues/1366
-[#1334]: https://github.com/import-js/eslint-plugin-import/issues/1334
-[#1323]: https://github.com/import-js/eslint-plugin-import/issues/1323
-[#1322]: https://github.com/import-js/eslint-plugin-import/issues/1322
-[#1300]: https://github.com/import-js/eslint-plugin-import/issues/1300
-[#1293]: https://github.com/import-js/eslint-plugin-import/issues/1293
-[#1266]: https://github.com/import-js/eslint-plugin-import/issues/1266
-[#1256]: https://github.com/import-js/eslint-plugin-import/issues/1256
-[#1233]: https://github.com/import-js/eslint-plugin-import/issues/1233
-[#1175]: https://github.com/import-js/eslint-plugin-import/issues/1175
-[#1166]: https://github.com/import-js/eslint-plugin-import/issues/1166
-[#1144]: https://github.com/import-js/eslint-plugin-import/issues/1144
-[#1058]: https://github.com/import-js/eslint-plugin-import/issues/1058
-[#1035]: https://github.com/import-js/eslint-plugin-import/issues/1035
-[#931]: https://github.com/import-js/eslint-plugin-import/issues/931
-[#886]: https://github.com/import-js/eslint-plugin-import/issues/886
-[#863]: https://github.com/import-js/eslint-plugin-import/issues/863
-[#842]: https://github.com/import-js/eslint-plugin-import/issues/842
-[#839]: https://github.com/import-js/eslint-plugin-import/issues/839
-[#795]: https://github.com/import-js/eslint-plugin-import/issues/795
-[#793]: https://github.com/import-js/eslint-plugin-import/issues/793
-[#720]: https://github.com/import-js/eslint-plugin-import/issues/720
-[#717]: https://github.com/import-js/eslint-plugin-import/issues/717
-[#686]: https://github.com/import-js/eslint-plugin-import/issues/686
-[#671]: https://github.com/import-js/eslint-plugin-import/issues/671
-[#660]: https://github.com/import-js/eslint-plugin-import/issues/660
-[#653]: https://github.com/import-js/eslint-plugin-import/issues/653
-[#627]: https://github.com/import-js/eslint-plugin-import/issues/627
-[#620]: https://github.com/import-js/eslint-plugin-import/issues/620
-[#609]: https://github.com/import-js/eslint-plugin-import/issues/609
-[#604]: https://github.com/import-js/eslint-plugin-import/issues/604
-[#602]: https://github.com/import-js/eslint-plugin-import/issues/602
-[#601]: https://github.com/import-js/eslint-plugin-import/issues/601
-[#592]: https://github.com/import-js/eslint-plugin-import/issues/592
-[#577]: https://github.com/import-js/eslint-plugin-import/issues/577
-[#570]: https://github.com/import-js/eslint-plugin-import/issues/570
-[#567]: https://github.com/import-js/eslint-plugin-import/issues/567
-[#566]: https://github.com/import-js/eslint-plugin-import/issues/566
-[#545]: https://github.com/import-js/eslint-plugin-import/issues/545
-[#530]: https://github.com/import-js/eslint-plugin-import/issues/530
-[#529]: https://github.com/import-js/eslint-plugin-import/issues/529
-[#519]: https://github.com/import-js/eslint-plugin-import/issues/519
-[#507]: https://github.com/import-js/eslint-plugin-import/issues/507
-[#484]: https://github.com/import-js/eslint-plugin-import/issues/484
-[#478]: https://github.com/import-js/eslint-plugin-import/issues/478
-[#456]: https://github.com/import-js/eslint-plugin-import/issues/456
-[#453]: https://github.com/import-js/eslint-plugin-import/issues/453
-[#452]: https://github.com/import-js/eslint-plugin-import/issues/452
-[#447]: https://github.com/import-js/eslint-plugin-import/issues/447
-[#441]: https://github.com/import-js/eslint-plugin-import/issues/441
-[#423]: https://github.com/import-js/eslint-plugin-import/issues/423
-[#416]: https://github.com/import-js/eslint-plugin-import/issues/416
-[#415]: https://github.com/import-js/eslint-plugin-import/issues/415
-[#402]: https://github.com/import-js/eslint-plugin-import/issues/402
-[#386]: https://github.com/import-js/eslint-plugin-import/issues/386
-[#373]: https://github.com/import-js/eslint-plugin-import/issues/373
-[#370]: https://github.com/import-js/eslint-plugin-import/issues/370
-[#348]: https://github.com/import-js/eslint-plugin-import/issues/348
-[#342]: https://github.com/import-js/eslint-plugin-import/issues/342
-[#328]: https://github.com/import-js/eslint-plugin-import/issues/328
-[#317]: https://github.com/import-js/eslint-plugin-import/issues/317
-[#313]: https://github.com/import-js/eslint-plugin-import/issues/313
-[#311]: https://github.com/import-js/eslint-plugin-import/issues/311
-[#306]: https://github.com/import-js/eslint-plugin-import/issues/306
-[#286]: https://github.com/import-js/eslint-plugin-import/issues/286
-[#283]: https://github.com/import-js/eslint-plugin-import/issues/283
-[#281]: https://github.com/import-js/eslint-plugin-import/issues/281
-[#275]: https://github.com/import-js/eslint-plugin-import/issues/275
-[#272]: https://github.com/import-js/eslint-plugin-import/issues/272
-[#270]: https://github.com/import-js/eslint-plugin-import/issues/270
-[#267]: https://github.com/import-js/eslint-plugin-import/issues/267
-[#266]: https://github.com/import-js/eslint-plugin-import/issues/266
-[#216]: https://github.com/import-js/eslint-plugin-import/issues/216
-[#214]: https://github.com/import-js/eslint-plugin-import/issues/214
-[#210]: https://github.com/import-js/eslint-plugin-import/issues/210
-[#200]: https://github.com/import-js/eslint-plugin-import/issues/200
-[#192]: https://github.com/import-js/eslint-plugin-import/issues/192
-[#191]: https://github.com/import-js/eslint-plugin-import/issues/191
-[#189]: https://github.com/import-js/eslint-plugin-import/issues/189
-[#170]: https://github.com/import-js/eslint-plugin-import/issues/170
-[#155]: https://github.com/import-js/eslint-plugin-import/issues/155
-[#119]: https://github.com/import-js/eslint-plugin-import/issues/119
-[#89]: https://github.com/import-js/eslint-plugin-import/issues/89
-
-[Unreleased]: https://github.com/import-js/eslint-plugin-import/compare/v2.25.3...HEAD
-[2.25.3]: https://github.com/import-js/eslint-plugin-import/compare/v2.25.2...v2.25.3
-[2.25.2]: https://github.com/import-js/eslint-plugin-import/compare/v2.25.1...v2.25.2
-[2.25.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.25.0...v2.25.1
-[2.25.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.24.2...v2.25.0
-[2.24.2]: https://github.com/import-js/eslint-plugin-import/compare/v2.24.1...v2.24.2
-[2.24.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.24.0...v2.24.1
-[2.24.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.23.4...v2.24.0
-[2.23.4]: https://github.com/import-js/eslint-plugin-import/compare/v2.23.3...v2.23.4
-[2.23.3]: https://github.com/import-js/eslint-plugin-import/compare/v2.23.2...v2.23.3
-[2.23.2]: https://github.com/import-js/eslint-plugin-import/compare/v2.23.1...v2.23.2
-[2.23.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.23.0...v2.23.1
-[2.23.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.22.1...v2.23.0
-[2.22.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.22.0...v2.22.1
-[2.22.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.21.1...v2.22.0
-[2.21.2]: https://github.com/import-js/eslint-plugin-import/compare/v2.21.1...v2.21.2
-[2.21.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.21.0...v2.21.1
-[2.21.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.20.2...v2.21.0
-[2.20.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.20.1...v2.20.2
-[2.20.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.20.0...v2.20.1
-[2.19.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.19.1...v2.20.0
-[2.19.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.19.0...v2.19.1
-[2.19.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.18.2...v2.19.0
-[2.18.2]: https://github.com/import-js/eslint-plugin-import/compare/v2.18.1...v2.18.2
-[2.18.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.18.0...v2.18.1
-[2.18.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.17.3...v2.18.0
-[2.17.3]: https://github.com/import-js/eslint-plugin-import/compare/v2.17.2...v2.17.3
-[2.17.2]: https://github.com/import-js/eslint-plugin-import/compare/v2.17.1...v2.17.2
-[2.17.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.17.0...v2.17.1
-[2.17.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.16.0...v2.17.0
-[2.16.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.15.0...v2.16.0
-[2.15.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.14.0...v2.15.0
-[2.14.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.13.0...v2.14.0
-[2.13.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.12.0...v2.13.0
-[2.12.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.11.0...v2.12.0
-[2.11.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.10.0...v2.11.0
-[2.10.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.9.0...v2.10.0
-[2.9.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.8.0...v2.9.0
-[2.8.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.7.0...v2.8.0
-[2.7.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.6.1...v2.7.0
-[2.6.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.6.0...v2.6.1
-[2.6.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.5.0...v2.6.0
-[2.5.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.4.0...v2.5.0
-[2.4.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.3.0...v2.4.0
-[2.3.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.2.0...v2.3.0
-[2.2.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.1.0...v2.2.0
-[2.1.0]: https://github.com/import-js/eslint-plugin-import/compare/v2.0.1...v2.1.0
-[2.0.1]: https://github.com/import-js/eslint-plugin-import/compare/v2.0.0...v2.0.1
-[2.0.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.16.0...v2.0.0
-[1.16.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.15.0...v1.16.0
-[1.15.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.14.0...v1.15.0
-[1.14.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.13.0...v1.14.0
-[1.13.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.12.0...v1.13.0
-[1.12.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.11.1...v1.12.0
-[1.11.1]: https://github.com/import-js/eslint-plugin-import/compare/v1.11.0...v1.11.1
-[1.11.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.10.3...v1.11.0
-[1.10.3]: https://github.com/import-js/eslint-plugin-import/compare/v1.10.2...v1.10.3
-[1.10.2]: https://github.com/import-js/eslint-plugin-import/compare/v1.10.1...v1.10.2
-[1.10.1]: https://github.com/import-js/eslint-plugin-import/compare/v1.10.0...v1.10.1
-[1.10.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.9.2...v1.10.0
-[1.9.2]: https://github.com/import-js/eslint-plugin-import/compare/v1.9.1...v1.9.2
-[1.9.1]: https://github.com/import-js/eslint-plugin-import/compare/v1.9.0...v1.9.1
-[1.9.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.8.1...v1.9.0
-[1.8.1]: https://github.com/import-js/eslint-plugin-import/compare/v1.8.0...v1.8.1
-[1.8.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.7.0...v1.8.0
-[1.7.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.6.1...v1.7.0
-[1.6.1]: https://github.com/import-js/eslint-plugin-import/compare/v1.6.0...v1.6.1
-[1.6.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.5.0...1.6.0
-[1.5.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.4.0...v1.5.0
-[1.4.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.3.0...v1.4.0
-[1.3.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.0.4...v1.1.0
-[1.0.4]: https://github.com/import-js/eslint-plugin-import/compare/v1.0.3...v1.0.4
-[1.0.3]: https://github.com/import-js/eslint-plugin-import/compare/v1.0.2...v1.0.3
-[1.0.2]: https://github.com/import-js/eslint-plugin-import/compare/v1.0.1...v1.0.2
-[1.0.1]: https://github.com/import-js/eslint-plugin-import/compare/v1.0.0...v1.0.1
-[1.0.0]: https://github.com/import-js/eslint-plugin-import/compare/v1.0.0-beta.0...v1.0.0
-[1.0.0-beta.0]: https://github.com/import-js/eslint-plugin-import/compare/v0.13.0...v1.0.0-beta.0
-[0.13.0]: https://github.com/import-js/eslint-plugin-import/compare/v0.12.1...v0.13.0
-[0.12.2]: https://github.com/import-js/eslint-plugin-import/compare/v0.12.1...v0.12.2
-[0.12.1]: https://github.com/import-js/eslint-plugin-import/compare/v0.12.0...v0.12.1
-[0.12.0]: https://github.com/import-js/eslint-plugin-import/compare/v0.11.0...v0.12.0
-[0.11.0]: https://github.com/import-js/eslint-plugin-import/compare/v0.10.1...v0.11.0
-
-[@1pete]: https://github.com/1pete
-[@3nuc]: https://github.com/3nuc
-[@aamulumi]: https://github.com/aamulumi
-[@aberezkin]: https://github.com/aberezkin
-[@adamborowski]: https://github.com/adamborowski
-[@adjerbetian]: https://github.com/adjerbetian
-[@ai]: https://github.com/ai
-[@aladdin-add]: https://github.com/aladdin-add
-[@alex-page]: https://github.com/alex-page
-[@alexgorbatchev]: https://github.com/alexgorbatchev
-[@andreubotella]: https://github.com/andreubotella
-[@AndrewLeedham]: https://github.com/AndrewLeedham
-[@aravindet]: https://github.com/aravindet
-[@arvigeus]: https://github.com/arvigeus
-[@asapach]: https://github.com/asapach
-[@astorije]: https://github.com/astorije
-[@atav32]: https://github.com/atav32
-[@atikenny]: https://github.com/atikenny
-[@atos1990]: https://github.com/atos1990
-[@barbogast]: https://github.com/barbogast
-[@be5invis]: https://github.com/be5invis
-[@beatrizrezener]: https://github.com/beatrizrezener
-[@benmosher]: https://github.com/benmosher
-[@benmunro]: https://github.com/benmunro
-[@bicstone]: https://github.com/bicstone
-[@Blasz]: https://github.com/Blasz
-[@bmish]: https://github.com/bmish
-[@borisyankov]: https://github.com/borisyankov
-[@bradennapier]: https://github.com/bradennapier
-[@bradzacher]: https://github.com/bradzacher
-[@brendo]: https://github.com/brendo
-[@brettz9]: https://github.com/brettz9
-[@charlessuh]: https://github.com/charlessuh
-[@charpeni]: https://github.com/charpeni
-[@cherryblossom000]: https://github.com/cherryblossom000
-[@chrislloyd]: https://github.com/chrislloyd
-[@christianvuerings]: https://github.com/christianvuerings
-[@christophercurrie]: https://github.com/christophercurrie
-[@danny-andrews]: https://github.com/dany-andrews
-[@darkartur]: https://github.com/darkartur
-[@davidbonnet]: https://github.com/davidbonnet
-[@dbrewer5]: https://github.com/dbrewer5
-[@devongovett]: https://github.com/devongovett
-[@dmnd]: https://github.com/dmnd
-[@duncanbeevers]: https://github.com/duncanbeevers
-[@dwardu]: https://github.com/dwardu
-[@echenley]: https://github.com/echenley
-[@edemaine]: https://github.com/edemaine
-[@eelyafi]: https://github.com/eelyafi
-[@Ephem]: https://github.com/Ephem
-[@ephys]: https://github.com/ephys
-[@eps1lon]: https://github.com/eps1lon
-[@ernestostifano]: https://github.com/ernestostifano
-[@ertrzyiks]: https://github.com/ertrzyiks
-[@fa93hws]: https://github.com/fa93hws
-[@fengkfengk]: https://github.com/fengkfengk
-[@fernandopasik]: https://github.com/fernandopasik
-[@feychenie]: https://github.com/feychenie
-[@fisker]: https://github.com/fisker
-[@FloEdelmann]: https://github.com/FloEdelmann
-[@fooloomanzoo]: https://github.com/fooloomanzoo
-[@foray1010]: https://github.com/foray1010
-[@forivall]: https://github.com/forivall
-[@fsmaia]: https://github.com/fsmaia
-[@fson]: https://github.com/fson
-[@futpib]: https://github.com/futpib
-[@gajus]: https://github.com/gajus
-[@gausie]: https://github.com/gausie
-[@gavriguy]: https://github.com/gavriguy
-[@giodamelio]: https://github.com/giodamelio
-[@golopot]: https://github.com/golopot
-[@GoodForOneFare]: https://github.com/GoodForOneFare
-[@graingert]: https://github.com/graingert
-[@grit96]: https://github.com/grit96
-[@guillaumewuip]: https://github.com/guillaumewuip
-[@hayes]: https://github.com/hayes
-[@himynameisdave]: https://github.com/himynameisdave
-[@hulkish]: https://github.com/hulkish
-[@Hypnosphi]: https://github.com/Hypnosphi
-[@isiahmeadows]: https://github.com/isiahmeadows
-[@IvanGoncharov]: https://github.com/IvanGoncharov
-[@ivo-stefchev]: https://github.com/ivo-stefchev
-[@jablko]: https://github.com/jablko
-[@jakubsta]: https://github.com/jakubsta
-[@jeffshaver]: https://github.com/jeffshaver
-[@jf248]: https://github.com/jf248
-[@jfmengels]: https://github.com/jfmengels
-[@jimbolla]: https://github.com/jimbolla
-[@jkimbo]: https://github.com/jkimbo
-[@joaovieira]: https://github.com/joaovieira
-[@johndevedu]: https://github.com/johndevedu
-[@johnthagen]: https://github.com/johnthagen
-[@jonboiser]: https://github.com/jonboiser
-[@josh]: https://github.com/josh
-[@JounQin]: https://github.com/JounQin
-[@jquense]: https://github.com/jquense
-[@jseminck]: https://github.com/jseminck
-[@julien1619]: https://github.com/julien1619
-[@justinanastos]: https://github.com/justinanastos
-[@k15a]: https://github.com/k15a
-[@kentcdodds]: https://github.com/kentcdodds
-[@kevin940726]: https://github.com/kevin940726
-[@kgregory]: https://github.com/kgregory
-[@kirill-konshin]: https://github.com/kirill-konshin
-[@kiwka]: https://github.com/kiwka
-[@klimashkin]: https://github.com/klimashkin
-[@kmui2]: https://github.com/kmui2
-[@knpwrs]: https://github.com/knpwrs
-[@KostyaZgara]: https://github.com/KostyaZgara
-[@laysent]: https://github.com/laysent
-[@le0nik]: https://github.com/le0nik
-[@lemonmade]: https://github.com/lemonmade
-[@lencioni]: https://github.com/lencioni
-[@leonardodino]: https://github.com/leonardodino
-[@Librazy]: https://github.com/Librazy
-[@liby]: https://github.com/liby
-[@lilling]: https://github.com/lilling
-[@ljharb]: https://github.com/ljharb
-[@ljqx]: https://github.com/ljqx
-[@lo1tuma]: https://github.com/lo1tuma
-[@loganfsmyth]: https://github.com/loganfsmyth
-[@luczsoma]: https://github.com/luczsoma
-[@lukeapage]: https://github.com/lukeapage
-[@lydell]: https://github.com/lydell
-[@Mairu]: https://github.com/Mairu
-[@malykhinvi]: https://github.com/malykhinvi
-[@manovotny]: https://github.com/manovotny
-[@manuth]: https://github.com/manuth
-[@marcusdarmstrong]: https://github.com/marcusdarmstrong
-[@mastilver]: https://github.com/mastilver
-[@mathieudutour]: https://github.com/mathieudutour
-[@MatthiasKunnen]: https://github.com/MatthiasKunnen
-[@mattijsbliek]: https://github.com/mattijsbliek
-[@Maxim-Mazurok]: https://github.com/Maxim-Mazurok
-[@maxkomarychev]: https://github.com/maxkomarychev
-[@maxmalov]: https://github.com/maxmalov
-[@mgwalker]: https://github.com/mgwalker
-[@MikeyBeLike]: https://github.com/MikeyBeLike
-[@mplewis]: https://github.com/mplewis
-[@mrmckeb]: https://github.com/mrmckeb
-[@mx-bernhard]: https://github.com/mx-bernhard
-[@nickofthyme]: https://github.com/nickofthyme
-[@nicolashenry]: https://github.com/nicolashenry
-[@noelebrun]: https://github.com/noelebrun
-[@ntdb]: https://github.com/ntdb
-[@nwalters512]: https://github.com/nwalters512
-[@ota-meshi]: https://github.com/ota-meshi
-[@panrafal]: https://github.com/panrafal
-[@paztis]: https://github.com/paztis
-[@pcorpet]: https://github.com/pcorpet
-[@Pessimistress]: https://github.com/Pessimistress
-[@pmcelhaney]: https://github.com/pmcelhaney
-[@preco21]: https://github.com/preco21
-[@pzhine]: https://github.com/pzhine
-[@ramasilveyra]: https://github.com/ramasilveyra
-[@randallreedjr]: https://github.com/randallreedjr
-[@redbugz]: https://github.com/redbugz
-[@remcohaszing]: https://github.com/remcohaszing
-[@rfermann]: https://github.com/rfermann
-[@rhettlivingston]: https://github.com/rhettlivingston
-[@rhys-vdw]: https://github.com/rhys-vdw
-[@richardxia]: https://github.com/richardxia
-[@robertrossmann]: https://github.com/robertrossmann
-[@rosswarren]: https://github.com/rosswarren
-[@rperello]: https://github.com/rperello
-[@rsolomon]: https://github.com/rsolomon
-[@s-h-a-d-o-w]: https://github.com/s-h-a-d-o-w
-[@saschanaz]: https://github.com/saschanaz
-[@schmidsi]: https://github.com/schmidsi
-[@schmod]: https://github.com/schmod
-[@Schweinepriester]: https://github.com/Schweinepriester
-[@scottnonnenberg]: https://github.com/scottnonnenberg
-[@sergei-startsev]: https://github.com/sergei-startsev
-[@sharmilajesupaul]: https://github.com/sharmilajesupaul
-[@sheepsteak]: https://github.com/sheepsteak
-[@silviogutierrez]: https://github.com/silviogutierrez
-[@SimenB]: https://github.com/SimenB
-[@sindresorhus]: https://github.com/sindresorhus
-[@singles]: https://github.com/singles
-[@skozin]: https://github.com/skozin
-[@skyrpex]: https://github.com/skyrpex
-[@sompylasar]: https://github.com/sompylasar
-[@soryy708]: https://github.com/soryy708
-[@spalger]: https://github.com/spalger
-[@st-sloth]: https://github.com/st-sloth
-[@stekycz]: https://github.com/stekycz
-[@straub]: https://github.com/straub
-[@strawbrary]: https://github.com/strawbrary
-[@stropho]: https://github.com/stropho
-[@sveyret]: https://github.com/sveyret
-[@swernerx]: https://github.com/swernerx
-[@syymza]: https://github.com/syymza
-[@taion]: https://github.com/taion
-[@TakeScoop]: https://github.com/TakeScoop
-[@tapayne88]: https://github.com/tapayne88
-[@Taranys]: https://github.com/Taranys
-[@taye]: https://github.com/taye
-[@TheCrueltySage]: https://github.com/TheCrueltySage
-[@tihonove]: https://github.com/tihonove
-[@timkraut]: https://github.com/timkraut
-[@tizmagik]: https://github.com/tizmagik
-[@tomprats]: https://github.com/tomprats
-[@TrevorBurnham]: https://github.com/TrevorBurnham
-[@ttmarek]: https://github.com/ttmarek
-[@vikr01]: https://github.com/vikr01
-[@wenfangdu]: https://github.com/wenfangdu
-[@wKich]: https://github.com/wKich
-[@wschurman]: https://github.com/wschurman
-[@wtgtybhertgeghgtwtg]: https://github.com/wtgtybhertgeghgtwtg
-[@xpl]: https://github.com/xpl
-[@yordis]: https://github.com/yordis
-[@zloirock]: https://github.com/zloirock
+### Bug Fixes
+
+* **require-top-level-describe:** import function that actually exists ([#763](https://github.com/jest-community/eslint-plugin-jest/issues/763)) ([d10dc07](https://github.com/jest-community/eslint-plugin-jest/commit/d10dc07d9dc933fe9584b3e13704001527896859))
+
+## [24.1.4](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.3...v24.1.4) (2021-02-16)
+
+
+### Bug Fixes
+
+* **lowercase-name:** support `.each` methods ([#746](https://github.com/jest-community/eslint-plugin-jest/issues/746)) ([3d847b2](https://github.com/jest-community/eslint-plugin-jest/commit/3d847b2164425a2afb754569dbfff52411c95610))
+* **require-top-level-describe:** handle `describe.each` properly ([#745](https://github.com/jest-community/eslint-plugin-jest/issues/745)) ([677be45](https://github.com/jest-community/eslint-plugin-jest/commit/677be4558a3954e364b0c4150678a4d3fd832337))
+
+## [24.1.3](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.2...v24.1.3) (2020-11-12)
+
+
+### Bug Fixes
+
+* revert change causing regressions for test.each ([#713](https://github.com/jest-community/eslint-plugin-jest/issues/713)) ([7c8d75a](https://github.com/jest-community/eslint-plugin-jest/commit/7c8d75a4fcbd2c6ce005cf4f57d676c7c44ce0b2)), closes [#710](https://github.com/jest-community/eslint-plugin-jest/issues/710) [#711](https://github.com/jest-community/eslint-plugin-jest/issues/711)
+
+## [24.1.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.1...v24.1.2) (2020-11-12)
+
+
+### Bug Fixes
+
+* **no-done-callback:** fix regression with it.each ([#708](https://github.com/jest-community/eslint-plugin-jest/issues/708)) ([2f032f8](https://github.com/jest-community/eslint-plugin-jest/commit/2f032f8d890e3717359d099b1e93e0cc6b52996a))
+
+## [24.1.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.1.0...v24.1.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* improve support for it.each involving tagged template literals ([#701](https://github.com/jest-community/eslint-plugin-jest/issues/701)) ([2341814](https://github.com/jest-community/eslint-plugin-jest/commit/2341814060b38c55728c0b456d7b432f1e0e1a11))
+
+# [24.1.0](https://github.com/jest-community/eslint-plugin-jest/compare/v24.0.2...v24.1.0) (2020-10-05)
+
+
+### Features
+
+* **prefer-expect-assertions:** add `onlyFunctionsWithAsyncKeyword` option ([#677](https://github.com/jest-community/eslint-plugin-jest/issues/677)) ([d0cea37](https://github.com/jest-community/eslint-plugin-jest/commit/d0cea37ae0a8ab07b8082cedbaaf161bcc94c405))
+
+## [24.0.2](https://github.com/jest-community/eslint-plugin-jest/compare/v24.0.1...v24.0.2) (2020-09-20)
+
+
+### Bug Fixes
+
+* **no-if:** check both types of function expression ([#672](https://github.com/jest-community/eslint-plugin-jest/issues/672)) ([d462d50](https://github.com/jest-community/eslint-plugin-jest/commit/d462d50aed84ad4dc536a1f47bb7af6abd3dbe92)), closes [#670](https://github.com/jest-community/eslint-plugin-jest/issues/670)
+
+## [24.0.1](https://github.com/jest-community/eslint-plugin-jest/compare/v24.0.0...v24.0.1) (2020-09-12)
+
+
+### Bug Fixes
+
+* don't include deprecated rules in `all` config ([#664](https://github.com/jest-community/eslint-plugin-jest/issues/664)) ([f636021](https://github.com/jest-community/eslint-plugin-jest/commit/f636021c16215a713845c699858a2978211df49d)), closes [#663](https://github.com/jest-community/eslint-plugin-jest/issues/663)
+
+# [24.0.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.20.0...v24.0.0) (2020-09-04)
+
+
+### Bug Fixes
+
+* **no-large-snapshots:** run on all files regardless of type ([#637](https://github.com/jest-community/eslint-plugin-jest/issues/637)) ([22113db](https://github.com/jest-community/eslint-plugin-jest/commit/22113db4cdc2dab42a8e7fdb236d23e7e089741d)), closes [#370](https://github.com/jest-community/eslint-plugin-jest/issues/370)
+* remove Jasmine globals ([#596](https://github.com/jest-community/eslint-plugin-jest/issues/596)) ([a0e2bc5](https://github.com/jest-community/eslint-plugin-jest/commit/a0e2bc526c5c22bcf4d60160242b55d03edb571d))
+* update to typescript-eslint@4 ([1755965](https://github.com/jest-community/eslint-plugin-jest/commit/175596582b3643f36363ff444f987fac08ee0f61)), closes [#590](https://github.com/jest-community/eslint-plugin-jest/issues/590)
+
+
+### Code Refactoring
+
+* **no-test-callback:** rename rule to `no-done-callback` ([#653](https://github.com/jest-community/eslint-plugin-jest/issues/653)) ([e15a8d1](https://github.com/jest-community/eslint-plugin-jest/commit/e15a8d19234b267784f87fc7acd318dc4cfcdeae))
+
+
+### Features
+
+* **no-done-callback:** support hooks ([#656](https://github.com/jest-community/eslint-plugin-jest/issues/656)) ([3e6cb44](https://github.com/jest-community/eslint-plugin-jest/commit/3e6cb442a20b9aea710d30f81bf2eb192d193823)), closes [#649](https://github.com/jest-community/eslint-plugin-jest/issues/649) [#651](https://github.com/jest-community/eslint-plugin-jest/issues/651)
+* add `no-conditional-expect` to the recommended ruleset ([40cd89d](https://github.com/jest-community/eslint-plugin-jest/commit/40cd89ddf1d6ebbde8ad455f333dda7b61878ffe))
+* add `no-deprecated-functions` to the recommended ruleset ([5b2af00](https://github.com/jest-community/eslint-plugin-jest/commit/5b2af001b50059e4e7b6ababe0355d664e039046))
+* add `no-interpolation-in-snapshots` to the recommended ruleset ([3705dff](https://github.com/jest-community/eslint-plugin-jest/commit/3705dff9d4f77d21013e263478d8a374d9325acb))
+* add `valid-title` to recommended ruleset ([41f7873](https://github.com/jest-community/eslint-plugin-jest/commit/41f7873f734e0122264ace42f6d99733e7e25089))
+* drop support for node 8 ([#570](https://github.com/jest-community/eslint-plugin-jest/issues/570)) ([6788e72](https://github.com/jest-community/eslint-plugin-jest/commit/6788e72d842751400a970e72b115360ad0b12d2e))
+* set `no-jasmine-globals` to `error` in recommended ruleset ([7080952](https://github.com/jest-community/eslint-plugin-jest/commit/7080952a6baaae7a02c78f60016ee21693121416))
+* **no-large-snapshots:** remove `whitelistedSnapshots` option ([8c1c0c9](https://github.com/jest-community/eslint-plugin-jest/commit/8c1c0c9a3e858757b38225ccb4a624e0621b5ca2))
+
+
+### BREAKING CHANGES
+
+* **no-done-callback:** `no-done-callback` will now report hooks using callbacks as well, not just tests
+* **no-test-callback:** rename `no-test-callback` to `no-done-callback`
+* recommend `no-conditional-expect` rule
+* recommend `no-interpolation-in-snapshots` rule
+* recommend `no-deprecated-functions` rule
+* recommend `valid-title` rule
+* recommend erroring for `no-jasmine-globals` rule
+* **no-large-snapshots:** `no-large-snapshots` runs on all files regardless of type 
+* Jasmine globals are no marked as such
+* Node 10+ required
+
+# [23.20.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.19.0...v23.20.0) (2020-07-30)
+
+
+### Features
+
+* **no-large-snapshots:** deprecate `whitelistedSnapshots` for new name ([#632](https://github.com/jest-community/eslint-plugin-jest/issues/632)) ([706f5c2](https://github.com/jest-community/eslint-plugin-jest/commit/706f5c2bc54797f0f32178fab1d194d9a4309f70))
+
+# [23.19.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.18.2...v23.19.0) (2020-07-27)
+
+
+### Features
+
+* create `no-interpolation-in-snapshots` rule ([#553](https://github.com/jest-community/eslint-plugin-jest/issues/553)) ([8d2c17c](https://github.com/jest-community/eslint-plugin-jest/commit/8d2c17c449841465630bea5269de677455ef9a8d))
+
+## [23.18.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.18.1...v23.18.2) (2020-07-26)
+
+
+### Bug Fixes
+
+* **no-if:** report conditionals in call expressions ([4cfcf08](https://github.com/jest-community/eslint-plugin-jest/commit/4cfcf080893fbe89689bd4b283bb2f3ad09b19ff)), closes [#557](https://github.com/jest-community/eslint-plugin-jest/issues/557)
+
+## [23.18.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.18.0...v23.18.1) (2020-07-26)
+
+
+### Bug Fixes
+
+* **no-large-snapshots:** actually compare allowed name strings to name ([#625](https://github.com/jest-community/eslint-plugin-jest/issues/625)) ([622a08c](https://github.com/jest-community/eslint-plugin-jest/commit/622a08c86a37aa9490af20b488bd23246b8be752))
+
+# [23.18.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.17.1...v23.18.0) (2020-07-05)
+
+
+### Features
+
+* **valid-title:** support `mustMatch` & `mustNotMatch` options ([#608](https://github.com/jest-community/eslint-plugin-jest/issues/608)) ([4c7207e](https://github.com/jest-community/eslint-plugin-jest/commit/4c7207ebbb274f7b584225ad65ffb96a4328240e)), closes [#233](https://github.com/jest-community/eslint-plugin-jest/issues/233)
+
+## [23.17.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.17.0...v23.17.1) (2020-06-23)
+
+
+### Bug Fixes
+
+* **lowercase-name:** ignore all top level describes when option is true ([#614](https://github.com/jest-community/eslint-plugin-jest/issues/614)) ([624018a](https://github.com/jest-community/eslint-plugin-jest/commit/624018aa181e7c0ce87457a4f9c212c7891987a8)), closes [#613](https://github.com/jest-community/eslint-plugin-jest/issues/613)
+
+# [23.17.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.16.0...v23.17.0) (2020-06-23)
+
+
+### Features
+
+* **lowercase-name:** support `ignoreTopLevelDescribe` option ([#611](https://github.com/jest-community/eslint-plugin-jest/issues/611)) ([36fdcc5](https://github.com/jest-community/eslint-plugin-jest/commit/36fdcc553ca40bc2ca2e9ca7e04f8e9e4a315274)), closes [#247](https://github.com/jest-community/eslint-plugin-jest/issues/247)
+
+# [23.16.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.15.0...v23.16.0) (2020-06-21)
+
+
+### Features
+
+* create `no-conditional-expect` rule ([aba53e4](https://github.com/jest-community/eslint-plugin-jest/commit/aba53e4061f3b636ab0c0270e183c355c6f301e0))
+* deprecate `no-try-expect` in favor of `no-conditional-expect` ([6d07cad](https://github.com/jest-community/eslint-plugin-jest/commit/6d07cadd5f78ed7a64a86792931d49d3cd943d69))
+
+# [23.15.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.14.0...v23.15.0) (2020-06-21)
+
+
+### Features
+
+* **no-standalone-expect:** support `additionalTestBlockFunctions` ([#585](https://github.com/jest-community/eslint-plugin-jest/issues/585)) ([ed220b2](https://github.com/jest-community/eslint-plugin-jest/commit/ed220b2c515f2e97ce639dd1474c18a7f594c06c))
+
+# [23.14.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.13.2...v23.14.0) (2020-06-20)
+
+
+### Bug Fixes
+
+* **no-test-callback:** check argument is an identifier ([f70612d](https://github.com/jest-community/eslint-plugin-jest/commit/f70612d8b414575725a5831ed9dfad1eaf1e6548))
+* **no-test-callback:** provide suggestion instead of autofix ([782d8fa](https://github.com/jest-community/eslint-plugin-jest/commit/782d8fa00149143f453e7cb066f90c017e2d3f61))
+* **prefer-strict-equal:** provide suggestion instead of autofix ([2eaed2b](https://github.com/jest-community/eslint-plugin-jest/commit/2eaed2bf30c72b03ee205910887f8aab304047a5))
+
+
+### Features
+
+* **prefer-expect-assertions:** provide suggestions ([bad88a0](https://github.com/jest-community/eslint-plugin-jest/commit/bad88a006135258e8da18902a84bdb52a9bb9fa7))
+
+## [23.13.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.13.1...v23.13.2) (2020-05-26)
+
+
+### Bug Fixes
+
+* add `fail` to globals ([#595](https://github.com/jest-community/eslint-plugin-jest/issues/595)) ([aadc5ec](https://github.com/jest-community/eslint-plugin-jest/commit/aadc5ec5610ec024eac4b0aa6077cc012a0ba98e))
+
+## [23.13.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.13.0...v23.13.1) (2020-05-17)
+
+
+### Bug Fixes
+
+* **no-if:** use correct syntax for placeholder substitution in message ([6d1eda8](https://github.com/jest-community/eslint-plugin-jest/commit/6d1eda89ac48c93c2675dcf24a92574a20b2edb9))
+
+# [23.13.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.12.0...v23.13.0) (2020-05-16)
+
+
+### Features
+
+* **valid-expect:** support `minArgs` & `maxArgs` options ([#584](https://github.com/jest-community/eslint-plugin-jest/issues/584)) ([9e0e2fa](https://github.com/jest-community/eslint-plugin-jest/commit/9e0e2fa966b43c1099d11b2424acb1590c241c03))
+
+# [23.12.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.11.0...v23.12.0) (2020-05-16)
+
+
+### Features
+
+* deprecate `no-expect-resolves` rule ([b6a22e5](https://github.com/jest-community/eslint-plugin-jest/commit/b6a22e5aa98abcb57aac217c6d4583d0a3388e7b))
+* deprecate `no-truthy-falsy` rule ([a67d92d](https://github.com/jest-community/eslint-plugin-jest/commit/a67d92d2834568122f24bf3d8455999166da95ea))
+* deprecate `prefer-inline-snapshots` rule ([1360e9b](https://github.com/jest-community/eslint-plugin-jest/commit/1360e9b0e840f4f778a9d251371c943919f84600))
+
+# [23.11.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.10.0...v23.11.0) (2020-05-12)
+
+
+### Features
+
+* create `no-restricted-matchers` rule ([#575](https://github.com/jest-community/eslint-plugin-jest/issues/575)) ([ac926e7](https://github.com/jest-community/eslint-plugin-jest/commit/ac926e779958240506ee506047c9a5364bb70aea))
+
+# [23.10.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.9.0...v23.10.0) (2020-05-09)
+
+
+### Features
+
+* **no-deprecated-functions:** support jest `version` setting ([#564](https://github.com/jest-community/eslint-plugin-jest/issues/564)) ([05f20b8](https://github.com/jest-community/eslint-plugin-jest/commit/05f20b80ecd42b8d1f1f18ca19d4bc9cba45e22e))
+
+# [23.9.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.8.2...v23.9.0) (2020-05-04)
+
+
+### Features
+
+* create `no-deprecated-functions` ([#560](https://github.com/jest-community/eslint-plugin-jest/issues/560)) ([55d0504](https://github.com/jest-community/eslint-plugin-jest/commit/55d0504cadc945b770d7c3b6d3cab425c9b76d0f))
+
+## [23.8.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.8.1...v23.8.2) (2020-03-06)
+
+### Bug Fixes
+
+- **prefer-to-contain:** check that expect argument is defined before use
+  ([#542](https://github.com/jest-community/eslint-plugin-jest/issues/542))
+  ([56f909b](https://github.com/jest-community/eslint-plugin-jest/commit/56f909b326034236953d04b18dab3f64b16a2973))
+
+## [23.8.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.8.0...v23.8.1) (2020-02-29)
+
+### Bug Fixes
+
+- remove tests from published package
+  ([#541](https://github.com/jest-community/eslint-plugin-jest/issues/541))
+  ([099a150](https://github.com/jest-community/eslint-plugin-jest/commit/099a150b87fa693ccf1c512ee501aed1457ba656))
+
+# [23.8.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.7.0...v23.8.0) (2020-02-23)
+
+### Bug Fixes
+
+- **valid-title:** ensure argument node is defined before accessing props
+  ([#538](https://github.com/jest-community/eslint-plugin-jest/issues/538))
+  ([7730f75](https://github.com/jest-community/eslint-plugin-jest/commit/7730f757561100559509b756fd362ca33b9ab1d4))
+
+### Features
+
+- **no-large-snapshots:** add setting to define maxSize by snapshot type
+  ([#524](https://github.com/jest-community/eslint-plugin-jest/issues/524))
+  ([0d77300](https://github.com/jest-community/eslint-plugin-jest/commit/0d77300e61adc7a5aa84f34ff4ccc164075d5f41))
+
+# [23.7.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.6.0...v23.7.0) (2020-02-07)
+
+### Bug Fixes
+
+- **expect-expect:** use `u` flag in regex
+  ([#532](https://github.com/jest-community/eslint-plugin-jest/issues/532))
+  ([c12b725](https://github.com/jest-community/eslint-plugin-jest/commit/c12b7251ef1506073d268973b93c7fc9fbcf50af))
+
+### Features
+
+- **valid-title:** support `disallowedWords` option
+  ([#522](https://github.com/jest-community/eslint-plugin-jest/issues/522))
+  ([38bbe93](https://github.com/jest-community/eslint-plugin-jest/commit/38bbe93794ed456c6e9e5d7be848b2aeb55ce0ba))
+
+# [23.6.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.5.0...v23.6.0) (2020-01-12)
+
+### Features
+
+- **no-if:** support `switch` statements
+  ([#515](https://github.com/jest-community/eslint-plugin-jest/issues/515))
+  ([be4e49d](https://github.com/jest-community/eslint-plugin-jest/commit/be4e49dcecd64711e743f5e09d1ff24e4c6e1648))
+
+# [23.5.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.4.0...v23.5.0) (2020-01-12)
+
+### Features
+
+- **expect-expect:** support glob patterns for assertFunctionNames
+  ([#509](https://github.com/jest-community/eslint-plugin-jest/issues/509))
+  ([295ca9a](https://github.com/jest-community/eslint-plugin-jest/commit/295ca9a6969c77fadaa1a42d76e89cae992520a6))
+- **valid-expect:** refactor `valid-expect` linting messages
+  ([#501](https://github.com/jest-community/eslint-plugin-jest/issues/501))
+  ([7338362](https://github.com/jest-community/eslint-plugin-jest/commit/7338362420eb4970f99be2016bb4ded5732797e3))
+
+# [23.4.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.3.0...v23.4.0) (2020-01-10)
+
+### Features
+
+- **expect-expect:** support chained function names
+  ([#471](https://github.com/jest-community/eslint-plugin-jest/issues/471))
+  ([#508](https://github.com/jest-community/eslint-plugin-jest/issues/508))
+  ([beb1aec](https://github.com/jest-community/eslint-plugin-jest/commit/beb1aececee80589c182e95bc64ef01d97eb5e78))
+- **rules:** add support for function declaration as test case
+  ([#504](https://github.com/jest-community/eslint-plugin-jest/issues/504))
+  ([ac7fa48](https://github.com/jest-community/eslint-plugin-jest/commit/ac7fa487d05705bee1b2d5264d5096f0232ae1e1))
+
+# [23.3.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.2.0...v23.3.0) (2020-01-04)
+
+### Features
+
+- **rules:** add .concurrent support
+  ([#498](https://github.com/jest-community/eslint-plugin-jest/issues/498))
+  ([#502](https://github.com/jest-community/eslint-plugin-jest/issues/502))
+  ([dcba5f1](https://github.com/jest-community/eslint-plugin-jest/commit/dcba5f1f1c6429a8bce2ff9aae71c02a6ffa1c2b))
+
+# [23.2.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.1.1...v23.2.0) (2019-12-28)
+
+### Features
+
+- **valid-expect:** warn on `await expect()` with no assertions
+  ([#496](https://github.com/jest-community/eslint-plugin-jest/issues/496))
+  ([19798dd](https://github.com/jest-community/eslint-plugin-jest/commit/19798dd540c8a0f5ac7883f67a28ee67d9e5fc7a))
+
+## [23.1.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.1.0...v23.1.1) (2019-11-30)
+
+### Bug Fixes
+
+- **no-focused-tests:** detect table format uage of `.only.each`
+  ([#489](https://github.com/jest-community/eslint-plugin-jest/issues/489))
+  ([d03bcf4](https://github.com/jest-community/eslint-plugin-jest/commit/d03bcf49e9e4f068bead25a4bc4c962762d56c02))
+
+# [23.1.0](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.5...v23.1.0) (2019-11-29)
+
+### Features
+
+- **no-focused-tests:** check each with table format
+  ([#430](https://github.com/jest-community/eslint-plugin-jest/issues/430))
+  ([154c0b8](https://github.com/jest-community/eslint-plugin-jest/commit/154c0b8e5310f0c1bf715a8c60de5d84faa1bc48))
+
+## [23.0.5](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.4...v23.0.5) (2019-11-27)
+
+### Bug Fixes
+
+- typo in the `require-to-throw-message` docs
+  ([#487](https://github.com/jest-community/eslint-plugin-jest/issues/487))
+  ([3526213](https://github.com/jest-community/eslint-plugin-jest/commit/35262135e3bb407b9c40991d2651ca4b201eebff))
+
+## [23.0.4](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.3...v23.0.4) (2019-11-14)
+
+### Bug Fixes
+
+- get correct ruleName without specifying file extension
+  ([#473](https://github.com/jest-community/eslint-plugin-jest/issues/473))
+  ([f09203e](https://github.com/jest-community/eslint-plugin-jest/commit/f09203ed05a69c83baadf6149ae17513c85b170f))
+
+## [23.0.3](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.2...v23.0.3) (2019-11-08)
+
+### Bug Fixes
+
+- **no-test-callback:** don't provide fix for `async` functions
+  ([#469](https://github.com/jest-community/eslint-plugin-jest/issues/469))
+  ([09111e0](https://github.com/jest-community/eslint-plugin-jest/commit/09111e0c951aaa930c9a2c8e0ca84251b3196e94)),
+  closes [#466](https://github.com/jest-community/eslint-plugin-jest/issues/466)
+
+## [23.0.2](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.1...v23.0.2) (2019-10-28)
+
+### Bug Fixes
+
+- **prefer-todo:** ensure argument exists before trying to access it
+  ([#462](https://github.com/jest-community/eslint-plugin-jest/issues/462))
+  ([a87c8c2](https://github.com/jest-community/eslint-plugin-jest/commit/a87c8c29e1faf9d5364c9074d988aa95ef6cc987))
+
+## [23.0.1](https://github.com/jest-community/eslint-plugin-jest/compare/v23.0.0...v23.0.1) (2019-10-28)
+
+### Bug Fixes
+
+- **valid-title:** ignore string addition
+  ([#461](https://github.com/jest-community/eslint-plugin-jest/issues/461))
+  ([b7c1be2](https://github.com/jest-community/eslint-plugin-jest/commit/b7c1be2f279b87366332fb2d3a3e49a71aa75711))
+
+# [22.2.0](https://github.com/jest-community/eslint-plugin-jest/compare/v22.1.3...v22.2.0) (2019-01-29)
+
+### Features
+
+- **rules:** add prefer-todo rule
+  ([#218](https://github.com/jest-community/eslint-plugin-jest/issues/218))
+  ([0933d82](https://github.com/jest-community/eslint-plugin-jest/commit/0933d82)),
+  closes [#217](https://github.com/jest-community/eslint-plugin-jest/issues/217)

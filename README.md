@@ -1,521 +1,250 @@
-# eslint-plugin-import
+<div align="center">
+  <a href="https://eslint.org/">
+    <img width="150" height="150" src="https://eslint.org/assets/img/logo.svg">
+  </a>
+  <a href="https://facebook.github.io/jest/">
+    <img width="150" height="150" vspace="" hspace="25" src="https://jestjs.io/img/jest.png">
+  </a>
+  <h1>eslint-plugin-jest</h1>
+  <p>ESLint plugin for Jest</p>
+</div>
 
-[![github actions][actions-image]][actions-url]
-[![travis-ci](https://travis-ci.org/import-js/eslint-plugin-import.svg?branch=main)](https://travis-ci.org/import-js/eslint-plugin-import)
-[![coverage][codecov-image]][codecov-url]
-[![win32 build status](https://ci.appveyor.com/api/projects/status/3mw2fifalmjlqf56/branch/main?svg=true)](https://ci.appveyor.com/project/import-js/eslint-plugin-import/branch/main)
-[![npm](https://img.shields.io/npm/v/eslint-plugin-import.svg)](https://www.npmjs.com/package/eslint-plugin-import)
-[![npm downloads](https://img.shields.io/npm/dt/eslint-plugin-import.svg?maxAge=2592000)](https://www.npmtrends.com/eslint-plugin-import)
-
-This plugin intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names. All the goodness that the ES2015+ static module syntax intends to provide, marked up in your editor.
-
-**IF YOU ARE USING THIS WITH SUBLIME**: see the [bottom section](#sublimelinter-eslint) for important info.
-
-## Rules
-
-### Static analysis
-
-* Ensure imports point to a file/module that can be resolved. ([`no-unresolved`])
-* Ensure named imports correspond to a named export in the remote file. ([`named`])
-* Ensure a default export is present, given a default import. ([`default`])
-* Ensure imported namespaces contain dereferenced properties as they are dereferenced. ([`namespace`])
-* Restrict which files can be imported in a given folder ([`no-restricted-paths`])
-* Forbid import of modules using absolute paths ([`no-absolute-path`])
-* Forbid `require()` calls with expressions ([`no-dynamic-require`])
-* Prevent importing the submodules of other modules ([`no-internal-modules`])
-* Forbid webpack loader syntax in imports ([`no-webpack-loader-syntax`])
-* Forbid a module from importing itself ([`no-self-import`])
-* Forbid a module from importing a module with a dependency path back to itself ([`no-cycle`])
-* Prevent unnecessary path segments in import and require statements ([`no-useless-path-segments`])
-* Forbid importing modules from parent directories ([`no-relative-parent-imports`])
-* Prevent importing packages through relative paths ([`no-relative-packages`])
-
-[`no-unresolved`]: ./docs/rules/no-unresolved.md
-[`named`]: ./docs/rules/named.md
-[`default`]: ./docs/rules/default.md
-[`namespace`]: ./docs/rules/namespace.md
-[`no-restricted-paths`]: ./docs/rules/no-restricted-paths.md
-[`no-absolute-path`]: ./docs/rules/no-absolute-path.md
-[`no-dynamic-require`]: ./docs/rules/no-dynamic-require.md
-[`no-internal-modules`]: ./docs/rules/no-internal-modules.md
-[`no-webpack-loader-syntax`]: ./docs/rules/no-webpack-loader-syntax.md
-[`no-self-import`]: ./docs/rules/no-self-import.md
-[`no-cycle`]: ./docs/rules/no-cycle.md
-[`no-useless-path-segments`]: ./docs/rules/no-useless-path-segments.md
-[`no-relative-parent-imports`]: ./docs/rules/no-relative-parent-imports.md
-[`no-relative-packages`]: ./docs/rules/no-relative-packages.md
-
-### Helpful warnings
-
-
-* Report any invalid exports, i.e. re-export of the same name ([`export`])
-* Report use of exported name as identifier of default export ([`no-named-as-default`])
-* Report use of exported name as property of default export ([`no-named-as-default-member`])
-* Report imported names marked with `@deprecated` documentation tag ([`no-deprecated`])
-* Forbid the use of extraneous packages ([`no-extraneous-dependencies`])
-* Forbid the use of mutable exports with `var` or `let`. ([`no-mutable-exports`])
-* Report modules without exports, or exports without matching import in another module ([`no-unused-modules`])
-
-[`export`]: ./docs/rules/export.md
-[`no-named-as-default`]: ./docs/rules/no-named-as-default.md
-[`no-named-as-default-member`]: ./docs/rules/no-named-as-default-member.md
-[`no-deprecated`]: ./docs/rules/no-deprecated.md
-[`no-extraneous-dependencies`]: ./docs/rules/no-extraneous-dependencies.md
-[`no-mutable-exports`]: ./docs/rules/no-mutable-exports.md
-[`no-unused-modules`]: ./docs/rules/no-unused-modules.md
-
-### Module systems
-
-* Report potentially ambiguous parse goal (`script` vs. `module`) ([`unambiguous`])
-* Report CommonJS `require` calls and `module.exports` or `exports.*`. ([`no-commonjs`])
-* Report AMD `require` and `define` calls. ([`no-amd`])
-* No Node.js builtin modules. ([`no-nodejs-modules`])
-* Forbid imports with CommonJS exports ([`no-import-module-exports`])
-
-[`unambiguous`]: ./docs/rules/unambiguous.md
-[`no-commonjs`]: ./docs/rules/no-commonjs.md
-[`no-amd`]: ./docs/rules/no-amd.md
-[`no-nodejs-modules`]: ./docs/rules/no-nodejs-modules.md
-[`no-import-module-exports`]: ./docs/rules/no-import-module-exports.md
-
-
-### Style guide
-
-* Ensure all imports appear before other statements ([`first`])
-* Ensure all exports appear after other statements ([`exports-last`])
-* Report repeated import of the same module in multiple places ([`no-duplicates`])
-* Forbid namespace (a.k.a. "wildcard" `*`) imports ([`no-namespace`])
-* Ensure consistent use of file extension within the import path ([`extensions`])
-* Enforce a convention in module import order ([`order`])
-* Enforce a newline after import statements ([`newline-after-import`])
-* Prefer a default export if module exports a single name ([`prefer-default-export`])
-* Limit the maximum number of dependencies a module can have ([`max-dependencies`])
-* Forbid unassigned imports ([`no-unassigned-import`])
-* Forbid named default exports ([`no-named-default`])
-* Forbid default exports ([`no-default-export`])
-* Forbid named exports ([`no-named-export`])
-* Forbid anonymous values as default exports ([`no-anonymous-default-export`])
-* Prefer named exports to be grouped together in a single export declaration ([`group-exports`])
-* Enforce a leading comment with the webpackChunkName for dynamic imports ([`dynamic-import-chunkname`])
-
-[`first`]: ./docs/rules/first.md
-[`exports-last`]: ./docs/rules/exports-last.md
-[`no-duplicates`]: ./docs/rules/no-duplicates.md
-[`no-namespace`]: ./docs/rules/no-namespace.md
-[`extensions`]: ./docs/rules/extensions.md
-[`order`]: ./docs/rules/order.md
-[`newline-after-import`]: ./docs/rules/newline-after-import.md
-[`prefer-default-export`]: ./docs/rules/prefer-default-export.md
-[`max-dependencies`]: ./docs/rules/max-dependencies.md
-[`no-unassigned-import`]: ./docs/rules/no-unassigned-import.md
-[`no-named-default`]: ./docs/rules/no-named-default.md
-[`no-anonymous-default-export`]: ./docs/rules/no-anonymous-default-export.md
-[`group-exports`]: ./docs/rules/group-exports.md
-[`no-default-export`]: ./docs/rules/no-default-export.md
-[`no-named-export`]: ./docs/rules/no-named-export.md
-[`dynamic-import-chunkname`]: ./docs/rules/dynamic-import-chunkname.md
-
-## `eslint-plugin-import` for enterprise
-
-Available as part of the Tidelift Subscription.
-
-The maintainers of `eslint-plugin-import` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-eslint-plugin-import?utm_source=npm-eslint-plugin-import&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
+[![Actions Status](https://github.com/jest-community/eslint-plugin-jest/actions/workflows/nodejs.yml/badge.svg?branch=main)](https://github.com/jest-community/eslint-plugin-jest/actions)
 
 ## Installation
 
-```sh
-npm install eslint-plugin-import -g
+```bash
+yarn add --dev eslint eslint-plugin-jest
 ```
 
-or if you manage ESLint as a dev dependency:
+**Note:** If you installed ESLint globally then you must also install
+`eslint-plugin-jest` globally.
 
-```sh
-# inside your project's working tree
-npm install eslint-plugin-import --save-dev
-```
+## Usage
 
-All rules are off by default. However, you may configure them manually
-in your `.eslintrc.(yml|json|js)`, or extend one of the canned configs:
-
-```yaml
----
-extends:
-  - eslint:recommended
-  - plugin:import/recommended
-  # alternatively, 'recommended' is the combination of these two rule sets:
-  - plugin:import/errors
-  - plugin:import/warnings
-
-# or configure manually:
-plugins:
-  - import
-
-rules:
-  import/no-unresolved: [2, {commonjs: true, amd: true}]
-  import/named: 2
-  import/namespace: 2
-  import/default: 2
-  import/export: 2
-  # etc...
-```
-
-# TypeScript
-
-You may use the following shortcut or assemble your own config using the granular settings described below.
-
-Make sure you have installed [`@typescript-eslint/parser`] which is used in the following configuration. Unfortunately NPM does not allow to list optional peer dependencies.
-
-```yaml
-extends:
-  - eslint:recommended
-  - plugin:import/recommended
-  - plugin:import/typescript # this line does the trick
-```
-
-[`@typescript-eslint/parser`]: https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser
-
-You will also need to install and configure the TypeScript resolver:
-[`eslint-import-resolver-typescript`](https://github.com/alexgorbatchev/eslint-import-resolver-typescript).
-
-# Resolvers
-
-With the advent of module bundlers and the current state of modules and module
-syntax specs, it's not always obvious where `import x from 'module'` should look
-to find the file behind `module`.
-
-Up through v0.10ish, this plugin has directly used substack's [`resolve`] plugin,
-which implements Node's import behavior. This works pretty well in most cases.
-
-However, webpack allows a number of things in import module source strings that
-Node does not, such as loaders (`import 'file!./whatever'`) and a number of
-aliasing schemes, such as [`externals`]: mapping a module id to a global name at
-runtime (allowing some modules to be included more traditionally via script tags).
-
-In the interest of supporting both of these, v0.11 introduces resolvers.
-
-Currently [Node] and [webpack] resolution have been implemented, but the
-resolvers are just npm packages, so [third party packages are supported](https://github.com/import-js/eslint-plugin-import/wiki/Resolvers) (and encouraged!).
-
-You can reference resolvers in several ways (in order of precedence):
-
-- as a conventional `eslint-import-resolver` name, like `eslint-import-resolver-foo`:
-
-```yaml
-# .eslintrc.yml
-settings:
-  # uses 'eslint-import-resolver-foo':
-  import/resolver: foo
-```
-```js
-// .eslintrc.js
-module.exports = {
-  settings: {
-    'import/resolver': {
-      foo: { someConfig: value }
-    }
-  }
-}
-```
-
-- with a full npm module name, like `my-awesome-npm-module`:
-
-```yaml
-# .eslintrc.yml
-settings:
-  import/resolver: 'my-awesome-npm-module'
-```
-```js
-// .eslintrc.js
-module.exports = {
-  settings: {
-    'import/resolver': {
-      'my-awesome-npm-module': { someConfig: value }
-    }
-  }
-}
-```
-
-- with a filesystem path to resolver, defined in this example as a `computed property` name:
-
-```js
-// .eslintrc.js
-module.exports = {
-  settings: {
-    'import/resolver': {
-      [path.resolve('../../../my-resolver')]: { someConfig: value }
-    }
-  }
-}
-```
-
-Relative paths will be resolved relative to the source's nearest `package.json` or
-the process's current working directory if no `package.json` is found.
-
-
-
-If you are interesting in writing a resolver, see the [spec](./resolvers/README.md) for more details.
-
-[`resolve`]: https://www.npmjs.com/package/resolve
-[`externals`]: https://webpack.github.io/docs/library-and-externals.html
-
-[Node]: https://www.npmjs.com/package/eslint-import-resolver-node
-[webpack]: https://www.npmjs.com/package/eslint-import-resolver-webpack
-
-# Settings
-
-You may set the following settings in your `.eslintrc`:
-
-#### `import/extensions`
-
-A list of file extensions that will be parsed as modules and inspected for
-`export`s.
-
-This defaults to `['.js']`, unless you are using the `react` shared config,
-in which case it is specified as `['.js', '.jsx']`.
-
-```js
-"settings": {
-  "import/extensions": [
-    ".js",
-    ".jsx"
-  ]
-}
-```
-
-If you require more granular extension definitions, you can use:
-
-```js
-"settings": {
-  "import/resolver": {
-    "node": {
-      "extensions": [
-        ".js",
-        ".jsx"
-      ]
-    }
-  }
-}
-```
-
-Note that this is different from (and likely a subset of) any `import/resolver`
-extensions settings, which may include `.json`, `.coffee`, etc. which will still
-factor into the `no-unresolved` rule.
-
-Also, the following `import/ignore` patterns will overrule this list.
-
-#### `import/ignore`
-
-A list of regex strings that, if matched by a path, will
-not report the matching module if no `export`s are found.
-In practice, this means rules other than [`no-unresolved`](./docs/rules/no-unresolved.md#ignore) will not report on any
-`import`s with (absolute filesystem) paths matching this pattern.
-
-`no-unresolved` has its own [`ignore`](./docs/rules/no-unresolved.md#ignore) setting.
-
-```yaml
-settings:
-  import/ignore:
-    - \.coffee$          # fraught with parse errors
-    - \.(scss|less|css)$ # can't parse unprocessed CSS modules, either
-```
-
-#### `import/core-modules`
-
-An array of additional modules to consider as "core" modules--modules that should
-be considered resolved but have no path on the filesystem. Your resolver may
-already define some of these (for example, the Node resolver knows about `fs` and
-`path`), so you need not redefine those.
-
-For example, Electron exposes an `electron` module:
-
-```js
-import 'electron'  // without extra config, will be flagged as unresolved!
-```
-
-that would otherwise be unresolved. To avoid this, you may provide `electron` as a
-core module:
-
-```yaml
-# .eslintrc.yml
-settings:
-  import/core-modules: [ electron ]
-```
-
-In Electron's specific case, there is a shared config named `electron`
-that specifies this for you.
-
-Contribution of more such shared configs for other platforms are welcome!
-
-#### `import/external-module-folders`
-
-An array of folders. Resolved modules only from those folders will be considered as "external". By default - `["node_modules"]`. Makes sense if you have configured your path or webpack to handle your internal paths differently and want to consider modules from some folders, for example `bower_components` or `jspm_modules`, as "external".
-
-This option is also useful in a monorepo setup: list here all directories that contain monorepo's packages and they will be treated as external ones no matter which resolver is used.
-
-If you are using `yarn` PnP as your package manager, add the `.yarn` folder and all your installed dependencies will be considered as `external`, instead of `internal`.
-
-Each item in this array is either a folder's name, its subpath, or its absolute prefix path:
-
-- `jspm_modules` will match any file or folder named `jspm_modules` or which has a direct or non-direct parent named `jspm_modules`, e.g. `/home/me/project/jspm_modules` or `/home/me/project/jspm_modules/some-pkg/index.js`.
-
-- `packages/core` will match any path that contains these two segments, for example `/home/me/project/packages/core/src/utils.js`.
-
-- `/home/me/project/packages` will only match files and directories inside this directory, and the directory itself.
-
-Please note that incomplete names are not allowed here so `components` won't match `bower_components` and `packages/ui` won't match `packages/ui-utils` (but will match `packages/ui/utils`).
-
-#### `import/parsers`
-
-A map from parsers to file extension arrays. If a file extension is matched, the
-dependency parser will require and use the map key as the parser instead of the
-configured ESLint parser. This is useful if you're inter-op-ing with TypeScript
-directly using webpack, for example:
-
-```yaml
-# .eslintrc.yml
-settings:
-  import/parsers:
-    @typescript-eslint/parser: [ .ts, .tsx ]
-```
-
-In this case, [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser)
-must be installed and require-able from the running `eslint` module's location
-(i.e., install it as a peer of ESLint).
-
-This is currently only tested with `@typescript-eslint/parser` (and its predecessor,
-`typescript-eslint-parser`) but should theoretically work with any moderately
-ESTree-compliant parser.
-
-It's difficult to say how well various plugin features will be supported, too,
-depending on how far down the rabbit hole goes. Submit an issue if you find strange
-behavior beyond here, but steel your heart against the likely outcome of closing
-with `wontfix`.
-
-
-#### `import/resolver`
-
-See [resolvers](#resolvers).
-
-#### `import/cache`
-
-Settings for cache behavior. Memoization is used at various levels to avoid the copious amount of `fs.statSync`/module parse calls required to correctly report errors.
-
-For normal `eslint` console runs, the cache lifetime is irrelevant, as we can strongly assume that files should not be changing during the lifetime of the linter process (and thus, the cache in memory)
-
-For long-lasting processes, like [`eslint_d`] or [`eslint-loader`], however, it's important that there be some notion of staleness.
-
-If you never use [`eslint_d`] or [`eslint-loader`], you may set the cache lifetime to `Infinity` and everything should be fine:
-
-```yaml
-# .eslintrc.yml
-settings:
-  import/cache:
-    lifetime: ∞  # or Infinity
-```
-
-Otherwise, set some integer, and cache entries will be evicted after that many seconds have elapsed:
-
-```yaml
-# .eslintrc.yml
-settings:
-  import/cache:
-    lifetime: 5  # 30 is the default
-```
-
-[`eslint_d`]: https://www.npmjs.com/package/eslint_d
-[`eslint-loader`]: https://www.npmjs.com/package/eslint-loader
-
-#### `import/internal-regex`
-
-A regex for packages should be treated as internal. Useful when you are utilizing a monorepo setup or developing a set of packages that depend on each other.
-
-By default, any package referenced from [`import/external-module-folders`](#importexternal-module-folders) will be considered as "external", including packages in a monorepo like yarn workspace or lerna environment. If you want to mark these packages as "internal" this will be useful.
-
-For example, if your packages in a monorepo are all in `@scope`, you can configure `import/internal-regex` like this
-
-```yaml
-# .eslintrc.yml
-settings:
-  import/internal-regex: ^@scope/
-```
-
-
-## SublimeLinter-eslint
-
-SublimeLinter-eslint introduced a change to support `.eslintignore` files
-which altered the way file paths are passed to ESLint when linting during editing.
-This change sends a relative path instead of the absolute path to the file (as ESLint
-normally provides), which can make it impossible for this plugin to resolve dependencies
-on the filesystem.
-
-This workaround should no longer be necessary with the release of ESLint 2.0, when
-`.eslintignore` will be updated to work more like a `.gitignore`, which should
-support proper ignoring of absolute paths via `--stdin-filename`.
-
-In the meantime, see [roadhump/SublimeLinter-eslint#58](https://github.com/roadhump/SublimeLinter-eslint/issues/58)
-for more details and discussion, but essentially, you may find you need to add the following
-`SublimeLinter` config to your Sublime project file:
+Add `jest` to the plugins section of your `.eslintrc` configuration file. You
+can omit the `eslint-plugin-` prefix:
 
 ```json
 {
-    "folders":
-    [
-        {
-            "path": "code"
-        }
-    ],
-    "SublimeLinter":
-    {
-        "linters":
-        {
-            "eslint":
-            {
-                "chdir": "${project}/code"
-            }
-        }
-    }
+  "plugins": ["jest"]
 }
 ```
 
-Note that `${project}/code` matches the `code` provided at `folders[0].path`.
-
-The purpose of the `chdir` setting, in this case, is to set the working directory
-from which ESLint is executed to be the same as the directory on which SublimeLinter-eslint
-bases the relative path it provides.
-
-See the SublimeLinter docs on [`chdir`](https://www.sublimelinter.com/en/latest/linter_settings.html#chdir)
-for more information, in case this does not work with your project.
-
-If you are not using `.eslintignore`, or don't have a Sublime project file, you can also
-do the following via a `.sublimelinterrc` file in some ancestor directory of your
-code:
+Then configure the rules you want to use under the rules section.
 
 ```json
 {
-  "linters": {
-    "eslint": {
-      "args": ["--stdin-filename", "@"]
+  "rules": {
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
+  }
+}
+```
+
+You can also tell ESLint about the environment variables provided by Jest by
+doing:
+
+```json
+{
+  "env": {
+    "jest/globals": true
+  }
+}
+```
+
+This is included in all configs shared by this plugin, so can be omitted if
+extending them.
+
+### Jest `version` setting
+
+The behaviour of some rules (specifically [`no-deprecated-functions`][]) change
+depending on the version of Jest being used.
+
+By default, this plugin will attempt to determine to locate Jest using
+`require.resolve`, meaning it will start looking in the closest `node_modules`
+folder to the file being linted and work its way up.
+
+Since we cache the automatically determined version, if you're linting
+sub-folders that have different versions of Jest, you may find that the wrong
+version of Jest is considered when linting. You can work around this by
+providing the Jest version explicitly in nested ESLint configs:
+
+```json
+{
+  "settings": {
+    "jest": {
+      "version": 27
     }
   }
 }
 ```
 
-I also found that I needed to set `rc_search_limit` to `null`, which removes the file
-hierarchy search limit when looking up the directory tree for `.sublimelinterrc`:
+To avoid hard-coding a number, you can also fetch it from the installed version
+of Jest if you use a JavaScript config file such as `.eslintrc.js`:
 
-In Package Settings / SublimeLinter / User Settings:
+```js
+module.exports = {
+  settings: {
+    jest: {
+      version: require('jest/package.json').version,
+    },
+  },
+};
+```
+
+## Shareable configurations
+
+### Recommended
+
+This plugin exports a recommended configuration that enforces good testing
+practices.
+
+To enable this configuration use the `extends` property in your `.eslintrc`
+config file:
+
 ```json
 {
-  "user": {
-    "rc_search_limit": null
-  }
+  "extends": ["plugin:jest/recommended"]
 }
 ```
 
-I believe this defaults to `3`, so you may not need to alter it depending on your
-project folder max depth.
+### Style
 
-[codecov-image]: https://codecov.io/gh/import-js/eslint-plugin-import/branch/main/graphs/badge.svg
-[codecov-url]: https://app.codecov.io/gh/import-js/eslint-plugin-import/
-[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/import-js/eslint-plugin-import
-[actions-url]: https://github.com/import-js/eslint-plugin-import
+This plugin also exports a configuration named `style`, which adds some
+stylistic rules, such as `prefer-to-be-null`, which enforces usage of `toBeNull`
+over `toBe(null)`.
+
+To enable this configuration use the `extends` property in your `.eslintrc`
+config file:
+
+```json
+{
+  "extends": ["plugin:jest/style"]
+}
+```
+
+See
+[ESLint documentation](http://eslint.org/docs/user-guide/configuring#extending-configuration-files)
+for more information about extending configuration files.
+
+### All
+
+If you want to enable all rules instead of only some you can do so by adding the
+`all` configuration to your `.eslintrc` config file:
+
+```json
+{
+  "extends": ["plugin:jest/all"]
+}
+```
+
+While the `recommended` and `style` configurations only change in major versions
+the `all` configuration may change in any release and is thus unsuited for
+installations requiring long-term consistency.
+
+## Rules
+
+<!-- begin base rules list -->
+
+| Rule                                                                         | Description                                                         | Configurations   | Fixable      |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------- | ------------ |
+| [consistent-test-it](docs/rules/consistent-test-it.md)                       | Have control over `test` and `it` usages                            |                  | ![fixable][] |
+| [expect-expect](docs/rules/expect-expect.md)                                 | Enforce assertion to be made in a test body                         | ![recommended][] |              |
+| [lowercase-name](docs/rules/lowercase-name.md)                               | Enforce lowercase test names                                        |                  | ![fixable][] |
+| [max-nested-describe](docs/rules/max-nested-describe.md)                     | Enforces a maximum depth to nested describe calls                   |                  |              |
+| [no-alias-methods](docs/rules/no-alias-methods.md)                           | Disallow alias methods                                              | ![style][]       | ![fixable][] |
+| [no-commented-out-tests](docs/rules/no-commented-out-tests.md)               | Disallow commented out tests                                        | ![recommended][] |              |
+| [no-conditional-expect](docs/rules/no-conditional-expect.md)                 | Prevent calling `expect` conditionally                              | ![recommended][] |              |
+| [no-deprecated-functions](docs/rules/no-deprecated-functions.md)             | Disallow use of deprecated functions                                | ![recommended][] | ![fixable][] |
+| [no-disabled-tests](docs/rules/no-disabled-tests.md)                         | Disallow disabled tests                                             | ![recommended][] |              |
+| [no-done-callback](docs/rules/no-done-callback.md)                           | Avoid using a callback in asynchronous tests and hooks              | ![recommended][] | ![suggest][] |
+| [no-duplicate-hooks](docs/rules/no-duplicate-hooks.md)                       | Disallow duplicate setup and teardown hooks                         |                  |              |
+| [no-export](docs/rules/no-export.md)                                         | Disallow using `exports` in files containing tests                  | ![recommended][] |              |
+| [no-focused-tests](docs/rules/no-focused-tests.md)                           | Disallow focused tests                                              | ![recommended][] | ![suggest][] |
+| [no-hooks](docs/rules/no-hooks.md)                                           | Disallow setup and teardown hooks                                   |                  |              |
+| [no-identical-title](docs/rules/no-identical-title.md)                       | Disallow identical titles                                           | ![recommended][] |              |
+| [no-if](docs/rules/no-if.md)                                                 | Disallow conditional logic                                          |                  |              |
+| [no-interpolation-in-snapshots](docs/rules/no-interpolation-in-snapshots.md) | Disallow string interpolation inside snapshots                      | ![recommended][] |              |
+| [no-jasmine-globals](docs/rules/no-jasmine-globals.md)                       | Disallow Jasmine globals                                            | ![recommended][] | ![fixable][] |
+| [no-jest-import](docs/rules/no-jest-import.md)                               | Disallow importing Jest                                             | ![recommended][] |              |
+| [no-large-snapshots](docs/rules/no-large-snapshots.md)                       | disallow large snapshots                                            |                  |              |
+| [no-mocks-import](docs/rules/no-mocks-import.md)                             | Disallow manually importing from `__mocks__`                        | ![recommended][] |              |
+| [no-restricted-matchers](docs/rules/no-restricted-matchers.md)               | Disallow specific matchers & modifiers                              |                  |              |
+| [no-standalone-expect](docs/rules/no-standalone-expect.md)                   | Disallow using `expect` outside of `it` or `test` blocks            | ![recommended][] |              |
+| [no-test-prefixes](docs/rules/no-test-prefixes.md)                           | Use `.only` and `.skip` over `f` and `x`                            | ![recommended][] | ![fixable][] |
+| [no-test-return-statement](docs/rules/no-test-return-statement.md)           | Disallow explicitly returning from tests                            |                  |              |
+| [prefer-called-with](docs/rules/prefer-called-with.md)                       | Suggest using `toBeCalledWith()` or `toHaveBeenCalledWith()`        |                  |              |
+| [prefer-expect-assertions](docs/rules/prefer-expect-assertions.md)           | Suggest using `expect.assertions()` OR `expect.hasAssertions()`     |                  | ![suggest][] |
+| [prefer-expect-resolves](docs/rules/prefer-expect-resolves.md)               | Prefer `await expect(...).resolves` over `expect(await ...)` syntax |                  | ![fixable][] |
+| [prefer-hooks-on-top](docs/rules/prefer-hooks-on-top.md)                     | Suggest having hooks before any test cases                          |                  |              |
+| [prefer-spy-on](docs/rules/prefer-spy-on.md)                                 | Suggest using `jest.spyOn()`                                        |                  | ![fixable][] |
+| [prefer-strict-equal](docs/rules/prefer-strict-equal.md)                     | Suggest using `toStrictEqual()`                                     |                  | ![suggest][] |
+| [prefer-to-be](docs/rules/prefer-to-be.md)                                   | Suggest using `toBe()` for primitive literals                       |                  | ![fixable][] |
+| [prefer-to-contain](docs/rules/prefer-to-contain.md)                         | Suggest using `toContain()`                                         | ![style][]       | ![fixable][] |
+| [prefer-to-have-length](docs/rules/prefer-to-have-length.md)                 | Suggest using `toHaveLength()`                                      | ![style][]       | ![fixable][] |
+| [prefer-todo](docs/rules/prefer-todo.md)                                     | Suggest using `test.todo`                                           |                  | ![fixable][] |
+| [require-hook](docs/rules/require-hook.md)                                   | Require setup and teardown code to be within a hook                 |                  |              |
+| [require-to-throw-message](docs/rules/require-to-throw-message.md)           | Require a message for `toThrow()`                                   |                  |              |
+| [require-top-level-describe](docs/rules/require-top-level-describe.md)       | Require test cases and hooks to be inside a `describe` block        |                  |              |
+| [valid-describe](docs/rules/valid-describe.md)                               | Enforce valid `describe()` callback                                 | ![recommended][] |              |
+| [valid-expect](docs/rules/valid-expect.md)                                   | Enforce valid `expect()` usage                                      | ![recommended][] |              |
+| [valid-expect-in-promise](docs/rules/valid-expect-in-promise.md)             | Ensure promises that have expectations in their chain are valid     | ![recommended][] |              |
+| [valid-title](docs/rules/valid-title.md)                                     | Enforce valid titles                                                | ![recommended][] | ![fixable][] |
+
+<!-- end base rules list -->
+
+## TypeScript Rules
+
+In addition to the above rules, this plugin also includes a few advanced rules
+that are powered by type-checking information provided by TypeScript.
+
+In order to use these rules, you must be using `@typescript-eslint/parser` &
+adjust your eslint config as outlined
+[here](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)
+
+Note that unlike the type-checking rules in `@typescript-eslint/eslint-plugin`,
+the rules here will fallback to doing nothing if type information is not
+available, meaning its safe to include them in shared configs that could be used
+on JavaScript and TypeScript projects.
+
+Also note that `unbound-method` depends on `@typescript-eslint/eslint-plugin`,
+as it extends the original `unbound-method` rule from that plugin.
+
+<!-- begin type rules list -->
+
+| Rule                                           | Description                                                   | Configurations | Fixable |
+| ---------------------------------------------- | ------------------------------------------------------------- | -------------- | ------- |
+| [unbound-method](docs/rules/unbound-method.md) | Enforces unbound methods are called with their expected scope |                |         |
+
+<!-- end type rules list -->
+
+## Credit
+
+- [eslint-plugin-mocha](https://github.com/lo1tuma/eslint-plugin-mocha)
+- [eslint-plugin-jasmine](https://github.com/tlvince/eslint-plugin-jasmine)
+
+## Related Projects
+
+### eslint-plugin-jest-formatting
+
+This project aims to provide formatting rules (auto-fixable where possible) to
+ensure consistency and readability in jest test suites.
+
+https://github.com/dangreenisrael/eslint-plugin-jest-formatting
+
+### eslint-plugin-istanbul
+
+A set of rules to enforce good practices for Istanbul, one of the code coverage
+tools used by Jest.
+
+https://github.com/istanbuljs/eslint-plugin-istanbul
+
+[recommended]: https://img.shields.io/badge/-recommended-lightgrey.svg
+[suggest]: https://img.shields.io/badge/-suggest-yellow.svg
+[fixable]: https://img.shields.io/badge/-fixable-green.svg
+[style]: https://img.shields.io/badge/-style-blue.svg
+[`no-deprecated-functions`]: docs/rules/no-deprecated-functions.md
