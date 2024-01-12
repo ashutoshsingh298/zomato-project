@@ -1,11 +1,5 @@
 /*! @author Toru Nagashima <https://github.com/mysticatea> */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var evk = _interopDefault(require('eslint-visitor-keys'));
+import evk from 'eslint-visitor-keys';
 
 /**
  * Get the innermost scope which contains a given location.
@@ -1839,42 +1833,6 @@ var index = {
     ReferenceTracker,
 };
 
-exports.CALL = CALL;
-exports.CONSTRUCT = CONSTRUCT;
-exports.ESM = ESM;
-exports.PatternMatcher = PatternMatcher;
-exports.READ = READ;
-exports.ReferenceTracker = ReferenceTracker;
-exports.default = index;
-exports.findVariable = findVariable;
-exports.getFunctionHeadLocation = getFunctionHeadLocation;
-exports.getFunctionNameWithKind = getFunctionNameWithKind;
-exports.getInnermostScope = getInnermostScope;
-exports.getPropertyName = getPropertyName;
-exports.getStaticValue = getStaticValue;
-exports.getStringIfConstant = getStringIfConstant;
-exports.hasSideEffect = hasSideEffect;
-exports.isArrowToken = isArrowToken;
-exports.isClosingBraceToken = isClosingBraceToken;
-exports.isClosingBracketToken = isClosingBracketToken;
-exports.isClosingParenToken = isClosingParenToken;
-exports.isColonToken = isColonToken;
-exports.isCommaToken = isCommaToken;
-exports.isCommentToken = isCommentToken;
-exports.isNotArrowToken = isNotArrowToken;
-exports.isNotClosingBraceToken = isNotClosingBraceToken;
-exports.isNotClosingBracketToken = isNotClosingBracketToken;
-exports.isNotClosingParenToken = isNotClosingParenToken;
-exports.isNotColonToken = isNotColonToken;
-exports.isNotCommaToken = isNotCommaToken;
-exports.isNotCommentToken = isNotCommentToken;
-exports.isNotOpeningBraceToken = isNotOpeningBraceToken;
-exports.isNotOpeningBracketToken = isNotOpeningBracketToken;
-exports.isNotOpeningParenToken = isNotOpeningParenToken;
-exports.isNotSemicolonToken = isNotSemicolonToken;
-exports.isOpeningBraceToken = isOpeningBraceToken;
-exports.isOpeningBracketToken = isOpeningBracketToken;
-exports.isOpeningParenToken = isOpeningParenToken;
-exports.isParenthesized = isParenthesized;
-exports.isSemicolonToken = isSemicolonToken;
-//# sourceMappingURL=index.js.map
+export default index;
+export { CALL, CONSTRUCT, ESM, PatternMatcher, READ, ReferenceTracker, findVariable, getFunctionHeadLocation, getFunctionNameWithKind, getInnermostScope, getPropertyName, getStaticValue, getStringIfConstant, hasSideEffect, isArrowToken, isClosingBraceToken, isClosingBracketToken, isClosingParenToken, isColonToken, isCommaToken, isCommentToken, isNotArrowToken, isNotClosingBraceToken, isNotClosingBracketToken, isNotClosingParenToken, isNotColonToken, isNotCommaToken, isNotCommentToken, isNotOpeningBraceToken, isNotOpeningBracketToken, isNotOpeningParenToken, isNotSemicolonToken, isOpeningBraceToken, isOpeningBracketToken, isOpeningParenToken, isParenthesized, isSemicolonToken };
+//# sourceMappingURL=index.mjs.map
