@@ -1,288 +1,236 @@
-<h1 align="center">TypeScript ESTree</h1>
+<div align="center">
+  <a href="https://eslint.org/">
+    <img width="150" height="150" src="https://eslint.org/assets/img/logo.svg">
+  </a>
+  <a href="https://testing-library.com/">
+    <img width="150" height="150" src="https://raw.githubusercontent.com/testing-library/dom-testing-library/master/other/octopus.png">
+  </a>
+  <h1>eslint-plugin-testing-library</h1>
+  <p>ESLint plugin to follow best practices and anticipate common mistakes when writing tests with Testing Library</p>
+</div>
 
-<p align="center">A parser that converts TypeScript source code into an <a href="https://github.com/estree/estree">ESTree</a>-compatible form</p>
+<hr>
 
-<p align="center">
-    <img src="https://github.com/typescript-eslint/typescript-eslint/workflows/CI/badge.svg" alt="CI" />
-    <a href="https://www.npmjs.com/package/@typescript-eslint/typescript-estree"><img src="https://img.shields.io/npm/v/@typescript-eslint/typescript-estree.svg?style=flat-square" alt="NPM Version" /></a>
-    <a href="https://www.npmjs.com/package/@typescript-eslint/typescript-estree"><img src="https://img.shields.io/npm/dm/@typescript-eslint/typescript-estree.svg?style=flat-square" alt="NPM Downloads" /></a>
-</p>
+[![Build status][build-badge]][build-url]
+[![Package version][version-badge]][version-url]
+[![MIT License][license-badge]][license-url]
+<br>
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+[![PRs Welcome][pr-badge]][pr-url]
+<br>
+[![Watch on Github][gh-watchers-badge]][gh-watchers-url]
+[![Star on Github][gh-stars-badge]][gh-stars-url]
+[![Tweet][tweet-badge]][tweet-url]
 
-## Getting Started
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-**[You can find our Getting Started docs here](../../docs/getting-started/linting/README.md)**
+[![All Contributors](https://img.shields.io/badge/all_contributors-35-orange.svg?style=flat-square)](#contributors-)
 
-## About
-
-This parser is somewhat generic and robust, and could be used to power any use-case which requires taking TypeScript source code and producing an ESTree-compatible AST.
-
-In fact, it is already used within these hyper-popular open-source projects to power their TypeScript support:
-
-- [ESLint](https://eslint.org), the pluggable linting utility for JavaScript and JSX
-- [Prettier](https://prettier.io), an opinionated code formatter
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Installation
 
-```sh
-yarn add -D @typescript-eslint/typescript-estree
+You'll first need to install [ESLint](http://eslint.org):
+
+```
+$ npm i eslint --save-dev
 ```
 
-## API
+Next, install `eslint-plugin-testing-library`:
 
-### Parsing
+```
+$ npm install eslint-plugin-testing-library --save-dev
+```
 
-#### `parse(code, options)`
+**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-testing-library` globally.
 
-Parses the given string of code with the options provided and returns an ESTree-compatible AST.
+## Usage
 
-```ts
-interface ParseOptions {
-  /**
-   * create a top-level comments array containing all comments
-   */
-  comment?: boolean;
+Add `testing-library` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
-  /**
-   * An array of modules to turn explicit debugging on for.
-   * - 'typescript-eslint' is the same as setting the env var `DEBUG=typescript-eslint:*`
-   * - 'eslint' is the same as setting the env var `DEBUG=eslint:*`
-   * - 'typescript' is the same as setting `extendedDiagnostics: true` in your tsconfig compilerOptions
-   *
-   * For convenience, also supports a boolean:
-   * - true === ['typescript-eslint']
-   * - false === []
-   */
-  debugLevel?: boolean | ('typescript-eslint' | 'eslint' | 'typescript')[];
-
-  /**
-   * Cause the parser to error if it encounters an unknown AST node type (useful for testing).
-   * This case only usually occurs when TypeScript releases new features.
-   */
-  errorOnUnknownASTType?: boolean;
-
-  /**
-   * Absolute (or relative to `cwd`) path to the file being parsed.
-   */
-  filePath?: string;
-
-  /**
-   * Enable parsing of JSX.
-   * For more details, see https://www.typescriptlang.org/docs/handbook/jsx.html
-   *
-   * NOTE: this setting does not effect known file types (.js, .jsx, .ts, .tsx, .json) because the
-   * TypeScript compiler has its own internal handling for known file extensions.
-   *
-   * For the exact behavior, see https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser#parseroptionsecmafeaturesjsx
-   */
-  jsx?: boolean;
-
-  /**
-   * Controls whether the `loc` information to each node.
-   * The `loc` property is an object which contains the exact line/column the node starts/ends on.
-   * This is similar to the `range` property, except it is line/column relative.
-   */
-  loc?: boolean;
-
-  /*
-   * Allows overriding of function used for logging.
-   * When value is `false`, no logging will occur.
-   * When value is not provided, `console.log()` will be used.
-   */
-  loggerFn?: Function | false;
-
-  /**
-   * Controls whether the `range` property is included on AST nodes.
-   * The `range` property is a [number, number] which indicates the start/end index of the node in the file contents.
-   * This is similar to the `loc` property, except this is the absolute index.
-   */
-  range?: boolean;
-
-  /**
-   * Set to true to create a top-level array containing all tokens from the file.
-   */
-  tokens?: boolean;
-
-  /*
-   * The JSX AST changed the node type for string literals
-   * inside a JSX Element from `Literal` to `JSXText`.
-   * When value is `true`, these nodes will be parsed as type `JSXText`.
-   * When value is `false`, these nodes will be parsed as type `Literal`.
-   */
-  useJSXTextNode?: boolean;
+```json
+{
+  "plugins": ["testing-library"]
 }
-
-const PARSE_DEFAULT_OPTIONS: ParseOptions = {
-  comment: false,
-  errorOnUnknownASTType: false,
-  filePath: 'estree.ts', // or 'estree.tsx', if you pass jsx: true
-  jsx: false,
-  loc: false,
-  loggerFn: undefined,
-  range: false,
-  tokens: false,
-  useJSXTextNode: false,
-};
-
-declare function parse(
-  code: string,
-  options: ParseOptions = PARSE_DEFAULT_OPTIONS,
-): TSESTree.Program;
 ```
 
-Example usage:
+Then configure the rules you want to use under the rules section.
 
-```js
-import { parse } from '@typescript-eslint/typescript-estree';
-
-const code = `const hello: string = 'world';`;
-const ast = parse(code, {
-  loc: true,
-  range: true,
-});
-```
-
-#### `parseAndGenerateServices(code, options)`
-
-Parses the given string of code with the options provided and returns an ESTree-compatible AST. Accepts additional options which can be used to generate type information along with the AST.
-
-```ts
-interface ParseAndGenerateServicesOptions extends ParseOptions {
-  /**
-   * Causes the parser to error if the TypeScript compiler returns any unexpected syntax/semantic errors.
-   */
-  errorOnTypeScriptSyntacticAndSemanticIssues?: boolean;
-
-  /**
-   * When `project` is provided, this controls the non-standard file extensions which will be parsed.
-   * It accepts an array of file extensions, each preceded by a `.`.
-   */
-  extraFileExtensions?: string[];
-
-  /**
-   * Absolute (or relative to `tsconfigRootDir`) path to the file being parsed.
-   * When `project` is provided, this is required, as it is used to fetch the file from the TypeScript compiler's cache.
-   */
-  filePath?: string;
-
-  /**
-   * Allows the user to control whether or not two-way AST node maps are preserved
-   * during the AST conversion process.
-   *
-   * By default: the AST node maps are NOT preserved, unless `project` has been specified,
-   * in which case the maps are made available on the returned `parserServices`.
-   *
-   * NOTE: If `preserveNodeMaps` is explicitly set by the user, it will be respected,
-   * regardless of whether or not `project` is in use.
-   */
-  preserveNodeMaps?: boolean;
-
-  /**
-   * Absolute (or relative to `tsconfigRootDir`) paths to the tsconfig(s).
-   * If this is provided, type information will be returned.
-   */
-  project?: string | string[];
-
-  /**
-   * If you provide a glob (or globs) to the project option, you can use this option to blacklist
-   * certain folders from being matched by the globs.
-   * Any project path that matches one or more of the provided regular expressions will be removed from the list.
-   *
-   * Accepts an array of strings that are passed to new RegExp(), or an array of regular expressions.
-   * By default, this is set to ["/node_modules/"]
-   */
-  projectFolderIgnoreList?: (string | RegExp)[];
-
-  /**
-   * The absolute path to the root directory for all provided `project`s.
-   */
-  tsconfigRootDir?: string;
-
-  /**
-   ***************************************************************************************
-   * IT IS RECOMMENDED THAT YOU DO NOT USE THIS OPTION, AS IT CAUSES PERFORMANCE ISSUES. *
-   ***************************************************************************************
-   *
-   * When passed with `project`, this allows the parser to create a catch-all, default program.
-   * This means that if the parser encounters a file not included in any of the provided `project`s,
-   * it will not error, but will instead parse the file and its dependencies in a new program.
-   */
-  createDefaultProgram?: boolean;
+```json
+{
+  "rules": {
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debug": "warn"
+  }
 }
-
-const PARSE_AND_GENERATE_SERVICES_DEFAULT_OPTIONS: ParseOptions = {
-  ...PARSE_DEFAULT_OPTIONS,
-  errorOnTypeScriptSyntacticAndSemanticIssues: false,
-  extraFileExtensions: [],
-  preserveNodeMaps: false, // or true, if you do not set this, but pass `project`
-  project: undefined,
-  projectFolderIgnoreList: ['/node_modules/'],
-  tsconfigRootDir: process.cwd(),
-};
-
-declare function parseAndGenerateServices(
-  code: string,
-  options: ParseOptions = PARSE_DEFAULT_OPTIONS,
-): TSESTree.Program;
 ```
 
-Example usage:
+## Shareable configurations
 
-```js
-import { parseAndGenerateServices } from '@typescript-eslint/typescript-estree';
+### Recommended
 
-const code = `const hello: string = 'world';`;
-const ast = parseAndGenerateServices(code, {
-  filePath: '/some/path/to/file/foo.ts',
-  loc: true,
-  project: './tsconfig.json',
-  range: true,
-});
+This plugin exports a recommended configuration that enforces good
+Testing Library practices _(you can find more info about enabled rules in
+the [Supported Rules section](#supported-rules) within the `Configurations` column)_.
+
+To enable this configuration use the `extends` property in your
+`.eslintrc` config file:
+
+```json
+{
+  "extends": ["plugin:testing-library/recommended"]
+}
 ```
 
-### `TSESTree`, `AST_NODE_TYPES` and `AST_TOKEN_TYPES`
+### Frameworks
 
-Types for the AST produced by the parse functions.
+Starting from the premise that
+[DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro)
+is the base for the rest of Testing Library frameworks wrappers, this
+plugin also exports different configuration for those frameworks that
+enforces good practices for specific rules that only apply to them _(you
+can find more info about enabled rules in
+the [Supported Rules section](#supported-rules) within the `Configurations` column)_.
 
-- `TSESTree` is a namespace which contains object types representing all of the AST Nodes produced by the parser.
-- `AST_NODE_TYPES` is an enum which provides the values for every single AST node's `type` property.
-- `AST_TOKEN_TYPES` is an enum which provides the values for every single AST token's `type` property.
+**Note that frameworks configurations enable their specific rules +
+recommended rules.**
 
-## Supported TypeScript Version
+Available frameworks configurations are:
 
-See the [Supported TypeScript Version](../../README.md#supported-typescript-version) section in the project root.
+#### Angular
 
-If you use a non-supported version of TypeScript, the parser will log a warning to the console.
+To enable this configuration use the `extends` property in your
+`.eslintrc` config file:
 
-**Please ensure that you are using a supported version before submitting any issues/bug reports.**
+```json
+{
+  "extends": ["plugin:testing-library/angular"]
+}
+```
 
-## Reporting Issues
+#### React
 
-Please check the current list of open and known issues and ensure the issue has not been reported before. When creating a new issue provide as much information about your environment as possible. This includes:
+To enable this configuration use the `extends` property in your
+`.eslintrc` config file:
 
-- TypeScript version
-- The `typescript-estree` version
+```json
+{
+  "extends": ["plugin:testing-library/react"]
+}
+```
 
-## AST Alignment Tests
+#### Vue
 
-A couple of years after work on this parser began, the TypeScript Team at Microsoft began [officially supporting TypeScript parsing via Babel](https://blogs.msdn.microsoft.com/typescript/2018/08/27/typescript-and-babel-7/).
+To enable this configuration use the `extends` property in your
+`.eslintrc` config file:
 
-I work closely with the TypeScript Team and we are gradually aligning the AST of this project with the one produced by Babel's parser. To that end, I have created a full test harness to compare the ASTs of the two projects which runs on every PR, please see the code for more details.
+```json
+{
+  "extends": ["plugin:testing-library/vue"]
+}
+```
 
-## Build/Test Commands
+## Supported Rules
 
-- `npm test` - run all tests
-- `npm run unit-tests` - run only unit tests
-- `npm run ast-alignment-tests` - run only Babylon AST alignment tests
+| Rule                                                                   | Description                                                                | Configurations                                                            | Fixable            |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------ |
+| [await-async-query](docs/rules/await-async-query.md)                   | Enforce async queries to have proper `await`                               | ![recommended-badge][] ![angular-badge][] ![react-badge][] ![vue-badge][] |                    |
+| [await-async-utils](docs/rules/await-async-utils.md)                   | Enforce async utils to be awaited properly                                 | ![recommended-badge][] ![angular-badge][] ![react-badge][] ![vue-badge][] |                    |
+| [await-fire-event](docs/rules/await-fire-event.md)                     | Enforce async fire event methods to be awaited                             | ![vue-badge][]                                                            |                    |
+| [consistent-data-testid](docs/rules/consistent-data-testid.md)         | Ensure `data-testid` values match a provided regex.                        |                                                                           |                    |
+| [no-await-sync-events](docs/rules/no-await-sync-events.md)             | Disallow unnecessary `await` for sync events                               |                                                                           |                    |
+| [no-await-sync-query](docs/rules/no-await-sync-query.md)               | Disallow unnecessary `await` for sync queries                              | ![recommended-badge][] ![angular-badge][] ![react-badge][] ![vue-badge][] |                    |
+| [no-debug](docs/rules/no-debug.md)                                     | Disallow the use of `debug`                                                | ![angular-badge][] ![react-badge][] ![vue-badge][]                        |                    |
+| [no-dom-import](docs/rules/no-dom-import.md)                           | Disallow importing from DOM Testing Library                                | ![angular-badge][] ![react-badge][] ![vue-badge][]                        | ![fixable-badge][] |
+| [no-manual-cleanup](docs/rules/no-manual-cleanup.md)                   | Disallow the use of `cleanup`                                              |                                                                           |                    |
+| [no-render-in-setup](docs/rules/no-render-in-setup.md)                 | Disallow the use of `render` in setup functions                            |                                                                           |                    |
+| [no-wait-for-empty-callback](docs/rules/no-wait-for-empty-callback.md) | Disallow empty callbacks for `waitFor` and `waitForElementToBeRemoved`     |                                                                           |                    |
+| [no-wait-for-snapshot](docs/rules/no-wait-for-snapshot.md)             | Ensures no snapshot is generated inside of a `waitFor` call                |                                                                           |                    |
+| [prefer-explicit-assert](docs/rules/prefer-explicit-assert.md)         | Suggest using explicit assertions rather than just `getBy*` queries        |                                                                           |                    |
+| [prefer-find-by](docs/rules/prefer-find-by.md)                         | Suggest using `findBy*` methods instead of the `waitFor` + `getBy` queries | ![recommended-badge][] ![angular-badge][] ![react-badge][] ![vue-badge][] | ![fixable-badge][] |
+| [prefer-presence-queries](docs/rules/prefer-presence-queries.md)       | Enforce specific queries when checking element is present or not           |                                                                           |                    |
+| [prefer-screen-queries](docs/rules/prefer-screen-queries.md)           | Suggest using screen while using queries                                   |                                                                           |                    |
+| [prefer-wait-for](docs/rules/prefer-wait-for.md)                       | Use `waitFor` instead of deprecated wait methods                           |                                                                           | ![fixable-badge][] |
 
-## Debugging
+[build-badge]: https://github.com/testing-library/eslint-plugin-testing-library/actions/workflows/pipeline.yml/badge.svg
+[build-url]: https://github.com/testing-library/eslint-plugin-testing-library/actions/workflows/pipeline.yml
+[version-badge]: https://img.shields.io/npm/v/eslint-plugin-testing-library?style=flat-square
+[version-url]: https://www.npmjs.com/package/eslint-plugin-testing-library
+[license-badge]: https://img.shields.io/npm/l/eslint-plugin-testing-library?style=flat-square
+[license-url]: https://github.com/belco90/eslint-plugin-testing-library/blob/main/license
+[pr-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[pr-url]: http://makeapullrequest.com
+[gh-watchers-badge]: https://img.shields.io/github/watchers/Belco90/eslint-plugin-testing-library?style=social
+[gh-watchers-url]: https://github.com/belco90/eslint-plugin-testing-library/watchers
+[gh-stars-badge]: https://img.shields.io/github/stars/Belco90/eslint-plugin-testing-library?style=social
+[gh-stars-url]: https://github.com/belco90/eslint-plugin-testing-library/stargazers
+[tweet-badge]: https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FBelco90%2Feslint-plugin-testing-library
+[tweet-url]: https://twitter.com/intent/tweet?url=https%3a%2f%2fgithub.com%2fbelco90%2feslint-plugin-testing-library&text=check%20out%20eslint-plugin-testing-library%20by%20@belcodev
+[recommended-badge]: https://img.shields.io/badge/recommended-lightgrey?style=flat-square
+[fixable-badge]: https://img.shields.io/badge/fixable-success?style=flat-square
+[angular-badge]: https://img.shields.io/badge/-Angular-black?style=flat-square&logo=angular&logoColor=white&labelColor=DD0031&color=black
+[react-badge]: https://img.shields.io/badge/-React-black?style=flat-square&logo=react&logoColor=white&labelColor=61DAFB&color=black
+[vue-badge]: https://img.shields.io/badge/-Vue-black?style=flat-square&logo=vue.js&logoColor=white&labelColor=4FC08D&color=black
 
-If you encounter a bug with the parser that you want to investigate, you can turn on the debug logging via setting the environment variable: `DEBUG=typescript-eslint:*`.
-I.e. in this repo you can run: `DEBUG=typescript-eslint:* yarn lint`.
+## Contributors ✨
 
-## License
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-TypeScript ESTree inherits from the the original TypeScript ESLint Parser license, as the majority of the work began there. It is licensed under a permissive BSD 2-clause license.
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://mario.dev"><img src="https://avatars1.githubusercontent.com/u/2677072?v=4" width="100px;" alt=""/><br /><sub><b>Mario Beltrán Alarcón</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Belco90" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Belco90" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/pulls?q=is%3Apr+reviewed-by%3ABelco90" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Belco90" title="Tests">⚠️</a> <a href="#infra-Belco90" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3ABelco90" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://thomlom.dev"><img src="https://avatars3.githubusercontent.com/u/16003285?v=4" width="100px;" alt=""/><br /><sub><b>Thomas Lombart</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=thomlom" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=thomlom" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/pulls?q=is%3Apr+reviewed-by%3Athomlom" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=thomlom" title="Tests">⚠️</a> <a href="#infra-thomlom" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/benmonro"><img src="https://avatars3.githubusercontent.com/u/399236?v=4" width="100px;" alt=""/><br /><sub><b>Ben Monro</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=benmonro" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=benmonro" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=benmonro" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://emmenko.org/"><img src="https://avatars2.githubusercontent.com/u/1110551?v=4" width="100px;" alt=""/><br /><sub><b>Nicola Molinari</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=emmenko" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=emmenko" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=emmenko" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/pulls?q=is%3Apr+reviewed-by%3Aemmenko" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://aarongarciah.com"><img src="https://avatars0.githubusercontent.com/u/7225802?v=4" width="100px;" alt=""/><br /><sub><b>Aarón García Hervás</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=aarongarciah" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.matej.snuderl.si/"><img src="https://avatars3.githubusercontent.com/u/8524109?v=4" width="100px;" alt=""/><br /><sub><b>Matej Šnuderl</b></sub></a><br /><a href="#ideas-Meemaw" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Meemaw" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://afontcu.dev"><img src="https://avatars0.githubusercontent.com/u/9197791?v=4" width="100px;" alt=""/><br /><sub><b>Adrià Fontcuberta</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=afontcu" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=afontcu" title="Tests">⚠️</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/jonaldinger"><img src="https://avatars1.githubusercontent.com/u/663362?v=4" width="100px;" alt=""/><br /><sub><b>Jon Aldinger</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=jonaldinger" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.thomasknickman.com"><img src="https://avatars1.githubusercontent.com/u/2933988?v=4" width="100px;" alt=""/><br /><sub><b>Thomas Knickman</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=tknickman" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=tknickman" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=tknickman" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://exercism.io/profiles/wolverineks/619ce225090a43cb891d2edcbbf50401"><img src="https://avatars2.githubusercontent.com/u/8462274?v=4" width="100px;" alt=""/><br /><sub><b>Kevin Sullivan</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=wolverineks" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://kubajastrz.com"><img src="https://avatars0.githubusercontent.com/u/6443113?v=4" width="100px;" alt=""/><br /><sub><b>Jakub Jastrzębski</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=KubaJastrz" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=KubaJastrz" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=KubaJastrz" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://arvigeus.github.com"><img src="https://avatars2.githubusercontent.com/u/4872470?v=4" width="100px;" alt=""/><br /><sub><b>Nikolay Stoynov</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=arvigeus" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://marudor.de"><img src="https://avatars0.githubusercontent.com/u/1881725?v=4" width="100px;" alt=""/><br /><sub><b>marudor</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=marudor" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=marudor" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://timdeschryver.dev"><img src="https://avatars1.githubusercontent.com/u/28659384?v=4" width="100px;" alt=""/><br /><sub><b>Tim Deschryver</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=timdeschryver" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=timdeschryver" title="Documentation">📖</a> <a href="#ideas-timdeschryver" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/pulls?q=is%3Apr+reviewed-by%3Atimdeschryver" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=timdeschryver" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Atimdeschryver" title="Bug reports">🐛</a> <a href="#infra-timdeschryver" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#platform-timdeschryver" title="Packaging/porting to new platform">📦</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://tdeekens.name"><img src="https://avatars3.githubusercontent.com/u/1877073?v=4" width="100px;" alt=""/><br /><sub><b>Tobias Deekens</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Atdeekens" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/victorandcode"><img src="https://avatars0.githubusercontent.com/u/18427801?v=4" width="100px;" alt=""/><br /><sub><b>Victor Cordova</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=victorandcode" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=victorandcode" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Avictorandcode" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/dmitry-lobanov"><img src="https://avatars0.githubusercontent.com/u/7376755?v=4" width="100px;" alt=""/><br /><sub><b>Dmitry Lobanov</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=dmitry-lobanov" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=dmitry-lobanov" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://kentcdodds.com"><img src="https://avatars0.githubusercontent.com/u/1500684?v=4" width="100px;" alt=""/><br /><sub><b>Kent C. Dodds</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Akentcdodds" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/gndelia"><img src="https://avatars1.githubusercontent.com/u/352474?v=4" width="100px;" alt=""/><br /><sub><b>Gonzalo D'Elia</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=gndelia" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=gndelia" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=gndelia" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/pulls?q=is%3Apr+reviewed-by%3Agndelia" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/jmcriffey"><img src="https://avatars0.githubusercontent.com/u/2831294?v=4" width="100px;" alt=""/><br /><sub><b>Jeff Rifwald</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=jmcriffey" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://blog.lourenci.com/"><img src="https://avatars3.githubusercontent.com/u/2339362?v=4" width="100px;" alt=""/><br /><sub><b>Leandro Lourenci</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Alourenci" title="Bug reports">🐛</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=lourenci" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=lourenci" title="Tests">⚠️</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://xxxl.digital/"><img src="https://avatars2.githubusercontent.com/u/42043025?v=4" width="100px;" alt=""/><br /><sub><b>Miguel Erja González</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Amiguelerja" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://pustovalov.dev"><img src="https://avatars2.githubusercontent.com/u/1568885?v=4" width="100px;" alt=""/><br /><sub><b>Pavel Pustovalov</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Apustovalov" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/jrparish"><img src="https://avatars3.githubusercontent.com/u/5173987?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Parish</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Ajrparish" title="Bug reports">🐛</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=jrparish" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=jrparish" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://nickmccurdy.com/"><img src="https://avatars0.githubusercontent.com/u/927220?v=4" width="100px;" alt=""/><br /><sub><b>Nick McCurdy</b></sub></a><br /><a href="#ideas-nickmccurdy" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=nickmccurdy" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/pulls?q=is%3Apr+reviewed-by%3Anickmccurdy" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://stefancameron.com/"><img src="https://avatars3.githubusercontent.com/u/2855350?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Cameron</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/issues?q=author%3Astefcameron" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mateusfelix/"><img src="https://avatars2.githubusercontent.com/u/4968788?v=4" width="100px;" alt=""/><br /><sub><b>Mateus Felix</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=thebinaryfelix" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=thebinaryfelix" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=thebinaryfelix" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/renatoagds"><img src="https://avatars2.githubusercontent.com/u/1663717?v=4" width="100px;" alt=""/><br /><sub><b>Renato Augusto Gama dos Santos</b></sub></a><br /><a href="#ideas-renatoagds" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=renatoagds" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=renatoagds" title="Documentation">📖</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=renatoagds" title="Tests">⚠️</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/codecog"><img src="https://avatars0.githubusercontent.com/u/5106076?v=4" width="100px;" alt=""/><br /><sub><b>Josh Kelly</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=codecog" title="Code">💻</a></td>
+    <td align="center"><a href="http://aless.co"><img src="https://avatars0.githubusercontent.com/u/5139846?v=4" width="100px;" alt=""/><br /><sub><b>Alessia Bellisario</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=alessbell" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=alessbell" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=alessbell" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://skovy.dev"><img src="https://avatars1.githubusercontent.com/u/5247455?v=4" width="100px;" alt=""/><br /><sub><b>Spencer Miskoviak</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=skovy" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=skovy" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=skovy" title="Documentation">📖</a> <a href="#ideas-skovy" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://twitter.com/Gpx"><img src="https://avatars0.githubusercontent.com/u/767959?v=4" width="100px;" alt=""/><br /><sub><b>Giorgio Polvara</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Gpx" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Gpx" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=Gpx" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/jdanil"><img src="https://avatars0.githubusercontent.com/u/8342105?v=4" width="100px;" alt=""/><br /><sub><b>Josh David</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=jdanil" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://michaeldeboey.be"><img src="https://avatars3.githubusercontent.com/u/6643991?v=4" width="100px;" alt=""/><br /><sub><b>Michaël De Boey</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=MichaelDeBoey" title="Code">💻</a> <a href="#platform-MichaelDeBoey" title="Packaging/porting to new platform">📦</a> <a href="#maintenance-MichaelDeBoey" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/J-Huang"><img src="https://avatars0.githubusercontent.com/u/4263459?v=4" width="100px;" alt=""/><br /><sub><b>Jian Huang</b></sub></a><br /><a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=J-Huang" title="Code">💻</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=J-Huang" title="Tests">⚠️</a> <a href="https://github.com/testing-library/eslint-plugin-testing-library/commits?author=J-Huang" title="Documentation">📖</a></td>
+  </tr>
+</table>
 
-## Contributing
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 
-[See the contributing guide here](../../CONTRIBUTING.md)
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

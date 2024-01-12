@@ -1,106 +1,123 @@
 {
-  "_from": "@typescript-eslint/typescript-estree@3.10.1",
-  "_id": "@typescript-eslint/typescript-estree@3.10.1",
+  "_from": "eslint-plugin-testing-library@^3.9.2",
+  "_id": "eslint-plugin-testing-library@3.10.2",
   "_inBundle": false,
-  "_integrity": "sha512-QbcXOuq6WYvnB3XPsZpIwztBoquEYLXh2MtwVU+kO8jgYCiv4G5xrSP/1wg4tkvrEE+esZVquIPX/dxPlePk1w==",
-  "_location": "/eslint-plugin-testing-library/@typescript-eslint/typescript-estree",
-  "_phantomChildren": {},
+  "_integrity": "sha512-WAmOCt7EbF1XM8XfbCKAEzAPnShkNSwcIsAD2jHdsMUT9mZJPjLCG7pMzbcC8kK366NOuGip8HKLDC+Xk4yIdA==",
+  "_location": "/eslint-plugin-testing-library",
+  "_phantomChildren": {
+    "@types/json-schema": "7.0.9",
+    "debug": "4.3.2",
+    "eslint-scope": "5.1.1",
+    "glob": "7.2.0",
+    "is-glob": "4.0.3",
+    "lodash": "4.17.21",
+    "semver": "7.3.2",
+    "tsutils": "3.21.0"
+  },
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@typescript-eslint/typescript-estree@3.10.1",
-    "name": "@typescript-eslint/typescript-estree",
-    "escapedName": "@typescript-eslint%2ftypescript-estree",
-    "scope": "@typescript-eslint",
-    "rawSpec": "3.10.1",
+    "raw": "eslint-plugin-testing-library@^3.9.2",
+    "name": "eslint-plugin-testing-library",
+    "escapedName": "eslint-plugin-testing-library",
+    "rawSpec": "^3.9.2",
     "saveSpec": null,
-    "fetchSpec": "3.10.1"
+    "fetchSpec": "^3.9.2"
   },
   "_requiredBy": [
-    "/eslint-plugin-testing-library/@typescript-eslint/experimental-utils"
+    "/react-scripts"
   ],
-  "_resolved": "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-3.10.1.tgz",
-  "_shasum": "fd0061cc38add4fad45136d654408569f365b853",
-  "_spec": "@typescript-eslint/typescript-estree@3.10.1",
-  "_where": "C:\\Users\\zoufi\\Downloads\\final-product-vinoth12087-main\\final-product-vinoth12087-main\\Zomato-Clone\\Frontend-Code\\node_modules\\eslint-plugin-testing-library\\node_modules\\@typescript-eslint\\experimental-utils",
+  "_resolved": "https://registry.npmjs.org/eslint-plugin-testing-library/-/eslint-plugin-testing-library-3.10.2.tgz",
+  "_shasum": "609ec2b0369da7cf2e6d9edff5da153cc31d87bd",
+  "_spec": "eslint-plugin-testing-library@^3.9.2",
+  "_where": "C:\\Users\\zoufi\\Downloads\\final-product-vinoth12087-main\\final-product-vinoth12087-main\\Zomato-Clone\\Frontend-Code\\node_modules\\react-scripts",
+  "author": {
+    "name": "Mario Beltrán Alarcón",
+    "email": "belco90@gmail.com",
+    "url": "https://mario.dev/"
+  },
   "bugs": {
-    "url": "https://github.com/typescript-eslint/typescript-eslint/issues"
+    "url": "https://github.com/testing-library/eslint-plugin-testing-library/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@typescript-eslint/types": "3.10.1",
-    "@typescript-eslint/visitor-keys": "3.10.1",
-    "debug": "^4.1.1",
-    "glob": "^7.1.6",
-    "is-glob": "^4.0.1",
-    "lodash": "^4.17.15",
-    "semver": "^7.3.2",
-    "tsutils": "^3.17.1"
+    "@typescript-eslint/experimental-utils": "^3.10.1"
   },
   "deprecated": false,
-  "description": "A parser that converts TypeScript source code into an ESTree compatible form",
+  "description": "ESLint rules for Testing Library",
   "devDependencies": {
-    "@babel/code-frame": "^7.10.4",
-    "@babel/parser": "^7.11.3",
-    "@babel/types": "^7.11.0",
-    "@types/babel__code-frame": "^7.0.1",
-    "@types/debug": "^4.1.5",
-    "@types/is-glob": "^4.0.1",
-    "@types/lodash": "^4.14.149",
-    "@types/semver": "^7.1.0",
-    "@types/tmp": "^0.2.0",
-    "@typescript-eslint/shared-fixtures": "3.10.1",
-    "glob": "*",
-    "jest-specific-snapshot": "*",
-    "make-dir": "*",
-    "tmp": "^0.2.1",
-    "typescript": "*"
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@types/jest": "^25.2.3",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "cpy-cli": "^3.1.1",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jest-formatting": "^2.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.3.0",
+    "jest": "^25.5.4",
+    "lint-staged": "^9.5.0",
+    "prettier": "1.19.1",
+    "semantic-release": "^16.0.4",
+    "ts-jest": "^25.5.1",
+    "typescript": "^4.0.3"
   },
   "engines": {
-    "node": "^10.12.0 || >=12.0.0"
+    "node": "^10.12.0 || >=12.0.0",
+    "npm": ">=6"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/typescript-eslint"
-  },
-  "gitHead": "43b1201a73687e29f19a16b0b26f68569f3c7a2e",
-  "homepage": "https://github.com/typescript-eslint/typescript-eslint#readme",
+  "homepage": "https://github.com/testing-library/eslint-plugin-testing-library",
   "keywords": [
-    "ast",
-    "estree",
-    "ecmascript",
-    "javascript",
-    "typescript",
-    "parser",
-    "syntax"
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
   ],
-  "license": "BSD-2-Clause",
-  "main": "dist/index.js",
-  "name": "@typescript-eslint/typescript-estree",
-  "peerDependenciesMeta": {
-    "typescript": {
-      "optional": true
-    }
+  "license": "MIT",
+  "main": "index.js",
+  "name": "eslint-plugin-testing-library",
+  "peerDependencies": {
+    "eslint": "^5 || ^6 || ^7"
+  },
+  "release": {
+    "pkgRoot": "dist",
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      "next",
+      "next-major",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/typescript-eslint/typescript-eslint.git",
-    "directory": "packages/typescript-estree"
+    "url": "git+https://github.com/testing-library/eslint-plugin-testing-library.git"
   },
   "scripts": {
-    "build": "tsc -b tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean",
-    "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
-    "lint": "eslint . --ext .js,.ts --ignore-path='../../.eslintignore'",
-    "postclean": "rimraf dist",
-    "test": "jest --coverage",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "build": "tsc",
+    "format": "prettier --write README.md {lib,docs,tests}/**/*.{js,md}",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "postbuild": "cpy README.md ./dist && cpy package.json ./dist && cpy LICENSE ./dist",
+    "semantic-release": "semantic-release",
+    "test": "jest",
+    "test:ci": "jest --ci --coverage",
+    "test:update": "npm run test -- --u",
+    "test:watch": "npm run test -- --watch"
   },
-  "types": "dist/index.d.ts",
-  "version": "3.10.1"
+  "version": "3.10.2"
 }
