@@ -1,8 +1,8 @@
-import * as ASTUtils from './ast-utils';
-import * as ESLintUtils from './eslint-utils';
-import * as JSONSchema from './json-schema';
-import * as TSESLint from './ts-eslint';
-import * as TSESLintScope from './ts-eslint-scope';
-export { ASTUtils, ESLintUtils, JSONSchema, TSESLint, TSESLintScope };
+export { AST, parse, parseAndGenerateServices, ParseAndGenerateServicesResult, } from './parser';
+export { ParserServices, TSESTreeOptions } from './parser-options';
+export { simpleTraverse } from './simple-traverse';
 export * from './ts-estree';
+export { clearCaches } from './create-program/createWatchProgram';
+export { visitorKeys } from '@typescript-eslint/visitor-keys';
+export declare const version: string;
 //# sourceMappingURL=index.d.ts.map

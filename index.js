@@ -6,32 +6,22 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TSESLintScope = exports.TSESLint = exports.JSONSchema = exports.ESLintUtils = exports.ASTUtils = void 0;
-const ASTUtils = __importStar(require("./ast-utils"));
-exports.ASTUtils = ASTUtils;
-const ESLintUtils = __importStar(require("./eslint-utils"));
-exports.ESLintUtils = ESLintUtils;
-const JSONSchema = __importStar(require("./json-schema"));
-exports.JSONSchema = JSONSchema;
-const TSESLint = __importStar(require("./ts-eslint"));
-exports.TSESLint = TSESLint;
-const TSESLintScope = __importStar(require("./ts-eslint-scope"));
-exports.TSESLintScope = TSESLintScope;
+exports.version = exports.visitorKeys = exports.clearCaches = exports.simpleTraverse = exports.parseAndGenerateServices = exports.parse = void 0;
+var parser_1 = require("./parser");
+Object.defineProperty(exports, "parse", { enumerable: true, get: function () { return parser_1.parse; } });
+Object.defineProperty(exports, "parseAndGenerateServices", { enumerable: true, get: function () { return parser_1.parseAndGenerateServices; } });
+var simple_traverse_1 = require("./simple-traverse");
+Object.defineProperty(exports, "simpleTraverse", { enumerable: true, get: function () { return simple_traverse_1.simpleTraverse; } });
 __exportStar(require("./ts-estree"), exports);
+var createWatchProgram_1 = require("./create-program/createWatchProgram");
+Object.defineProperty(exports, "clearCaches", { enumerable: true, get: function () { return createWatchProgram_1.clearCaches; } });
+// re-export for backwards-compat
+var visitor_keys_1 = require("@typescript-eslint/visitor-keys");
+Object.defineProperty(exports, "visitorKeys", { enumerable: true, get: function () { return visitor_keys_1.visitorKeys; } });
+// note - cannot migrate this to an import statement because it will make TSC copy the package.json to the dist folder
+exports.version = require('../package.json').version;
 //# sourceMappingURL=index.js.map
